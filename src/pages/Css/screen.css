@@ -1,0 +1,45 @@
+/* Login */
+
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 20px 20px;
+}
+#basic {
+  background: darkseagreen !important;
+  padding: 20px !important;
+  border-radius: 25px !important;
+  text-align: center;
+}
+.loginBtn {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.logoHeading {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+#campusIcon {
+  font-size: 100px;
+  color: green;
+}
+.signuplink {
+  margin-left: 8px;
+}
+
+/* companyJobPostForm */
+
+.companyJobPostForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+.tableContainer {
+  padding: 32px;
+}

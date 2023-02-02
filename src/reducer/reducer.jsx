@@ -4,11 +4,11 @@ const initialState = {
   userData: false,
   loader: true,
   jobData: [],
+  appliedJobs: [],
 };
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-
     case types.GET_FIREBASE_DATA:
       return {
         ...state,
@@ -20,6 +20,12 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         jobData: action.payload,
+      };
+
+    case types.GET_APPLIED_JOBS:
+      return {
+        ...state,
+        appliedJobs: action.payload,
       };
 
     default:

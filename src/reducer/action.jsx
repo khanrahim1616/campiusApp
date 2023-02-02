@@ -13,3 +13,10 @@ export const getJobData = (payload) => {
     payload,
   };
 };
+
+export const getAappliedJobs = (payload) => {
+  return {
+    type: types.GET_APPLIED_JOBS,
+    payload,
+  };
+};

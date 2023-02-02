@@ -2,8 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
 import { GET_FIREBASE_DATA } from "../../reducer/types";
-import { ref, update } from "firebase/database";
-import { db } from "../../Firebaseconfig";
 import { Link } from "react-router-dom";
 
 //Material ui Table
@@ -16,11 +14,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const Student = () => {
+const AppliedJobs = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-
-  console.log(state?.appliedJobs);
 
   const signedOut = () => {
     const auth = getAuth();
@@ -34,20 +30,17 @@ const Student = () => {
       .catch((error) => {});
   };
 
-  const apply = async (e, i) => {
-    await update(ref(db, "Jobs/" + e.companyId + "/" + e.id), {
-      appliedJobs: [...(e?.appliedJobs || []), state?.userData.uid],
-    });
-  };
+  console.log(state?.appliedJobs);
+
   return (
     <div>
-      <div>
-        <Link to={"/AppliedJobs"}>AppliedJobs</Link>
-        <button onClick={signedOut}>Logout</button>
-      </div>
-      {state?.jobData.length > 0 ? (
+<div>
+      <Link to={"*"}>Student</Link>
+      <button onClick={signedOut}>Logout</button>
+</div>
+      {state?.appliedJobs.length > 0 ? (
         <div className="tableContainer">
-          <h1>Jobs for you</h1>
+          <h1>Applied Jobs</h1>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -57,11 +50,10 @@ const Student = () => {
                   <TableCell align="right">Job Address</TableCell>
                   <TableCell align="right">Education</TableCell>
                   <TableCell align="right">Experience</TableCell>
-                  <TableCell align="right">Action</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {state?.jobData.map((e, i) => {
+                {state?.appliedJobs.map((e, i) => {
                   return (
                     <TableRow
                       key={i}
@@ -74,9 +66,6 @@ const Student = () => {
                       <TableCell align="right">{e.jobAddress}</TableCell>
                       <TableCell align="right">{e.education}</TableCell>
                       <TableCell align="right">{e.experience}</TableCell>
-                      <TableCell onClick={() => apply(e, i)} align="right">
-                        Apply
-                      </TableCell>
                     </TableRow>
                   );
                 })}
@@ -85,10 +74,12 @@ const Student = () => {
           </TableContainer>
         </div>
       ) : (
-        <div>No job for you According your experience</div>
+        <div>
+          <p>No Applied Jobs</p>
+        </div>
       )}
     </div>
   );
 };
 
-export default Student;
+export default AppliedJobs;

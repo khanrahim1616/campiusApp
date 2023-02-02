@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { db } from "../../Firebaseconfig";
 
 const SignUp = () => {
+  
   const auth = getAuth();
   const [data, SetData] = useState({});
   const [role, setRole] = useState();
@@ -20,10 +21,10 @@ const SignUp = () => {
 
   let { email, password, username } = data;
 
-  const signUpBtnDisableForStudent =
-    !role || !data?.email || !data?.password || !data?.username || !experience;
   const signUpBtnDisableForCompany =
     !role || !data?.email || !data?.password || !data?.username;
+
+  const signUpBtnDisableForStudent = signUpBtnDisableForCompany || !experience;
 
   const signinuser = (e) => {
     e.preventDefault();
@@ -85,7 +86,6 @@ const SignUp = () => {
             onChange={(e) => getData(e)}
           />
         </span>
-
         <span>
           Sign up as :
           <span>

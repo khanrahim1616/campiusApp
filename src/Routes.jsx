@@ -7,6 +7,7 @@ import Student from "./pages/Student/Student";
 import Company from "./pages/Company/Company";
 import CompanyJobPost from "./pages/Company/CompanyJobPost";
 import CompanyPostedJob from "./pages/Company/CompanyPostedJob";
+import AppliedJobs from "./pages/Student/AppliedJobs";
 
 const RoutesFile = () => {
   const state = useSelector((state) => state);
@@ -21,6 +22,7 @@ const RoutesFile = () => {
           <Routes>
             <Route path="/Student" element={<Student />} />
             <Route path="*" element={<Student />} />
+            <Route path="/AppliedJobs" element={<AppliedJobs />} />
           </Routes>
         ) : state?.userData?.role === "Company" ? (
           <Routes>

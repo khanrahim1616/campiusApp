@@ -17,7 +17,7 @@ const App = () => {
       if (user) {
         onValue(ref(db, "Accounts/" + user.uid), (snapshot) => {
           const data = snapshot.val();
-console.log(data)
+          console.log(data);
           dispatch(triger.getuserData(data));
         });
       } else {
@@ -44,6 +44,8 @@ console.log(data)
       onValue(ref(db, "Jobs/"), (snapshot) => {
         const data = snapshot.val();
         if (data) {
+          // getting job Data of Each company
+
           const data1 = Object.entries(data).flatMap((item) =>
             Object.entries(item[1]).map((item1) => ({
               id: item1[0],
@@ -51,9 +53,27 @@ console.log(data)
               companyId: item[0],
             }))
           );
-          dispatch(triger.getJobData(data1));
+
+          //  filtered according student experience
+
+          let accordingExperience = data1?.filter(
+            (item) =>
+              item.experience === state?.userData.experience &&
+              !item?.appliedJobs?.includes(state?.userData?.uid)
+          );
+
+          //  student applied jobs
+
+          let appliedJobs = data1?.filter(
+            (item) =>
+              item.experience === state?.userData.experience &&
+              item?.appliedJobs?.includes(state?.userData?.uid)
+          );
+          dispatch(triger.getJobData(accordingExperience));
+          dispatch(triger.getAappliedJobs(appliedJobs));
         } else {
           dispatch(triger.getJobData([]));
+          dispatch(triger.getAappliedJobs([]));
         }
       });
     }

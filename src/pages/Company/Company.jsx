@@ -22,11 +22,14 @@ const Company = () => {
 
   return (
     <div>
-      <Link to="/CompanyJobPost">JobPost</Link>
-      <br />
-      <Link to="/CompanyPostedJob">CompanyPostedJob</Link>
-      <p>{state?.userData?.role}</p>
-      <button onClick={signedOut}>Logout</button>
+      <div>
+        <Link to="/CompanyJobPost">JobPost</Link>
+        <br />
+        <Link to="/CompanyPostedJob">CompanyPostedJob</Link>
+        <p>{state?.userData?.role}</p>
+        <button onClick={signedOut}>Logout</button>
+      </div>
+      <div></div>
     </div>
   );
 };

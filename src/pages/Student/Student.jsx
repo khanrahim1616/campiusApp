@@ -20,8 +20,6 @@ const Student = () => {
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
-  console.log(state?.appliedJobs);
-
   const signedOut = () => {
     const auth = getAuth();
     signOut(auth)
@@ -39,6 +37,7 @@ const Student = () => {
       appliedJobs: [...(e?.appliedJobs || []), state?.userData.uid],
     });
   };
+
   return (
     <div>
       <div>
@@ -53,15 +52,15 @@ const Student = () => {
               <TableHead>
                 <TableRow>
                   <TableCell>S.no</TableCell>
+                  <TableCell align="right">Company name</TableCell>
                   <TableCell align="right">Job category</TableCell>
-                  <TableCell align="right">Job Address</TableCell>
                   <TableCell align="right">Education</TableCell>
                   <TableCell align="right">Experience</TableCell>
                   <TableCell align="right">Action</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {state?.jobData.map((e, i) => {
+                {state?.jobData.map((item, i) => {
                   return (
                     <TableRow
                       key={i}
@@ -70,11 +69,11 @@ const Student = () => {
                       <TableCell component="th" scope="row">
                         {i + 1}
                       </TableCell>
-                      <TableCell align="right">{e.jobCategory}</TableCell>
-                      <TableCell align="right">{e.jobAddress}</TableCell>
-                      <TableCell align="right">{e.education}</TableCell>
-                      <TableCell align="right">{e.experience}</TableCell>
-                      <TableCell onClick={() => apply(e, i)} align="right">
+                      <TableCell align="right">{item.username}</TableCell>
+                      <TableCell align="right">{item.jobCategory}</TableCell>
+                      <TableCell align="right">{item.education}</TableCell>
+                      <TableCell align="right">{item.experience}</TableCell>
+                      <TableCell onClick={() => apply(item, i)} align="right">
                         Apply
                       </TableCell>
                     </TableRow>

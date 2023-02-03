@@ -17,7 +17,6 @@ const App = () => {
       if (user) {
         onValue(ref(db, "Accounts/" + user.uid), (snapshot) => {
           const data = snapshot.val();
-          console.log(data);
           dispatch(triger.getuserData(data));
         });
       } else {
@@ -35,6 +34,7 @@ const App = () => {
             id: item[0],
             ...item[1],
           }));
+          console.log(newData.filter((item) => item?.appliedJobs));
           dispatch(triger.getJobData(newData));
         } else {
           dispatch(triger.getJobData([]));
@@ -62,6 +62,20 @@ const App = () => {
               !item?.appliedJobs?.includes(state?.userData?.uid)
           );
 
+          Promise.all(
+            accordingExperience.map((item) => {
+              return new Promise((resolve) => {
+                onValue(ref(db, "Accounts/" + item.companyId), (snapshot) => {
+                  const data = snapshot.val();
+                  let data1 = { ...item, username: data?.username };
+                  return resolve(data1);
+                });
+              });
+            })
+          ).then((res) => {
+            dispatch(triger.getJobData(res));
+          });
+
           //  student applied jobs
 
           let appliedJobs = data1?.filter(
@@ -69,8 +83,21 @@ const App = () => {
               item.experience === state?.userData.experience &&
               item?.appliedJobs?.includes(state?.userData?.uid)
           );
-          dispatch(triger.getJobData(accordingExperience));
-          dispatch(triger.getAappliedJobs(appliedJobs));
+
+          Promise.all(
+            appliedJobs.map((item) => {
+              return new Promise((resolve) => {
+                onValue(ref(db, "Accounts/" + item.companyId), (snapshot) => {
+                  const data = snapshot.val();
+                  let data1 = { ...item, username: data?.username };
+                  return resolve(data1);
+                });
+              });
+            })
+          ).then((res) => {
+            dispatch(triger.getAappliedJobs(res));
+            console.log(res);
+          });
         } else {
           dispatch(triger.getJobData([]));
           dispatch(triger.getAappliedJobs([]));
@@ -78,6 +105,7 @@ const App = () => {
       });
     }
   }, [state?.userData?.uid]);
+
   return <RoutesFile />;
 };
 export default App;

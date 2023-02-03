@@ -18,8 +18,8 @@ const CompanyJobPost = () => {
   const [experience, setExperience] = useState("");
 
   //  INPUT REFRENCES
+
   const inputRef1 = useRef();
-  const inputRef2 = useRef();
 
   const getData = (e) => {
     let input = { [e.target.name]: e.target.value };
@@ -31,12 +31,10 @@ const CompanyJobPost = () => {
 
     await push(ref(db, "Jobs/" + state?.userData?.uid), {
       jobCategory: jobPostData?.JobCategory.trim(),
-      jobAddress: jobPostData?.Address.trim(),
       experience: experience,
       education: education,
     });
     inputRef1.current.value = "";
-    inputRef2.current.value = "";
     setEducation("");
     setExperience("");
     setJobPostData({});
@@ -68,17 +66,9 @@ const CompanyJobPost = () => {
             <input
               required
               ref={inputRef1}
-              maxLength={10}
+              maxLength={18}
               placeholder="Job Category"
               name="JobCategory"
-              onChange={(e) => getData(e)}
-            />
-            <input
-              required
-              maxLength={40}
-              ref={inputRef2}
-              placeholder="Address"
-              name="Address"
               onChange={(e) => getData(e)}
             />
             <span>
@@ -113,10 +103,7 @@ const CompanyJobPost = () => {
                 type="primary"
                 htmlType="submit"
                 disabled={
-                  !jobPostData?.JobCategory?.trim() ||
-                  !jobPostData?.Address?.trim() ||
-                  !education ||
-                  !experience
+                  !jobPostData?.JobCategory?.trim() || !education || !experience
                 }
               >
                 Post

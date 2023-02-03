@@ -56,7 +56,6 @@ const CompanyPostedJob = () => {
                 <TableRow>
                   <TableCell>S.no</TableCell>
                   <TableCell align="right">Job category</TableCell>
-                  <TableCell align="right">Job Address</TableCell>
                   <TableCell align="right">Education</TableCell>
                   <TableCell align="right">Experience</TableCell>
                   <TableCell align="right">Action</TableCell>
@@ -73,7 +72,6 @@ const CompanyPostedJob = () => {
                         {i + 1}
                       </TableCell>
                       <TableCell align="right">{e.jobCategory}</TableCell>
-                      <TableCell align="right">{e.jobAddress}</TableCell>
                       <TableCell align="right">{e.education}</TableCell>
                       <TableCell align="right">{e.experience}</TableCell>
                       <TableCell onClick={() => dlete(e.id)} align="right">

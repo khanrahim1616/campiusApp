@@ -30,14 +30,12 @@ const AppliedJobs = () => {
       .catch((error) => {});
   };
 
-  console.log(state?.appliedJobs);
-
   return (
     <div>
-<div>
-      <Link to={"*"}>Student</Link>
-      <button onClick={signedOut}>Logout</button>
-</div>
+      <div>
+        <Link to={"*"}>Student</Link>
+        <button onClick={signedOut}>Logout</button>
+      </div>
       {state?.appliedJobs.length > 0 ? (
         <div className="tableContainer">
           <h1>Applied Jobs</h1>
@@ -46,14 +44,14 @@ const AppliedJobs = () => {
               <TableHead>
                 <TableRow>
                   <TableCell>S.no</TableCell>
+                  <TableCell align="right">Company name</TableCell>
                   <TableCell align="right">Job category</TableCell>
-                  <TableCell align="right">Job Address</TableCell>
                   <TableCell align="right">Education</TableCell>
                   <TableCell align="right">Experience</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {state?.appliedJobs.map((e, i) => {
+                {state?.appliedJobs.map((item, i) => {
                   return (
                     <TableRow
                       key={i}
@@ -62,10 +60,10 @@ const AppliedJobs = () => {
                       <TableCell component="th" scope="row">
                         {i + 1}
                       </TableCell>
-                      <TableCell align="right">{e.jobCategory}</TableCell>
-                      <TableCell align="right">{e.jobAddress}</TableCell>
-                      <TableCell align="right">{e.education}</TableCell>
-                      <TableCell align="right">{e.experience}</TableCell>
+                      <TableCell align="right">{item.username}</TableCell>
+                      <TableCell align="right">{item.jobCategory}</TableCell>
+                      <TableCell align="right">{item.education}</TableCell>
+                      <TableCell align="right">{item.experience}</TableCell>
                     </TableRow>
                   );
                 })}

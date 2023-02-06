@@ -27,6 +27,8 @@ const App = () => {
 
   useEffect(() => {
     if (state?.userData?.role === "Company") {
+      // get posted jobs data
+
       onValue(ref(db, "Jobs/" + state?.userData?.uid), (snapshot) => {
         const data = snapshot.val();
         if (data) {
@@ -34,10 +36,38 @@ const App = () => {
             id: item[0],
             ...item[1],
           }));
-          console.log(newData.filter((item) => item?.appliedJobs));
           dispatch(triger.getJobData(newData));
+
+          const studentApppliedJobs = newData.filter(
+            (item) => item?.appliedJobs
+          );
+          dispatch(triger.getAappliedJobs(studentApppliedJobs));
+
+          // 1st line # student applied on these jobs
+          // 2nd line # get uid of students
+          // 3rd line # get username email of student
+          // 4th line # remove duplicate satudent id
+
+          const appliedJobs = studentApppliedJobs
+            .map((item1) => item1.appliedJobs)
+            .flat(2)
+            .filter((currelem, ind, arr) => arr.indexOf(currelem) == ind);
+
+          Promise.all(
+            appliedJobs.map((studentId) => {
+              return new Promise((resolve) => {
+                onValue(ref(db, "Accounts/" + studentId), (snapshot) => {
+                  const data1 = snapshot.val();
+                  return resolve(data1);
+                });
+              });
+            })
+          ).then((res) => {
+            dispatch(triger.getAppliedStudentData(res));
+          });
         } else {
           dispatch(triger.getJobData([]));
+          dispatch(triger.getAappliedJobs([]));
         }
       });
     } else if (state?.userData?.role === "Student") {

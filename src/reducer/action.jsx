@@ -20,3 +20,12 @@ export const getAappliedJobs = (payload) => {
     payload,
   };
 };
+
+// student applied on jobs
+
+export const getAppliedStudentData = (payload) => {
+  return {
+    type: types.GET_APPLIED_STUDENT_DATA,
+    payload,
+  };
+};

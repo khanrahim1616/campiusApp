@@ -5,6 +5,7 @@ const initialState = {
   loader: true,
   jobData: [],
   appliedJobs: [],
+  appliedStudentData: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -27,6 +28,12 @@ export const reducer = (state = initialState, action) => {
         ...state,
         appliedJobs: action.payload,
       };
+
+      case types.GET_APPLIED_STUDENT_DATA:
+        return {
+          ...state,
+          appliedStudentData: action.payload,
+        };
 
     default:
       return state;

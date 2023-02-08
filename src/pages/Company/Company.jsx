@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAuth, signOut } from "firebase/auth";
 import { GET_FIREBASE_DATA } from "../../reducer/types";
 import { Link } from "react-router-dom";
-import { Modall } from "./Modal";
+import { Modall } from "./ApplyModal";
 
 //Material ui Table
 
@@ -42,14 +42,15 @@ const Company = () => {
   };
   const handleClose = () => setOpen(false);
 
-
-
   return (
     <div>
       <div>
         <Link to="/CompanyJobPost">JobPost</Link>
         <br />
         <Link to="/CompanyPostedJob">CompanyPostedJob</Link>
+        <br />
+        <Link to="/Profile">Profile</Link>
+        <br />
         <button onClick={signedOut}>Logout</button>
       </div>
       <div>
@@ -103,11 +104,7 @@ const Company = () => {
       </div>
       {open && (
         <div>
-          <Modall
-            onClose={handleClose}
-            open={open}
-            data={studentApplied}
-          />
+          <Modall onClose={handleClose} open={open} data={studentApplied} />
         </div>
       )}
     </div>

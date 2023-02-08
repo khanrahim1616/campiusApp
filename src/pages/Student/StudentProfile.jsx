@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Modalprofile from "./ProfileModal";
 
-const CompanyProfile = () => {
+const StudentProfile = () => {
   const [open, setOpen] = useState(false);
   const state = useSelector((state) => state);
-  const { email, role, username } = state?.userData;
+  const { email, role, username, experience } = state?.userData;
+
 
   const close = () => setOpen(false);
 
@@ -17,6 +18,7 @@ const CompanyProfile = () => {
           <p>Image</p>
           <p>Name: {username}</p>
           <p>Categoery: {role}</p>
+          <p>Experience:{experience} </p>
           <p>Email: {email}</p>
 
           <button onClick={() => setOpen(true)}>Edit profile</button>
@@ -31,4 +33,4 @@ const CompanyProfile = () => {
   );
 };
 
-export default CompanyProfile;
+export default StudentProfile;

@@ -3,8 +3,8 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-// import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+// import Typography from "@mui/material/Typography";
 
 //Material ui Table
 
@@ -28,8 +28,9 @@ const style = {
   p: 4,
 };
 
-export const Modall = ({ onClose, open, data }) => {
-  console.log(data)
+export const Modall = ({ onClose, open, data, uid }) => {
+  console.log(uid);
+
   return (
     <div>
       <Modal

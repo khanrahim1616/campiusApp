@@ -1,3 +1,16 @@
+/* Profile */
+
+.profilediv {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
+
+.profileImage {
+}
+
 /* Login */
 
 .LoginForm {
@@ -42,4 +55,21 @@
 }
 .tableContainer {
   padding: 32px;
+}
+
+/* Modal */
+
+.ModalDiv {
+  margin: 0px 15px;
+}
+@media only screen and (max-width: 480px) {
+  .css-1wnsr1i {
+    width: 350px !important;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .css-1wnsr1i {
+    width: 250px !important;
+  }
 }

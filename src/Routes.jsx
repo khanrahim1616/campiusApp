@@ -8,6 +8,7 @@ import Company from "./pages/Company/Company";
 import CompanyJobPost from "./pages/Company/CompanyJobPost";
 import CompanyPostedJob from "./pages/Company/CompanyPostedJob";
 import AppliedJobs from "./pages/Student/AppliedJobs";
+import CompanyProfile from "./pages/Company/companyProfile";
 
 const RoutesFile = () => {
   const state = useSelector((state) => state);
@@ -30,6 +31,7 @@ const RoutesFile = () => {
             <Route path="*" element={<Company />} />
             <Route path="/CompanyJobPost" element={<CompanyJobPost />} />
             <Route path="/CompanyPostedJob" element={<CompanyPostedJob />} />
+            <Route path="/Profile" element={<CompanyProfile />} />
           </Routes>
         ) : (
           <Routes>

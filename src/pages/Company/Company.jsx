@@ -42,6 +42,8 @@ const Company = () => {
   };
   const handleClose = () => setOpen(false);
 
+
+
   return (
     <div>
       <div>
@@ -62,7 +64,7 @@ const Company = () => {
                     <TableCell align="right">Job category</TableCell>
                     <TableCell align="right">Education</TableCell>
                     <TableCell align="right">Experience</TableCell>
-                    <TableCell align="right">apply check</TableCell>
+                    <TableCell align="right">Apply check</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -101,7 +103,11 @@ const Company = () => {
       </div>
       {open && (
         <div>
-          <Modall onClose={handleClose} open={open} data={studentApplied} />
+          <Modall
+            onClose={handleClose}
+            open={open}
+            data={studentApplied}
+          />
         </div>
       )}
     </div>

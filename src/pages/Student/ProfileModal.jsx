@@ -21,15 +21,14 @@ const Modalprofile = ({ close, open }) => {
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
-    p: 4,
   };
 
   const updates = async () => {
+    close();
     await update(ref(db, "Accounts/" + uid), {
       username: input,
       experience: experience,
     });
-    close();
   };
 
   return (
@@ -50,7 +49,6 @@ const Modalprofile = ({ close, open }) => {
           onChange={(e) => setInput(e.target.value)}
           value={input}
         />
-
         <span>
           <select
             value={experience}
@@ -64,7 +62,6 @@ const Modalprofile = ({ close, open }) => {
             <option value="Senior">Senior</option>
           </select>
         </span>
-
         <Button type="submit" onClick={updates}>
           update
         </Button>

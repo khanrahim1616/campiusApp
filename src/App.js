@@ -11,22 +11,33 @@ const App = () => {
   const auth = getAuth();
   const dispatch = useDispatch();
   const state = useSelector((state) => state);
-
+  let dba;
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        onValue(ref(db, "Accounts/" + user.uid), (snapshot) => {
+        dba = onValue(ref(db, "Accounts/" + user.uid), (snapshot) => {
           const data = snapshot.val();
           dispatch(triger.getuserData(data));
         });
       } else {
+        dba && dba();
         dispatch(triger.getuserData(false));
       }
     });
   }, []);
 
   useEffect(() => {
-    if (state?.userData?.role === "Company") {
+    if (state?.userData?.role === "admin") {
+      onValue(ref(db, "Accounts/"), (snapshot) => {
+        const newData = snapshot.val();
+        if (newData) {
+          const data = Object.values(newData).filter((e) => e.role !== "admin");
+          dispatch(triger.getAllStudentData(data));
+        } else {
+          dispatch(triger.getAllStudentData([]));
+        }
+      });
+    } else if (state?.userData?.role === "Company") {
       // get posted jobs data
 
       onValue(ref(db, "Jobs/" + state?.userData?.uid), (snapshot) => {
@@ -37,6 +48,8 @@ const App = () => {
             ...item[1],
           }));
           dispatch(triger.getJobData(newData));
+
+          // get applied jobs
 
           const studentApppliedJobs = newData.filter(
             (item) => item?.appliedJobs
@@ -84,7 +97,8 @@ const App = () => {
             }))
           );
 
-          //  filtered according student experience
+          //  For showing company posted jobs and filtered according student experience
+          // in 2nd line of filter if we applied on that job taht job will not appear
 
           let accordingExperience = data1?.filter(
             (item) =>
@@ -92,12 +106,17 @@ const App = () => {
               !item?.appliedJobs?.includes(state?.userData?.uid)
           );
 
+          // getting name of each company
+
           Promise.all(
             accordingExperience.map((item) => {
               return new Promise((resolve) => {
                 onValue(ref(db, "Accounts/" + item.companyId), (snapshot) => {
                   const data = snapshot.val();
-                  let data1 = { ...item, username: data?.username };
+                  let data1 = {
+                    ...item,
+                    username: data?.username,
+                  };
                   return resolve(data1);
                 });
               });
@@ -108,25 +127,27 @@ const App = () => {
 
           //  student applied jobs
 
-          let appliedJobs = data1?.filter(
-            (item) =>
-              item.experience === state?.userData.experience &&
-              item?.appliedJobs?.includes(state?.userData?.uid)
+          let appliedJobs = data1?.filter((item) =>
+            item?.appliedJobs?.includes(state?.userData?.uid)
           );
+
+          // getting name of each company
 
           Promise.all(
             appliedJobs.map((item) => {
               return new Promise((resolve) => {
                 onValue(ref(db, "Accounts/" + item.companyId), (snapshot) => {
                   const data = snapshot.val();
-                  let data1 = { ...item, username: data?.username };
+                  let data1 = {
+                    ...item,
+                    username: data?.username,
+                  };
                   return resolve(data1);
                 });
               });
             })
           ).then((res) => {
             dispatch(triger.getAappliedJobs(res));
-            console.log(res);
           });
         } else {
           dispatch(triger.getJobData([]));

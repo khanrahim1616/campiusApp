@@ -1,5 +1,26 @@
-/* Profile */
+/* Loading icon */
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
+/* Image upload profile */
+.imageUploadPreview {
+  width: 12rem;
+  height: 12rem;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1rem;
+  clip-path: circle(50% at 50% 50%);
+}
+
+/* Profile */
 .profilediv {
   display: flex;
   align-items: center;
@@ -8,11 +29,7 @@
   text-align: center;
 }
 
-.profileImage {
-}
-
 /* Login */
-
 .LoginForm {
   display: flex;
   flex-direction: column;
@@ -46,7 +63,6 @@
 }
 
 /* companyJobPostForm */
-
 .companyJobPostForm {
   display: flex;
   align-items: center;
@@ -58,10 +74,10 @@
 }
 
 /* Modal */
-
 .ModalDiv {
   margin: 0px 15px;
 }
+
 @media only screen and (max-width: 480px) {
   .css-1wnsr1i {
     width: 350px !important;

@@ -29,3 +29,19 @@ export const getAppliedStudentData = (payload) => {
     payload,
   };
 };
+
+// All Student Data for admin
+
+export const getAllStudentData = (payload) => {
+  return {
+    type: types.GET_ALL_ACCOUNTS_DATA,
+    payload,
+  };
+};
+
+// sign out
+export const logOut = () => {
+  return {
+    type: types.SIGN_OUT,
+  };
+};

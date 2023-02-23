@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import ImageUpload from "../components/imageUpload";
 import Modalprofile from "./ProfileModal";
 
 const StudentProfile = () => {
   const [open, setOpen] = useState(false);
   const state = useSelector((state) => state);
   const { email, role, username, experience } = state?.userData;
-
 
   const close = () => setOpen(false);
 
@@ -15,12 +15,11 @@ const StudentProfile = () => {
       <h1>Profile</h1>
       <div className=" profilediv">
         <div>
-          <p>Image</p>
+          <ImageUpload />
           <p>Name: {username}</p>
           <p>Categoery: {role}</p>
           <p>Experience:{experience} </p>
           <p>Email: {email}</p>
-
           <button onClick={() => setOpen(true)}>Edit profile</button>
         </div>
       </div>

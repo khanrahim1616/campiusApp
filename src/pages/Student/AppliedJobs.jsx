@@ -1,8 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAuth, signOut } from "firebase/auth";
-import { GET_FIREBASE_DATA } from "../../reducer/types";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { SignedOut } from "../../Helper/Helper";
 
 //Material ui Table
 
@@ -15,26 +14,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 const AppliedJobs = () => {
-  const dispatch = useDispatch();
   const state = useSelector((state) => state);
-
-  const signedOut = () => {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        dispatch({
-          type: GET_FIREBASE_DATA,
-          payload: false,
-        });
-      })
-      .catch((error) => {});
-  };
+  const dispatch = useDispatch();
 
   return (
     <div>
       <div>
         <Link to={"*"}>Student</Link>
-        <button onClick={signedOut}>Logout</button>
+        <button onClick={() => SignedOut(dispatch)}>Logout</button>
       </div>
       {state?.appliedJobs.length > 0 ? (
         <div className="tableContainer">

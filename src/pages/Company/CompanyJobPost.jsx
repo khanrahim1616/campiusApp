@@ -4,18 +4,15 @@ import { useState, useRef } from "react";
 import { Button } from "antd";
 import { ref, push } from "firebase/database";
 import { db } from "../../Firebaseconfig";
-import { useSelector, useDispatch } from "react-redux";
-import { getAuth, signOut } from "firebase/auth";
-import { GET_FIREBASE_DATA } from "../../reducer/types";
+import { useDispatch, useSelector } from "react-redux";
+import { SignedOut } from "../../Helper/Helper";
 
 const CompanyJobPost = () => {
-  const dispatch = useDispatch();
-
   const state = useSelector((state) => state);
-
   const [jobPostData, setJobPostData] = useState({});
   const [education, setEducation] = useState("");
   const [experience, setExperience] = useState("");
+  const dispatch = useDispatch();
 
   //  INPUT REFRENCES
 
@@ -40,17 +37,6 @@ const CompanyJobPost = () => {
     setJobPostData({});
   };
 
-  const signedOut = () => {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        dispatch({
-          type: GET_FIREBASE_DATA,
-          payload: false,
-        });
-      })
-      .catch((error) => {});
-  };
   return (
     <>
       <div>
@@ -58,7 +44,7 @@ const CompanyJobPost = () => {
         <br />
         <Link to="/CompanyPostedJob">CompanyPostedJob</Link>
         <br />
-        <button onClick={signedOut}>Logout</button>
+        <button onClick={() => SignedOut(dispatch)}>Logout</button>
 
         <div>
           <form className=" companyJobPostForm" onSubmit={PostJobDetails}>

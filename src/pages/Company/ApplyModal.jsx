@@ -28,9 +28,7 @@ const style = {
   p: 4,
 };
 
-export const Modall = ({ onClose, open, data, uid }) => {
-  console.log(uid);
-
+export const Modall = ({ onClose, open, data }) => {
   return (
     <div>
       <Modal

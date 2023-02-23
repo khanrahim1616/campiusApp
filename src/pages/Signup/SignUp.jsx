@@ -8,12 +8,10 @@ import { Link } from "react-router-dom";
 import { db } from "../../Firebaseconfig";
 
 const SignUp = () => {
-  
   const auth = getAuth();
   const [data, SetData] = useState({});
   const [role, setRole] = useState();
   const [experience, setExperience] = useState("");
-
   const getData = (e) => {
     let input = { [e.target.name]: e.target.value };
     SetData({ ...data, ...input });
@@ -21,10 +19,14 @@ const SignUp = () => {
 
   let { email, password, username } = data;
 
-  const signUpBtnDisableForCompany =
-    !role || !data?.email || !data?.password || !data?.username;
+  const signUpBtnDisableForCompany = !(
+    role &&
+    data?.email &&
+    data?.password &&
+    data?.username
+  );
 
-  const signUpBtnDisableForStudent = signUpBtnDisableForCompany || !experience;
+  const signUpBtnDisableForStudent = signUpBtnDisableForCompany || !experience; //false && true
 
   const signinuser = (e) => {
     e.preventDefault();
@@ -56,9 +58,8 @@ const SignUp = () => {
           <label htmlFor="username">username : </label>
           <input
             required
-            maxLength={15}
+            maxLength={10}
             id="username"
-            type="text"
             name="username"
             placeholder="Username"
             onChange={(e) => getData(e)}

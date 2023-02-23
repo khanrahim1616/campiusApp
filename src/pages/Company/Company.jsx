@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAuth, signOut } from "firebase/auth";
-import { GET_FIREBASE_DATA } from "../../reducer/types";
+import { useDispatch, useSelector } from "react-redux";
+import { SignedOut } from "../../Helper/Helper";
 import { Link } from "react-router-dom";
 import { Modall } from "./ApplyModal";
 
@@ -16,22 +15,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 const Company = () => {
-  const dispatch = useDispatch();
   const state = useSelector((state) => state);
   const [open, setOpen] = useState(false);
   const [studentApplied, setStudentApplied] = useState();
+  const dispatch = useDispatch();
 
-  const signedOut = () => {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        dispatch({
-          type: GET_FIREBASE_DATA,
-          payload: false,
-        });
-      })
-      .catch((error) => {});
-  };
   const appliedCheck = (uid) => {
     const studentData = state?.appliedStudentData.filter((val) =>
       uid.includes(val.uid)
@@ -51,7 +39,7 @@ const Company = () => {
         <br />
         <Link to="/Profile">Profile</Link>
         <br />
-        <button onClick={signedOut}>Logout</button>
+        <button onClick={() => SignedOut(dispatch)}>Logout</button>
       </div>
       <div>
         {state?.appliedJobs.length > 0 ? (

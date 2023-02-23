@@ -46,7 +46,7 @@ const LogIn = () => {
           </span>
         </p>
         <Button
-          disabled={!data?.email || !data?.password}
+          disabled={!(data?.email && data?.password)}
           className="loginBtn"
           htmlType="submit"
           type="primary"

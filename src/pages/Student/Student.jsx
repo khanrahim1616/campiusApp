@@ -1,10 +1,9 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getAuth, signOut } from "firebase/auth";
-import { GET_FIREBASE_DATA } from "../../reducer/types";
+import { useDispatch, useSelector } from "react-redux";
 import { ref, update } from "firebase/database";
 import { db } from "../../Firebaseconfig";
 import { Link } from "react-router-dom";
+import { SignedOut } from "../../Helper/Helper";
 
 //Material ui Table
 
@@ -17,20 +16,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 const Student = () => {
-  const dispatch = useDispatch();
   const state = useSelector((state) => state);
-
-  const signedOut = () => {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        dispatch({
-          type: GET_FIREBASE_DATA,
-          payload: false,
-        });
-      })
-      .catch((error) => {});
-  };
+  const dispatch = useDispatch();
 
   const apply = async (e, i) => {
     await update(ref(db, "Jobs/" + e.companyId + "/" + e.id), {
@@ -42,9 +29,9 @@ const Student = () => {
     <div>
       <div>
         <Link to={"/AppliedJobs"}>AppliedJobs</Link>
-        <button onClick={signedOut}>Logout</button>
+        <button onClick={() => SignedOut(dispatch)}>Logout</button>
       </div>
-      {state?.jobData.length > 0 ? (
+      {state?.jobData?.length > 0 ? (
         <div className="tableContainer">
           <h1>Jobs for you</h1>
           <TableContainer component={Paper}>

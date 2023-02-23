@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { getAuth, signOut } from "firebase/auth";
-import * as types from "../../reducer/types";
+import { useDispatch, useSelector } from "react-redux";
 import { remove, ref } from "firebase/database";
 import { db } from "../../Firebaseconfig";
+import { SignedOut } from "../../Helper/Helper";
 
 //Material ui Table
 
@@ -20,18 +19,6 @@ const CompanyPostedJob = () => {
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const signedOut = () => {
-    const auth = getAuth();
-    signOut(auth)
-      .then(() => {
-        dispatch({
-          type: types.GET_FIREBASE_DATA,
-          payload: false,
-        });
-      })
-      .catch((error) => {});
-  };
-
   const dlete = async (id) => {
     await remove(ref(db, `Jobs/${state?.userData?.uid}/${id}`))
       .then(() => {})
@@ -46,7 +33,7 @@ const CompanyPostedJob = () => {
         <br />
         <Link to="/CompanyJobPost">JobPost</Link>
         <br />
-        <button onClick={signedOut}>Logout</button>
+        <button onClick={() => SignedOut(dispatch)}>Logout</button>
       </div>
       {state?.jobData.length > 0 && (
         <div className="tableContainer">

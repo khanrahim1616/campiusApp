@@ -24,10 +24,10 @@ const Modalprofile = ({ close, open }) => {
   };
 
   const updates = async () => {
+    close();
     await update(ref(db, "Accounts/" + uid), {
       username: input,
     });
-    close();
   };
 
   return (
@@ -48,7 +48,7 @@ const Modalprofile = ({ close, open }) => {
           onChange={(e) => setInput(e.target.value)}
           value={input}
         />
-        <Button type="submit" onClick={updates}>update</Button>
+        <Button onClick={updates}>update</Button>
       </Box>
     </Modal>
   );

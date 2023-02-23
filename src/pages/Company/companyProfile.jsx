@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import ImageUpload from "../components/imageUpload";
 import Modalprofile from "./ProfileModal";
 
 const CompanyProfile = () => {
@@ -14,7 +15,7 @@ const CompanyProfile = () => {
       <h1>Profile</h1>
       <div className=" profilediv">
         <div>
-          <p>Image</p>
+          <ImageUpload />
           <p>Name: {username}</p>
           <p>Categoery: {role}</p>
           <p>Email: {email}</p>

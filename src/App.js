@@ -49,11 +49,12 @@ const App = () => {
           }));
           dispatch(triger.getJobData(newData));
 
-          // get applied jobs
+          // student applied on these jobs
 
           const studentApppliedJobs = newData.filter(
             (item) => item?.appliedJobs
           );
+          console.log(studentApppliedJobs);
           dispatch(triger.getAappliedJobs(studentApppliedJobs));
 
           // 1st line # student applied on these jobs
@@ -76,7 +77,9 @@ const App = () => {
               });
             })
           ).then((res) => {
-            dispatch(triger.getAppliedStudentData(res));
+            let data = res.filter((val) => !val.isBlocked);
+            console.log(data);
+            dispatch(triger.getAppliedStudentData(data));
           });
         } else {
           dispatch(triger.getJobData([]));

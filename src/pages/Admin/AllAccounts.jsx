@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { update, ref } from "firebase/database";
 import { db } from "../../Firebaseconfig";
@@ -15,11 +15,15 @@ import Paper from "@mui/material/Paper";
 
 const AllAccounts = () => {
   const state = useSelector((state) => state);
+
   const blockUser = async (user) => {
     await update(ref(db, "Accounts/" + user.uid), {
       isBlocked: !user?.isBlocked,
     });
   };
+
+  useEffect(() => {}, []);
+
   return (
     <div className="tableContainer">
       <h1 style={{ textAlign: "center" }}>All Users</h1>

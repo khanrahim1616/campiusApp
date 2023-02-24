@@ -35,7 +35,7 @@ const CompanyPostedJob = () => {
         <br />
         <button onClick={() => SignedOut(dispatch)}>Logout</button>
       </div>
-      {state?.jobData.length > 0 && (
+      {state?.jobData?.length > 0 && (
         <div className="tableContainer">
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

@@ -42,7 +42,7 @@ const Company = () => {
         <button onClick={() => SignedOut(dispatch)}>Logout</button>
       </div>
       <div>
-        {state?.appliedJobs.length > 0 ? (
+        {state?.appliedJobs?.length > 0 ? (
           <div className="tableContainer">
             <h3>Student applied on these jobs</h3>
             <TableContainer component={Paper}>

@@ -40,7 +40,7 @@ const AllAccounts = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {state?.allAccounts.map((item, i) => {
+            {state?.allAccounts?.map((item, i) => {
               return (
                 <TableRow
                   key={i}

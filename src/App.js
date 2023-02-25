@@ -54,7 +54,6 @@ const App = () => {
           const studentApppliedJobs = newData.filter(
             (item) => item?.appliedJobs
           );
-          console.log(studentApppliedJobs);
           dispatch(triger.getAappliedJobs(studentApppliedJobs));
 
           // 1st line # student applied on these jobs
@@ -77,9 +76,7 @@ const App = () => {
               });
             })
           ).then((res) => {
-            let data = res.filter((val) => !val.isBlocked);
-            console.log(data);
-            dispatch(triger.getAppliedStudentData(data));
+            dispatch(triger.getAppliedStudentData(res));
           });
         } else {
           dispatch(triger.getJobData([]));
@@ -119,12 +116,14 @@ const App = () => {
                   let data1 = {
                     ...item,
                     username: data?.username,
+                    isBlocked: data?.isBlocked,
                   };
                   return resolve(data1);
                 });
               });
             })
           ).then((res) => {
+            res = res.filter((val) => !val.isBlocked);
             dispatch(triger.getJobData(res));
           });
 
@@ -144,12 +143,14 @@ const App = () => {
                   let data1 = {
                     ...item,
                     username: data?.username,
+                    isBlocked: data?.isBlocked,
                   };
                   return resolve(data1);
                 });
               });
             })
           ).then((res) => {
+            res = res.filter((val) => !val.isBlocked);
             dispatch(triger.getAappliedJobs(res));
           });
         } else {
@@ -163,3 +164,25 @@ const App = () => {
   return <RoutesFile />;
 };
 export default App;
+
+// trying for realtime
+// let temp = [];
+// appliedJobs.map((item) => {
+//   console.log("myon value");
+//   onValue(ref(db, "Accounts/" + item.companyId), (snapshot) => {
+//     const data = snapshot.val();
+//     let data1 = {
+//       ...item,
+//       username: data?.username,
+//       isBlocked: data?.isBlocked,
+//     };
+//     temp.push(data1);
+//     let temp1 = temp
+//       .filter((val) => !!val.isBlocked)
+//       .filter((v, i, a) => {
+//         return a.findIndex((v2) => v2.id === v.id) === i;
+//       });
+//     console.log("first", temp1);
+//     dispatch(triger.getAappliedJobs(data1));
+//   });
+// });

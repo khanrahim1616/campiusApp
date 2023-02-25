@@ -23,7 +23,7 @@ const AppliedJobs = () => {
         <Link to={"*"}>Student</Link>
         <button onClick={() => SignedOut(dispatch)}>Logout</button>
       </div>
-      {state?.appliedJobs.length > 0 ? (
+      {state?.appliedJobs?.length > 0 ? (
         <div className="tableContainer">
           <h1>Applied Jobs</h1>
           <TableContainer component={Paper}>
@@ -38,7 +38,7 @@ const AppliedJobs = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {state?.appliedJobs.map((item, i) => {
+                {state?.appliedJobs?.map((item, i) => {
                   return (
                     <TableRow
                       key={i}

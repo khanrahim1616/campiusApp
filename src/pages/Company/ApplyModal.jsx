@@ -59,7 +59,16 @@ export const Modall = ({ onClose, open, data }) => {
                       <TableCell align="center" component="th" scope="row">
                         {i + 1}
                       </TableCell>
-                      <TableCell align="center">{item?.username}</TableCell>
+                      <TableCell align="center">
+                        {item?.username}
+                        <span
+                          style={{
+                            color: "red",
+                          }}
+                        >
+                          {item?.isBlocked && " (blocked)"}
+                        </span>
+                      </TableCell>
                       <TableCell align="center">{item?.email}</TableCell>
                     </TableRow>
                   );

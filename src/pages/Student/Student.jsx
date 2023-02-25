@@ -47,7 +47,7 @@ const Student = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {state?.jobData.map((item, i) => {
+                {state?.jobData?.map((item, i) => {
                   return (
                     <TableRow
                       key={i}

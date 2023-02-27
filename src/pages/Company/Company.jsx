@@ -25,7 +25,6 @@ const Company = () => {
       uid.includes(val.uid)
     );
     setOpen(true);
-
     setStudentApplied(studentData);
   };
   const handleClose = () => setOpen(false);

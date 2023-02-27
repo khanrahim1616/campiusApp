@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
 
-const BlockUser = () => {
+const UnVerifiedUser = () => {
   const dispatch = useDispatch();
   return (
     <div
@@ -13,10 +13,10 @@ const BlockUser = () => {
         height: "100vh",
       }}
     >
-      <h3>You are blocked Kindly contact your admin (Via slack)</h3>
+      <h3>Kindly contact your admin (Via slack) to approve your Account</h3>
       <button onClick={() => SignedOut(dispatch)}>SignOut</button>
     </div>
   );
 };
 
-export default BlockUser;
+export default UnVerifiedUser;

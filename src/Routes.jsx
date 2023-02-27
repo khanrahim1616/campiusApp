@@ -17,14 +17,20 @@ import StudentProfile from "./pages/Student/StudentProfile";
 import { Admin } from "./pages/Admin/Admin";
 // Loader
 import { Spin } from "antd";
+// BlockUser
 import BlockUser from "./pages/BlockUser.jsx/BlockUser";
+// unVerifiedUsers
+import UnVerifiedUser from "./pages/unVerifiedUser/unVerifiedUser";
 
 const RoutesFile = () => {
   const state = useSelector((state) => state);
+  const isVerified = state?.userData?.isVerified;
   const userBLock = state?.userData?.isBlocked;
-  const student = state?.userData?.role === "Student" && !userBLock;
-  const comapny = state?.userData?.role === "Company" && !userBLock;
   const admin = state?.userData?.role === "admin";
+  const student =
+    state?.userData?.role === "Student" && isVerified && !userBLock;
+  const comapny =
+    state?.userData?.role === "Company" && isVerified && !userBLock;
   if (state?.loader) {
     return (
       <>
@@ -57,6 +63,10 @@ const RoutesFile = () => {
             <Route path="/Admin" element={<Admin />} />
             <Route path="*" element={<Admin />} />
           </Routes>
+        ) : !!state?.userData?.uid && !isVerified ? (
+          <Routes>
+            <Route path="*" element={<UnVerifiedUser />} />
+          </Routes>
         ) : userBLock ? (
           <Routes>
             <Route path="*" element={<BlockUser />} />
@@ -73,43 +83,3 @@ const RoutesFile = () => {
   );
 };
 export default RoutesFile;
-
-// const userRoutes = [
-//   { path: "/LogIn", component: LogIn },
-//   { path: "/SignUp", component: SignUp },
-//   { path: "/Admin", component: Admin, conditions: [isAdmin] },
-//   { path: "/Student", component: Student, conditions: [isStudent] },
-//   { path: "/AppliedJobs", component: AppliedJobs, conditions: [isStudent] },
-//   {
-//     path: "/Profile",
-//     component: isStudent ? StudentProfile : CompanyProfile,
-//     conditions: [isStudent, isCompany],
-//   },
-//   { path: "/", component: Company, conditions: [isCompany] },
-//   {
-//     path: "/CompanyJobPost",
-//     component: CompanyJobPost,
-//     conditions: [isCompany],
-//   },
-//   {
-//     path: "/CompanyPostedJob",
-//     component: CompanyPostedJob,
-//     conditions: [isCompany],
-//   },
-// ];
-
-// const getUserRoutes = () => {
-//   return userRoutes.reduce((routes, { path, component, conditions }) => {
-//     if (!conditions || conditions.some((condition) => condition())) {
-//       routes.push(<Route key={path} path={path} element={<component />} />);
-//     }
-//     return routes;
-//   }, []);
-// };
-
-// <BrowserRouter>
-//   <Routes>
-//     {getUserRoutes()}
-//     <Route path="*" element={<Navigate to="/LogIn" />} />
-//   </Routes>
-// </BrowserRouter>;

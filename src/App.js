@@ -56,7 +56,7 @@ const App = () => {
           );
           dispatch(triger.getAappliedJobs(studentApppliedJobs));
 
-          // 1st line # student applied on these jobs
+          // 1st line # get studentData full object
           // 2nd line # get uid of students
           // 3rd line # get username email of student
           // 4th line # remove duplicate satudent id
@@ -166,6 +166,7 @@ const App = () => {
 export default App;
 
 // trying for realtime
+
 // let temp = [];
 // appliedJobs.map((item) => {
 //   console.log("myon value");

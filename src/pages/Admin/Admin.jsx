@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
-import AllAccounts from "./AllAccounts";
+import Tabss from "./Tabs";
 
 export const Admin = () => {
   const dispatch = useDispatch();
@@ -11,9 +11,7 @@ export const Admin = () => {
         <button onClick={() => SignedOut(dispatch)}>Signout</button>
         Admin
       </div>
-      <div>
-        <AllAccounts />
-      </div>
+      <Tabss />
     </>
   );
 };

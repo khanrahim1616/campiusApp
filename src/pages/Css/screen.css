@@ -70,7 +70,7 @@
   margin-top: 50px;
 }
 .tableContainer {
-  padding: 32px;
+  padding: 16px;
 }
 
 /* Modal */
@@ -88,4 +88,8 @@
   .css-1wnsr1i {
     width: 250px !important;
   }
+}
+
+.css-heg063-MuiTabs-flexContainer {
+  justify-content: center !important;
 }

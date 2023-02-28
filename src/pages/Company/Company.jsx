@@ -22,11 +22,12 @@ const Company = () => {
 
   const appliedCheck = (uid) => {
     const studentData = state?.appliedStudentData.filter((val) =>
-      uid.includes(val.uid)
+      uid.some((item) => item === val.uid)
     );
     setOpen(true);
     setStudentApplied(studentData);
   };
+
   const handleClose = () => setOpen(false);
 
   return (

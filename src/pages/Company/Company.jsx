@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
 import { Link } from "react-router-dom";
-import { Modall } from "./ApplyModal";
+import { Modall } from "../components/companyApplyCheckModal";
 
 //Material ui Table
 

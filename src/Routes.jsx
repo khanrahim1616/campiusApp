@@ -12,7 +12,6 @@ import CompanyJobPost from "./pages/Company/CompanyJobPost";
 import CompanyPostedJob from "./pages/Company/CompanyPostedJob";
 // Student Routes
 import Student from "./pages/Student/Student";
-import AppliedJobs from "./pages/Student/AppliedJobs";
 // Admin Routes
 import { Admin } from "./pages/Admin/Admin";
 // Loader
@@ -47,7 +46,6 @@ const RoutesFile = () => {
           <Routes>
             <Route path="/Student" element={<Student />} />
             <Route path="*" element={<Student />} />
-            <Route path="/AppliedJobs" element={<AppliedJobs />} />
             <Route path="/Profile" element={<Profile />} />
           </Routes>
         ) : comapny ? (

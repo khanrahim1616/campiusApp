@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import UnVerifiedUser from "./UnVerifiedUser";
-// import Verifieduser from "./Verifieduser";
 import { useSelector } from "react-redux";
 import { Tab, Tabs } from "@mui/material";
 import {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
-import Tabss from "./Tabs";
+import Tabss from "./verified-Unverified-Users";
 
 export const Admin = () => {
   const dispatch = useDispatch();

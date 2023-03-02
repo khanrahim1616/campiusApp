@@ -11,7 +11,7 @@ import { db } from "../../Firebaseconfig";
 
 const ImageUpload = () => {
   const state = useSelector((state) => state?.userData);
-  const [previewUrl, setPreviewUrl] = useState(state.Profilepicture);
+  const [previewUrl, setPreviewUrl] = useState(state?.Profilepicture);
   const filePickerRef = useRef();
 
   const submitFunction = async () => {

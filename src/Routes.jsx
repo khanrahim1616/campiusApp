@@ -4,15 +4,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // LogIn SignUp screens
 import SignUp from "./pages/Signup/SignUp";
 import LogIn from "./pages/LogIn/LogIn";
+// profile
+import Profile from "./pages/Profile/Profile";
 // Company Routes
 import Company from "./pages/Company/Company";
 import CompanyJobPost from "./pages/Company/CompanyJobPost";
 import CompanyPostedJob from "./pages/Company/CompanyPostedJob";
-import CompanyProfile from "./pages/Company/companyProfile";
 // Student Routes
 import Student from "./pages/Student/Student";
 import AppliedJobs from "./pages/Student/AppliedJobs";
-import StudentProfile from "./pages/Student/StudentProfile";
 // Admin Routes
 import { Admin } from "./pages/Admin/Admin";
 // Loader
@@ -48,7 +48,7 @@ const RoutesFile = () => {
             <Route path="/Student" element={<Student />} />
             <Route path="*" element={<Student />} />
             <Route path="/AppliedJobs" element={<AppliedJobs />} />
-            <Route path="/Profile" element={<StudentProfile />} />=
+            <Route path="/Profile" element={<Profile />} />
           </Routes>
         ) : comapny ? (
           <Routes>
@@ -56,12 +56,13 @@ const RoutesFile = () => {
             <Route path="*" element={<Company />} />
             <Route path="/CompanyJobPost" element={<CompanyJobPost />} />
             <Route path="/CompanyPostedJob" element={<CompanyPostedJob />} />
-            <Route path="/Profile" element={<CompanyProfile />} />
+            <Route path="/Profile" element={<Profile />} />
           </Routes>
         ) : admin ? (
           <Routes>
             <Route path="/Admin" element={<Admin />} />
             <Route path="*" element={<Admin />} />
+            <Route path="/Profile" element={<Profile />} />
           </Routes>
         ) : !!state?.userData?.uid && !isVerified ? (
           <Routes>

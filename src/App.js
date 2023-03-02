@@ -103,7 +103,7 @@ const App = () => {
           let accordingExperience = data1?.filter(
             (item) =>
               item.experience === state?.userData.experience &&
-              !item?.appliedJobs?.includes(state?.userData?.uid)
+              !item?.appliedJobs?.some((item) => item === state?.userData?.uid)
           );
 
           // getting name of each company
@@ -130,7 +130,7 @@ const App = () => {
           //  student applied jobs
 
           let appliedJobs = data1?.filter((item) =>
-            item?.appliedJobs?.includes(state?.userData?.uid)
+            item?.appliedJobs?.some((item) => item === state?.userData?.uid)
           );
 
           // getting name of each company

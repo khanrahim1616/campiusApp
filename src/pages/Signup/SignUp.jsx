@@ -43,7 +43,7 @@ const SignUp = () => {
         setExperience("");
       })
       .catch((error) => {
-        console.log(error);
+        alert(error);
       });
   };
 

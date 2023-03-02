@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import ImageUpload from "../components/imageUpload";
 import Modalprofile from "./ProfileModal";
 
-const CompanyProfile = () => {
+const Profile = () => {
   const [open, setOpen] = useState(false);
   const state = useSelector((state) => state);
-  const { email, role, username } = state?.userData;
+  const { email, role, username, experience } = state?.userData;
 
   const close = () => setOpen(false);
 
@@ -19,6 +19,7 @@ const CompanyProfile = () => {
           <p>Name: {username}</p>
           <p>Categoery: {role}</p>
           <p>Email: {email}</p>
+          {role === "Student" && <p>Experience: {experience}</p>}
 
           <button onClick={() => setOpen(true)}>Edit profile</button>
         </div>
@@ -32,4 +33,4 @@ const CompanyProfile = () => {
   );
 };
 
-export default CompanyProfile;
+export default Profile;

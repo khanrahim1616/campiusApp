@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import { Tab, Tabs } from "@mui/material";
 import {
   verifiedUsersColumns,
+  verifiedUsersRow,
   unVerifiedUsersColumns,
+  unVerifiedUsersRow,
 } from "../../Helper/adminHelper";
 import GridTable from "../components/GridTable";
 
@@ -11,33 +13,6 @@ const Tabss = () => {
   const [tabs, setTabs] = useState(0);
 
   const state = useSelector((state) => state);
-  const verifiedUsersRow = state?.allAccounts
-    ?.filter((val) => val.isVerified)
-    .map((item, i) => {
-      return {
-        id: i + 1,
-        username: item.username,
-        Email: item.email,
-        role: item.role,
-        isBlocked: item.isBlocked,
-        uid: item.uid,
-        isVerified: item.isVerified,
-      };
-    });
-
-  const unVerifiedUsersRow = state?.allAccounts
-    ?.filter((val) => !val.isVerified)
-    .map((item, i) => {
-      return {
-        id: i + 1,
-        username: item.username,
-        Email: item.email,
-        role: item.role,
-        isBlocked: item.isBlocked,
-        uid: item.uid,
-        isVerified: item.isVerified,
-      };
-    });
 
   function a11yProps(i) {
     return {
@@ -48,12 +23,12 @@ const Tabss = () => {
 
   var data = [
     {
-      row: verifiedUsersRow,
       column: verifiedUsersColumns,
+      row: verifiedUsersRow(state),
     },
     {
-      row: unVerifiedUsersRow,
       column: unVerifiedUsersColumns,
+      row: unVerifiedUsersRow(state),
     },
   ];
 
@@ -64,14 +39,14 @@ const Tabss = () => {
           style={{
             textTransform: "none",
           }}
-          label="Verified Users"
+          label="Verified-Users"
           {...a11yProps(0)}
         />
         <Tab
           style={{
             textTransform: "none",
           }}
-          label="UnVerified Users"
+          label="UnVerified-Users"
           {...a11yProps(1)}
         />
       </Tabs>

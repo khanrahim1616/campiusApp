@@ -30,52 +30,40 @@ const style = {
 export const Modall = ({ onClose, open, data }) => {
   return (
     <div>
-      <Modal
-        open={open}
-        onClose={onClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={onClose}>
         <Box sx={style}>
           <Button onClick={onClose}>close</Button>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 400 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">S.no</TableCell>
-                  <TableCell align="center">Username</TableCell>
-                  <TableCell align="center">Email</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {data?.map((item, i) => {
-                  return (
-                    <TableRow
-                      key={i}
-                      sx={{
-                        "&:last-child td, &:last-child th": { border: 0 },
-                      }}
-                    >
-                      <TableCell align="center" component="th" scope="row">
-                        {i + 1}
-                      </TableCell>
-                      <TableCell align="center">
-                        {item?.username}
-                        <span
-                          style={{
-                            color: "red",
-                          }}
-                        >
-                          {item?.isBlocked && " (blocked)"}
-                        </span>
-                      </TableCell>
-                      <TableCell align="center">{item?.email}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          {data?.length ? (
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 400 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="center">S.no</TableCell>
+                    <TableCell align="center">Username</TableCell>
+                    <TableCell align="center">Email</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data?.map((item, i) => {
+                    return (
+                      <TableRow key={i}>
+                        <TableCell align="center">{i + 1}</TableCell>
+                        <TableCell align="center">
+                          {item?.username}
+                          <span style={{ color: "red" }}>
+                            {item?.isBlocked && " (blocked)"}
+                          </span>
+                        </TableCell>
+                        <TableCell align="center">{item?.email}</TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ) : (
+            <h2>No student Applied on this job</h2>
+          )}
         </Box>
       </Modal>
     </div>

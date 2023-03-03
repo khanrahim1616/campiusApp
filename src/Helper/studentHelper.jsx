@@ -16,6 +16,22 @@ const apply = async ({ row, state }) => {
   });
 };
 
+export const companyPostedJobsRow = (state) => {
+  const row = state?.jobData?.map((item, i) => {
+    return {
+      id: i + 1,
+      companyName: item.username,
+      jobCategory: item.jobCategory,
+      education: item.education,
+      experience: item.experience,
+      companyId: item.companyId,
+      jobId: item.id,
+      appliedJobs: item.appliedJobs,
+    };
+  });
+  return row;
+};
+
 export const companyPostedJobsColumns = (state) => {
   const column = [
     { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
@@ -33,4 +49,17 @@ export const companyPostedJobsColumns = (state) => {
   ];
 
   return column;
+};
+
+export const studentAppliedJobsRow = (state) => {
+  const row = state?.appliedJobs?.map((item, i) => {
+    return {
+      id: i + 1,
+      companyName: item.username,
+      jobCategory: item.jobCategory,
+      education: item.education,
+      experience: item.experience,
+    };
+  });
+  return row;
 };

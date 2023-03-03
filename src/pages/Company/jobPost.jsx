@@ -42,8 +42,6 @@ const CompanyJobPost = () => {
       <div>
         <Link to="/">Company</Link>
         <br />
-        <Link to="/CompanyPostedJob">CompanyPostedJob</Link>
-        <br />
         <button onClick={() => SignedOut(dispatch)}>Logout</button>
 
         <div>

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
 import { Link } from "react-router-dom";
 import { Modall } from "../components/companyApplyCheckModal";
+import { remove, ref } from "firebase/database";
+import { db } from "../../Firebaseconfig";
 
 //Material ui Table
 
@@ -22,10 +24,18 @@ const Company = () => {
 
   const appliedCheck = (uid) => {
     const studentData = state?.appliedStudentData.filter((val) =>
-      uid.some((item) => item === val.uid)
+      uid?.some((item) => item === val.uid)
     );
     setOpen(true);
     setStudentApplied(studentData);
+  };
+
+  const dlete = async (id) => {
+    await remove(ref(db, `Jobs/${state?.userData?.uid}/${id}`))
+      .then(() => {})
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   const handleClose = () => setOpen(false);
@@ -35,29 +45,28 @@ const Company = () => {
       <div>
         <Link to="/CompanyJobPost">JobPost</Link>
         <br />
-        <Link to="/CompanyPostedJob">CompanyPostedJob</Link>
-        <br />
         <Link to="/Profile">Profile</Link>
         <br />
         <button onClick={() => SignedOut(dispatch)}>Logout</button>
       </div>
       <div>
-        {state?.appliedJobs?.length > 0 ? (
+        {state?.jobData?.length ? (
           <div className="tableContainer">
-            <h3>Student applied on these jobs</h3>
+            <h3 style={{ textAlign: "center" }}>Jobs</h3>
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                   <TableRow>
                     <TableCell>S.no</TableCell>
-                    <TableCell align="right">Job category</TableCell>
-                    <TableCell align="right">Education</TableCell>
-                    <TableCell align="right">Experience</TableCell>
-                    <TableCell align="right">Apply check</TableCell>
+                    <TableCell>Job-category</TableCell>
+                    <TableCell>Education</TableCell>
+                    <TableCell>Experience</TableCell>
+                    <TableCell>Apply-check</TableCell>
+                    <TableCell>Delete job</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {state?.appliedJobs.map((item, i) => {
+                  {state?.jobData.map((item, i) => {
                     return (
                       <TableRow
                         key={i}
@@ -68,14 +77,16 @@ const Company = () => {
                         <TableCell component="th" scope="row">
                           {i + 1}
                         </TableCell>
-                        <TableCell align="right">{item.jobCategory}</TableCell>
-                        <TableCell align="right">{item.education}</TableCell>
-                        <TableCell align="right">{item.experience}</TableCell>
+                        <TableCell>{item.jobCategory}</TableCell>
+                        <TableCell>{item.education}</TableCell>
+                        <TableCell>{item.experience}</TableCell>
                         <TableCell
-                          align="right"
                           onClick={() => appliedCheck(item.appliedJobs)}
                         >
                           action
+                        </TableCell>
+                        <TableCell onClick={() => dlete(item.id)}>
+                          Delete
                         </TableCell>
                       </TableRow>
                     );
@@ -91,9 +102,7 @@ const Company = () => {
         )}
       </div>
       {open && (
-        <div>
-          <Modall onClose={handleClose} open={open} data={studentApplied} />
-        </div>
+        <Modall onClose={handleClose} open={open} data={studentApplied} />
       )}
     </div>
   );

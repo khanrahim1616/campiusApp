@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import { Tab, Tabs } from "@mui/material";
 import {
   companyPostedJobsColumns,
+  companyPostedJobsRow,
   studentAppliedJobsColumns,
+  studentAppliedJobsRow,
 } from "../../Helper/studentHelper";
 import GridTable from "../components/GridTable";
 
@@ -11,29 +13,6 @@ const Jobs = () => {
   const [tabs, setTabs] = useState(0);
 
   const state = useSelector((state) => state);
-
-  const studentAppliedJobsRow = state?.appliedJobs?.map((item, i) => {
-    return {
-      id: i + 1,
-      companyName: item.username,
-      jobCategory: item.jobCategory,
-      education: item.education,
-      experience: item.experience,
-    };
-  });
-
-  const companyPostedJobsRow = state?.jobData?.map((item, i) => {
-    return {
-      id: i + 1,
-      companyName: item.username,
-      jobCategory: item.jobCategory,
-      education: item.education,
-      experience: item.experience,
-      companyId: item.companyId,
-      jobId: item.id,
-      appliedJobs: item.appliedJobs,
-    };
-  });
 
   function a11yProps(i) {
     return {
@@ -44,11 +23,11 @@ const Jobs = () => {
 
   var data = [
     {
-      row: companyPostedJobsRow,
+      row: companyPostedJobsRow(state),
       column: companyPostedJobsColumns(state),
     },
     {
-      row: studentAppliedJobsRow,
+      row: studentAppliedJobsRow(state),
       column: studentAppliedJobsColumns,
     },
   ];

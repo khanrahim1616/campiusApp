@@ -49,25 +49,20 @@ const App = () => {
           }));
           dispatch(triger.getJobData(newData));
 
-          // student applied on these jobs
+          // 1st line # only get object in item.appliedJobsAppear
+          // 2nd line # get studentData full object
+          // 3rd line # get uid of students
+          // 4th line # get username email of student
+          // 5th line # remove duplicate satudent id
 
-          const studentApppliedJobs = newData.filter(
-            (item) => item?.appliedJobs
-          );
-          dispatch(triger.getAappliedJobs(studentApppliedJobs));
-
-          // 1st line # get studentData full object
-          // 2nd line # get uid of students
-          // 3rd line # get username email of student
-          // 4th line # remove duplicate satudent id
-
-          const appliedJobs = studentApppliedJobs
+          const forGetingStudentData = newData
+            .filter((item) => item?.appliedJobs)
             .map((item1) => item1.appliedJobs)
             .flat(2)
             .filter((currelem, ind, arr) => arr.indexOf(currelem) == ind);
 
           Promise.all(
-            appliedJobs.map((studentId) => {
+            forGetingStudentData.map((studentId) => {
               return new Promise((resolve) => {
                 onValue(ref(db, "Accounts/" + studentId), (snapshot) => {
                   const data1 = snapshot.val();
@@ -80,7 +75,6 @@ const App = () => {
           });
         } else {
           dispatch(triger.getJobData([]));
-          dispatch(triger.getAappliedJobs([]));
         }
       });
     } else if (state?.userData?.role === "Student") {

@@ -4,12 +4,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // LogIn SignUp screens
 import SignUp from "./pages/Signup/SignUp";
 import LogIn from "./pages/LogIn/LogIn";
-// profile
+// profile for all users0\=['/]
 import Profile from "./pages/Profile/Profile";
 // Company Routes
 import Company from "./pages/Company/Company";
-import CompanyJobPost from "./pages/Company/CompanyJobPost";
-import CompanyPostedJob from "./pages/Company/CompanyPostedJob";
+import CompanyJobPost from "./pages/Company/jobPost";
 // Student Routes
 import Student from "./pages/Student/Student";
 // Admin Routes
@@ -53,7 +52,6 @@ const RoutesFile = () => {
             <Route path="/" element={<Company />} />
             <Route path="*" element={<Company />} />
             <Route path="/CompanyJobPost" element={<CompanyJobPost />} />
-            <Route path="/CompanyPostedJob" element={<CompanyPostedJob />} />
             <Route path="/Profile" element={<Profile />} />
           </Routes>
         ) : admin ? (

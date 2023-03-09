@@ -1,3 +1,10 @@
+/* Navbar */
+
+.navDiv {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* Loading icon */
 .content {
   display: flex;
@@ -24,7 +31,7 @@
 .profilediv {
   display: flex;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   justify-content: center;
   text-align: center;
 }

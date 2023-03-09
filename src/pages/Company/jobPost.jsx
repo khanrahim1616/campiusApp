@@ -1,18 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { Button } from "antd";
 import { ref, push } from "firebase/database";
 import { db } from "../../Firebaseconfig";
-import { useDispatch, useSelector } from "react-redux";
-import { SignedOut } from "../../Helper/Helper";
+import { useSelector } from "react-redux";
+import Navbar from "../components/Navbar";
 
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);
   const [jobPostData, setJobPostData] = useState({});
   const [education, setEducation] = useState("");
   const [experience, setExperience] = useState("");
-  const dispatch = useDispatch();
 
   //  INPUT REFRENCES
 
@@ -40,10 +38,7 @@ const CompanyJobPost = () => {
   return (
     <>
       <div>
-        <Link to="/">Company</Link>
-        <br />
-        <button onClick={() => SignedOut(dispatch)}>Logout</button>
-
+        <Navbar />
         <div>
           <form className=" companyJobPostForm" onSubmit={PostJobDetails}>
             <h1>Job Details</h1>

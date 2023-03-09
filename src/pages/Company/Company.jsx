@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { SignedOut } from "../../Helper/Helper";
-import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { Modall } from "../components/companyApplyCheckModal";
 import { remove, ref } from "firebase/database";
 import { db } from "../../Firebaseconfig";
@@ -15,12 +13,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Navbar from "../components/Navbar";
 
 const Company = () => {
   const state = useSelector((state) => state);
   const [open, setOpen] = useState(false);
   const [studentApplied, setStudentApplied] = useState();
-  const dispatch = useDispatch();
 
   const appliedCheck = (uid) => {
     const studentData = state?.appliedStudentData.filter((val) =>
@@ -42,13 +40,7 @@ const Company = () => {
 
   return (
     <div>
-      <div>
-        <Link to="/CompanyJobPost">JobPost</Link>
-        <br />
-        <Link to="/Profile">Profile</Link>
-        <br />
-        <button onClick={() => SignedOut(dispatch)}>Logout</button>
-      </div>
+      <Navbar />
       <div>
         {state?.jobData?.length ? (
           <div className="tableContainer">

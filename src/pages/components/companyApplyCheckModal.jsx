@@ -30,7 +30,10 @@ const style = {
 export const Modall = ({ onClose, open, data }) => {
   return (
     <div>
-      <Modal open={open} onClose={onClose}>
+      <Modal
+        open={open}
+        // onClose={onClose}
+      >
         <Box sx={style}>
           <Button onClick={onClose}>close</Button>
           {data?.length ? (

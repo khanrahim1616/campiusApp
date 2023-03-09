@@ -26,7 +26,7 @@ const SignUp = () => {
     data?.username
   );
 
-  const signUpBtnDisableForStudent = signUpBtnDisableForCompany || !experience; //false && true
+  const signUpBtnDisableForStudent = signUpBtnDisableForCompany || !experience;
 
   const signinuser = (e) => {
     e.preventDefault();

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ImageUpload from "../components/imageUpload";
+import Navbar from "../components/Navbar";
 import Modalprofile from "./ProfileModal";
 
 const Profile = () => {
@@ -12,6 +13,7 @@ const Profile = () => {
 
   return (
     <div>
+      <Navbar />
       <h1>Profile</h1>
       <div className=" profilediv">
         <div>
@@ -20,7 +22,6 @@ const Profile = () => {
           <p>Categoery: {role}</p>
           <p>Email: {email}</p>
           {role === "Student" && <p>Experience: {experience}</p>}
-
           <button onClick={() => setOpen(true)}>Edit profile</button>
         </div>
       </div>

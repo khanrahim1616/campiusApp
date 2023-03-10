@@ -33,6 +33,17 @@ const Modalprofile = ({ close, open }) => {
     await update(ref(db, "Accounts/" + uid), data);
   };
 
+  let disablConditions =
+    (userExperience === experience && userName === username) || !userName;
+
+  console.log(
+    "redux user experience is ",
+    userExperience,
+    experience,
+    userName,
+    username,
+    disablConditions
+  );
   return (
     <Modal
       open={open}
@@ -70,7 +81,9 @@ const Modalprofile = ({ close, open }) => {
             </span>
           )}
           <br />
-          <Button type="submit">update</Button>
+          <Button disabled={!!disablConditions} type="submit">
+            update
+          </Button>
         </form>
       </Box>
     </Modal>

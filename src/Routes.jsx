@@ -49,7 +49,7 @@ const RoutesFile = () => {
           </Routes>
         ) : comapny ? (
           <Routes>
-            <Route path="/" element={<Company />} />
+            <Route path="/Company" element={<Company />} />
             <Route path="*" element={<Company />} />
             <Route path="/CompanyJobPost" element={<CompanyJobPost />} />
             <Route path="/Profile" element={<Profile />} />

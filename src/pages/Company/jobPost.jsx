@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useRef } from "react";
-import { Button } from "antd";
 import { ref, push } from "firebase/database";
 import { db } from "../../Firebaseconfig";
 import { useSelector } from "react-redux";
@@ -78,15 +77,14 @@ const CompanyJobPost = () => {
               </select>
             </span>
             <span>
-              <Button
-                type="primary"
-                htmlType="submit"
+              <button
+                type="submit"
                 disabled={
                   !jobPostData?.JobCategory?.trim() || !education || !experience
                 }
               >
                 Post
-              </Button>
+              </button>
             </span>
           </form>
         </div>

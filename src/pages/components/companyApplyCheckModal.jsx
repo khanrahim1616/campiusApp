@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 
 //Material ui Table
@@ -35,7 +34,7 @@ export const Modall = ({ onClose, open, data }) => {
         // onClose={onClose}
       >
         <Box sx={style}>
-          <Button onClick={onClose}>close</Button>
+          <button onClick={onClose}>X</button>
           {data?.length ? (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 400 }} aria-label="simple table">

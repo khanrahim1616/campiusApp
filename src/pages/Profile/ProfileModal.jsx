@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { useSelector } from "react-redux";
 import { update, ref } from "firebase/database";
@@ -29,21 +28,13 @@ const Modalprofile = ({ close, open }) => {
       role === "Student"
         ? { username: userName, experience: userExperience }
         : { username: userName };
-    close();
     await update(ref(db, "Accounts/" + uid), data);
+    close();
   };
 
   let disablConditions =
     (userExperience === experience && userName === username) || !userName;
 
-  console.log(
-    "redux user experience is ",
-    userExperience,
-    experience,
-    userName,
-    username,
-    disablConditions
-  );
   return (
     <Modal
       open={open}
@@ -53,9 +44,9 @@ const Modalprofile = ({ close, open }) => {
     >
       <Box sx={style}>
         <form onSubmit={updates}>
-          <Button onClick={close}>close</Button>
+          <button onClick={close}>X</button>
           <br />
-
+          <br />
           <label htmlFor="userName">Username: </label>
           <input
             id="userName"
@@ -81,9 +72,9 @@ const Modalprofile = ({ close, open }) => {
             </span>
           )}
           <br />
-          <Button disabled={!!disablConditions} type="submit">
+          <button disabled={!!disablConditions} type="submit">
             update
-          </Button>
+          </button>
         </form>
       </Box>
     </Modal>

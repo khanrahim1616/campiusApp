@@ -14,7 +14,7 @@ import Student from "./pages/Student/Student";
 // Admin Routes
 import { Admin } from "./pages/Admin/Admin";
 // Loader
-import { Spin } from "antd";
+import Loader from "./pages/components/Loader";
 // BlockUser
 import BlockUser from "./pages/BlockUser.jsx/BlockUser";
 // unVerifiedUsers
@@ -22,18 +22,24 @@ import UnVerifiedUser from "./pages/unVerifiedUser/unVerifiedUser";
 
 const RoutesFile = () => {
   const state = useSelector((state) => state);
+
+  // Routes Conditions .
+
   const isVerified = state?.userData?.isVerified;
+
+  const unVerifiedUsers = !!state?.userData?.uid && !isVerified;
   const userBLock = state?.userData?.isBlocked;
   const admin = state?.userData?.role === "admin";
   const student =
     state?.userData?.role === "Student" && isVerified && !userBLock;
   const comapny =
     state?.userData?.role === "Company" && isVerified && !userBLock;
+
   if (state?.loader) {
     return (
       <>
         <div className="content">
-          <Spin tip="Loading" size="large" />
+          <Loader />
         </div>
       </>
     );
@@ -51,7 +57,7 @@ const RoutesFile = () => {
           <Routes>
             <Route path="/Company" element={<Company />} />
             <Route path="*" element={<Company />} />
-            <Route path="/CompanyJobPost" element={<CompanyJobPost />} />
+            <Route path="/Job-Post" element={<CompanyJobPost />} />
             <Route path="/Profile" element={<Profile />} />
           </Routes>
         ) : admin ? (
@@ -60,7 +66,7 @@ const RoutesFile = () => {
             <Route path="*" element={<Admin />} />
             <Route path="/Profile" element={<Profile />} />
           </Routes>
-        ) : !!state?.userData?.uid && !isVerified ? (
+        ) : unVerifiedUsers ? (
           <Routes>
             <Route path="*" element={<UnVerifiedUser />} />
           </Routes>

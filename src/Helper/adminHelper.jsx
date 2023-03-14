@@ -55,7 +55,7 @@ export const verifiedUsersColumns = [
   { field: "role", headerName: "Role", width: 90 },
   {
     field: "Action",
-    width: 100,
+    width: 90,
     renderCell: (perams) => {
       return (
         <button onClick={() => blockUser(perams.row)}>

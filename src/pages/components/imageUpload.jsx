@@ -77,7 +77,14 @@ const ImageUpload = () => {
         <button type="button" onClick={() => filePickerRef.current.click()}>
           {!previewUrl ? "+" : "edit"}
         </button>
-        {previewUrl && <button onClick={submitFunction}>Save</button>}
+        {previewUrl && (
+          <button
+            // disabled={previewUrl === state?.Profilepicture}
+            onClick={submitFunction}
+          >
+            Save
+          </button>
+        )}
       </div>
     </div>
   );

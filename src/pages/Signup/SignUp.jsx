@@ -1,8 +1,6 @@
 import React from "react";
-import { Button } from "antd";
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { PieChartTwoTone } from "@ant-design/icons";
 import { ref, set } from "firebase/database";
 import { Link } from "react-router-dom";
 import { db } from "../../Firebaseconfig";
@@ -50,10 +48,7 @@ const SignUp = () => {
   return (
     <div className="loginContainer">
       <form className="LoginForm">
-        <h1 className="logoHeading">
-          <PieChartTwoTone id="campusIcon" />
-          Campus-App
-        </h1>
+        <h1 className="logoHeading">Campus-App</h1>
         <span>
           <label htmlFor="username">username : </label>
           <input
@@ -127,7 +122,7 @@ const SignUp = () => {
             </select>
           </span>
         )}
-        <Button
+        <button
           className="loginBtn"
           disabled={
             role === "Student"
@@ -139,9 +134,9 @@ const SignUp = () => {
           onClick={signinuser}
         >
           SignUp
-        </Button>
+        </button>
         <p>
-          Already have an account
+          Already have an account ?
           <span className="signuplink">
             <Link to="/LogIn">LogIn</Link>
           </span>

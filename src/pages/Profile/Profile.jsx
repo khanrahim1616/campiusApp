@@ -14,7 +14,6 @@ const Profile = () => {
   return (
     <div>
       <Navbar />
-      <h1>Profile</h1>
       <div className=" profilediv">
         <div>
           <ImageUpload />

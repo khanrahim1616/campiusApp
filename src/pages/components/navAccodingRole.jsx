@@ -12,7 +12,7 @@ const companyNav = [
     name: "Company",
   },
   {
-    route: "/CompanyJobPost",
+    route: "/Job-Post",
     name: "JobPost",
   },
 ];
@@ -23,6 +23,7 @@ const studentNav = [
     name: "Student",
   },
 ];
+
 const AdminNav = [
   {
     route: "/Admin",

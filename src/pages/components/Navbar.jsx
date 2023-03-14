@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
 import { Link } from "react-router-dom";
 import { navAccodingRole } from "./navAccodingRole";
+import { BiLeftArrowAlt } from "react-icons/bi";
 
 const Navbar = () => {
   const role = useSelector((state) => state?.userData?.role);
@@ -20,7 +21,10 @@ const Navbar = () => {
       </div>
       <div>
         <Link to="/Profile">Profile</Link>
-        <button onClick={() => SignedOut(dispatch)}>Logout</button>
+        <button onClick={() => SignedOut(dispatch)}>
+          Logout
+          <BiLeftArrowAlt />
+        </button>
       </div>
     </div>
   );

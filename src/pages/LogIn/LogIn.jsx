@@ -1,8 +1,6 @@
 import React from "react";
-import { Button } from "antd";
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { PieChartTwoTone } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 const LogIn = () => {
@@ -27,10 +25,7 @@ const LogIn = () => {
   return (
     <div className="loginContainer">
       <form className="LoginForm">
-        <h1 className="logoHeading">
-          <PieChartTwoTone id="campusIcon" />
-          Campus-App
-        </h1>
+        <h1 className="logoHeading">Campus-App</h1>
         <input placeholder="Email" name="email" onChange={(e) => getData(e)} />
         <input
           maxLength={10}
@@ -39,21 +34,20 @@ const LogIn = () => {
           type="password"
           onChange={(e) => getData(e)}
         />
+        <button
+          disabled={!(data?.email && data?.password)}
+          className="loginBtn"
+          type="submit"
+          onClick={signinuser}
+        >
+          LogIn
+        </button>
         <p>
-          If you dont have account
+          Dont have an account ?
           <span className="signuplink">
             <Link to="/signUp">SignUp</Link>
           </span>
         </p>
-        <Button
-          disabled={!(data?.email && data?.password)}
-          className="loginBtn"
-          htmlType="submit"
-          type="primary"
-          onClick={signinuser}
-        >
-          LogIn
-        </Button>
       </form>
     </div>
   );

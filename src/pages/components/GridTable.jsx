@@ -7,7 +7,7 @@ const GridTable = ({ data }) => {
       <div className="tableContainer">
         <div style={{ height: 400, width: "100%", margin: "0 auto" }}>
           <DataGrid
-            columns={data.column || []}
+            columns={data.column}
             rows={data.row || []}
             pageSize={5}
             // rowsPerPageOptions={[5, 10]}

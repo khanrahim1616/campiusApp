@@ -6,6 +6,7 @@
 }
 
 /* Loading icon */
+
 .content {
   display: flex;
   justify-content: center;
@@ -14,6 +15,7 @@
 }
 
 /* Image upload profile */
+
 .imageUploadPreview {
   width: 12rem;
   height: 12rem;
@@ -27,6 +29,7 @@
 }
 
 /* Profile */
+
 .profilediv {
   display: flex;
   align-items: center;
@@ -35,7 +38,8 @@
   text-align: center;
 }
 
-/* Login */
+/* Login & SignUp */
+
 .LoginForm {
   display: flex;
   flex-direction: column;
@@ -44,42 +48,40 @@
   height: 100vh;
   margin: 20px 20px;
 }
-#basic {
-  background: darkseagreen !important;
-  padding: 20px !important;
-  border-radius: 25px !important;
-  text-align: center;
-}
-.loginBtn {
+
+.Btn {
   margin-top: 10px;
   display: flex;
   justify-content: center;
 }
-.logoHeading {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-#campusIcon {
-  font-size: 100px;
-  color: green;
-}
-.signuplink {
+
+.link {
   margin-left: 8px;
 }
 
 /* companyJobPostForm */
+
 .companyJobPostForm {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: 50px;
 }
+
+/* grid tale */
+
 .tableContainer {
+  width: 700px;
+  margin: 0 auto;
   padding: 16px;
 }
 
+.MuiDataGrid-selectedRowCount {
+  color: floralwhite;
+}
+
 /* Modal */
+
 .ModalDiv {
   margin: 0px 15px;
 }

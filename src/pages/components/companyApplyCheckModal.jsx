@@ -26,15 +26,12 @@ const style = {
   p: 4,
 };
 
-export const Modall = ({ onClose, open, data }) => {
+export const Modall = ({ setOpen, open, data }) => {
   return (
     <div>
-      <Modal
-        open={open}
-        // onClose={onClose}
-      >
+      <Modal open={open}>
         <Box sx={style}>
-          <button onClick={onClose}>X</button>
+          <button onClick={() => setOpen(false)}>X</button>
           {data?.length ? (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 400 }} aria-label="simple table">

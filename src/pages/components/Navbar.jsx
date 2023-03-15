@@ -14,13 +14,15 @@ const Navbar = () => {
     <div className="navDiv">
       <div>
         {accordingRole.map((item, index) => (
-          <Link key={index} to={item.route}>
+          <Link style={{ padding: "16px 8px" }} key={index} to={item.route}>
             {item.name}
           </Link>
         ))}
       </div>
       <div>
-        <Link to="/Profile">Profile</Link>
+        <Link style={{ padding: "10px 5px" }} to="/Profile">
+          Profile
+        </Link>
         <button onClick={() => SignedOut(dispatch)}>
           Logout
           <BiLeftArrowAlt />

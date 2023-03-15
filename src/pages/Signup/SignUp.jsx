@@ -123,7 +123,7 @@ const SignUp = () => {
           </span>
         )}
         <button
-          className="loginBtn"
+          className="Btn"
           disabled={
             role === "Student"
               ? signUpBtnDisableForStudent
@@ -137,7 +137,7 @@ const SignUp = () => {
         </button>
         <p>
           Already have an account ?
-          <span className="signuplink">
+          <span className="link">
             <Link to="/LogIn">LogIn</Link>
           </span>
         </p>

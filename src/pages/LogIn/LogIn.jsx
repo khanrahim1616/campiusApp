@@ -36,7 +36,7 @@ const LogIn = () => {
         />
         <button
           disabled={!(data?.email && data?.password)}
-          className="loginBtn"
+          className="Btn"
           type="submit"
           onClick={signinuser}
         >
@@ -44,7 +44,7 @@ const LogIn = () => {
         </button>
         <p>
           Dont have an account ?
-          <span className="signuplink">
+          <span className="link">
             <Link to="/signUp">SignUp</Link>
           </span>
         </p>

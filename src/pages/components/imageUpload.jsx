@@ -12,36 +12,47 @@ import { db } from "../../Firebaseconfig";
 const ImageUpload = () => {
   const state = useSelector((state) => state?.userData);
   const [previewUrl, setPreviewUrl] = useState(state?.Profilepicture);
+  const [temp, setTemp] = useState(false);
+
   const filePickerRef = useRef();
 
-  const submitFunction = async () => {
+  const savePic = async () => {
     try {
       const storage = getStorage();
-      if (previewUrl && state.uid) {
-        const path = `profilePictures/${state.uid}`;
+      if (previewUrl && state?.uid) {
+        const path = `profilePictures/${state?.uid}`;
         const storageRef = storageRefrence(storage, path);
         const uploadPic = await uploadBytes(storageRef, previewUrl);
         if (uploadPic) {
           const getURL = await getDownloadURL(storageRefrence(storage, path));
-          await update(databaseRefrence(db, `Accounts/${state.uid}`), {
+          await update(databaseRefrence(db, `Accounts/${state?.uid}`), {
             Profilepicture: getURL,
           });
         }
       }
+      setTemp(false);
     } catch (error) {
       console.error(error, "pic not saved");
     }
   };
 
+  const cancel = () => {
+    setPreviewUrl(state?.Profilepicture);
+    setTemp(false);
+  };
+
+  let pickedfile;
   const pickedHandler = (e) => {
     const acceptTypes = ["jpg", "png", "jpeg"];
-    let pickedfile;
-    if (e.target.files) {
-      pickedfile = e.target.files[0];
-      console.log(pickedfile);
-      let typCheck = acceptTypes.includes(pickedfile.type.split("/")[1]);
-      typCheck ? setPreviewUrl(pickedfile) : alert("File type not supported");
+    if (e?.target?.files) {
+      pickedfile = e?.target?.files[0];
+      let typCheck = acceptTypes?.includes(pickedfile?.type?.split("/")[1]);
+      typCheck ? set() : alert("File type not supported");
     }
+  };
+  const set = () => {
+    setPreviewUrl(pickedfile);
+    setTemp(pickedfile);
   };
 
   return (
@@ -74,16 +85,15 @@ const ImageUpload = () => {
         )}
       </div>
       <div>
-        <button type="button" onClick={() => filePickerRef.current.click()}>
-          {!previewUrl ? "+" : "edit"}
-        </button>
-        {previewUrl && (
-          <button
-            // disabled={previewUrl === state?.Profilepicture}
-            onClick={submitFunction}
-          >
-            Save
+        {!temp ? (
+          <button type="button" onClick={() => filePickerRef.current.click()}>
+            +
           </button>
+        ) : (
+          <>
+            <button onClick={savePic}>Save</button>
+            <button onClick={cancel}>cancel</button>
+          </>
         )}
       </div>
     </div>

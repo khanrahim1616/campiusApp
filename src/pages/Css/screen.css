@@ -76,6 +76,8 @@
   padding: 16px;
 }
 
+/* to remove selected row text showing bottom on grid table */
+
 .MuiDataGrid-selectedRowCount {
   color: floralwhite;
 }

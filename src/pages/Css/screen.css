@@ -19,13 +19,23 @@
 .imageUploadPreview {
   width: 12rem;
   height: 12rem;
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.addBtnDiv {
+  position: absolute;
+  bottom: 5px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.saveBtnDiv {
+  position: absolute;
+  bottom: 15px;
+  right: 45px;
 }
 
 /* Profile */
@@ -36,6 +46,13 @@
   height: 97vh;
   justify-content: center;
   text-align: center;
+}
+
+.profielSecondDiv {
+  margin-left: 10px;
+  font-size: 20px;
+  text-align: initial;
+  margin-left: 20px;
 }
 
 /* Login & SignUp */
@@ -82,15 +99,15 @@
   color: floralwhite;
 }
 
-/* Modal */
-
-.ModalDiv {
-  margin: 0px 15px;
+@media only screen and (max-width: 400px) {
+  .profilediv {
+    flex-direction: column;
+  }
 }
 
 @media only screen and (max-width: 480px) {
   .css-1wnsr1i {
-    width: 350px !important;
+    width: 300px !important;
   }
 }
 
@@ -102,4 +119,8 @@
 
 .css-heg063-MuiTabs-flexContainer {
   justify-content: center !important;
+}
+
+button {
+  cursor: pointer;
 }

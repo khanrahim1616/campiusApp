@@ -17,6 +17,8 @@ const Profile = () => {
       <div className=" profilediv">
         <div>
           <ImageUpload />
+        </div>
+        <div className="profielSecondDiv">
           <p>Name: {username}</p>
           <p>Categoery: {role}</p>
           <p>Email: {email}</p>

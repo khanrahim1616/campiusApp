@@ -47,12 +47,13 @@ const ImageUpload = () => {
     if (e?.target?.files) {
       pickedfile = e?.target?.files[0];
       let typCheck = acceptTypes?.includes(pickedfile?.type?.split("/")[1]);
-      typCheck ? set() : alert("File type not supported");
+      if (typCheck) {
+        setPreviewUrl(pickedfile);
+        setTemp(pickedfile);
+      } else {
+        alert("File type not supported");
+      }
     }
-  };
-  const set = () => {
-    setPreviewUrl(pickedfile);
-    setTemp(pickedfile);
   };
 
   return (
@@ -83,17 +84,17 @@ const ImageUpload = () => {
         ) : (
           "Add your Dp"
         )}
-      </div>
-      <div>
         {!temp ? (
-          <button type="button" onClick={() => filePickerRef.current.click()}>
-            +
-          </button>
+          <div className="addBtnDiv">
+            <button type="button" onClick={() => filePickerRef.current.click()}>
+              +
+            </button>
+          </div>
         ) : (
-          <>
+          <div className="saveBtnDiv">
             <button onClick={savePic}>Save</button>
             <button onClick={cancel}>cancel</button>
-          </>
+          </div>
         )}
       </div>
     </div>

@@ -3,6 +3,13 @@
 .navDiv {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: lightblue;
+}
+
+.firstNavDiv {
+  display: flex;
 }
 
 /* Loading icon */
@@ -19,7 +26,7 @@
 .imageUploadPreview {
   width: 12rem;
   height: 12rem;
-  border: 2px solid black;
+  border: 1px solid grey;
   border-radius: 50%;
   margin-bottom: 1rem;
   position: relative;
@@ -28,14 +35,29 @@
 .addBtnDiv {
   position: absolute;
   bottom: 5px;
-  right: 30px;
+  right: 25px;
+  border-radius: 8px;
+  padding: 1px;
+  font-size: 30px !important;
+  cursor: pointer;
+  color: black;
+  background-color: darkgray;
+}
+
+.save-cancel-BtnDiv {
+  position: absolute;
+  bottom: 15px;
+  right: 65px;
   cursor: pointer;
 }
 
-.saveBtnDiv {
-  position: absolute;
-  bottom: 15px;
-  right: 45px;
+.saveBtn {
+  margin-right: 15px;
+}
+
+.opacity {
+  background-color: darkgray;
+  border-radius: 8px;
 }
 
 /* Profile */
@@ -43,7 +65,7 @@
 .profilediv {
   display: flex;
   align-items: center;
-  height: 97vh;
+  height: 88vh;
   justify-content: center;
   text-align: center;
 }
@@ -53,6 +75,18 @@
   font-size: 20px;
   text-align: initial;
   margin-left: 20px;
+}
+
+/* Menu */
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.Links {
+  color: black;
+  text-decoration: none;
 }
 
 /* Login & SignUp */
@@ -74,6 +108,11 @@
 
 .link {
   margin-left: 8px;
+}
+
+/*  Grid table*/
+.css-z8fhq1-MuiDataGrid-columnHeaders {
+  background-color: lightblue;
 }
 
 /* companyJobPostForm */

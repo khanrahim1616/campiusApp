@@ -8,12 +8,17 @@ import {
 import { useSelector } from "react-redux";
 import { update, ref as databaseRefrence } from "firebase/database";
 import { db } from "../../Firebaseconfig";
+import LocalSeeIcon from "@mui/icons-material/LocalSee";
+import CheckIcon from "@mui/icons-material/Check";
+import ClearIcon from "@mui/icons-material/Clear";
+import profilePic from "../../Assets/profile.png";
 
 const ImageUpload = () => {
   const state = useSelector((state) => state?.userData);
-  const [previewUrl, setPreviewUrl] = useState(state?.Profilepicture);
+  const [previewUrl, setPreviewUrl] = useState(
+    state?.profilePicture || profilePic
+  );
   const [temp, setTemp] = useState(false);
-
   const filePickerRef = useRef();
 
   const savePic = async () => {
@@ -26,7 +31,7 @@ const ImageUpload = () => {
         if (uploadPic) {
           const getURL = await getDownloadURL(storageRefrence(storage, path));
           await update(databaseRefrence(db, `Accounts/${state?.uid}`), {
-            Profilepicture: getURL,
+            profilePicture: getURL,
           });
         }
       }
@@ -37,15 +42,14 @@ const ImageUpload = () => {
   };
 
   const cancel = () => {
-    setPreviewUrl(state?.Profilepicture);
+    setPreviewUrl(state?.profilePicture);
     setTemp(false);
   };
 
-  let pickedfile;
   const pickedHandler = (e) => {
     const acceptTypes = ["jpg", "png", "jpeg"];
-    if (e?.target?.files) {
-      pickedfile = e?.target?.files[0];
+    let pickedfile = e?.target?.files[0];
+    if (pickedfile) {
       let typCheck = acceptTypes?.includes(pickedfile?.type?.split("/")[1]);
       if (typCheck) {
         setPreviewUrl(pickedfile);
@@ -53,6 +57,9 @@ const ImageUpload = () => {
       } else {
         alert("File type not supported");
       }
+    }
+    if (filePickerRef?.current?.value) {
+      filePickerRef.current.value = null;
     }
   };
 
@@ -66,7 +73,7 @@ const ImageUpload = () => {
         onChange={(e) => pickedHandler(e)}
       />
       <div className="imageUploadPreview">
-        {previewUrl ? (
+        {previewUrl && (
           <img
             src={
               typeof previewUrl == "object"
@@ -81,19 +88,16 @@ const ImageUpload = () => {
               borderRadius: "360px",
             }}
           />
-        ) : (
-          "Add your Dp"
         )}
         {!temp ? (
-          <div className="addBtnDiv">
-            <button type="button" onClick={() => filePickerRef.current.click()}>
-              +
-            </button>
-          </div>
+          <LocalSeeIcon
+            className="addBtnDiv"
+            onClick={() => filePickerRef.current.click()}
+          />
         ) : (
-          <div className="saveBtnDiv">
-            <button onClick={savePic}>Save</button>
-            <button onClick={cancel}>cancel</button>
+          <div className="save-cancel-BtnDiv">
+            <CheckIcon className="saveBtn opacity" onClick={savePic} />
+            <ClearIcon className="opacity" onClick={cancel} />
           </div>
         )}
       </div>

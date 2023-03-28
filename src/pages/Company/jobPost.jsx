@@ -4,6 +4,8 @@ import { ref, push } from "firebase/database";
 import { db } from "../../Firebaseconfig";
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
+import { BiCommentDetail } from "react-icons/bi";
+
 
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);
@@ -38,19 +40,23 @@ const CompanyJobPost = () => {
     <>
       <div>
         <Navbar />
-        <div>
-          <form className=" companyJobPostForm" onSubmit={PostJobDetails}>
-            <h1>Job Details</h1>
+        <div className="JobPostDiv">
+          <form onSubmit={PostJobDetails}>
+            <h1 className="formHeading">  <BiCommentDetail/><i>:  Job-Details</i></h1>
+            <label htmlFor="Job_category"><b> Job-Category: </b></label>
             <input
               required
+              id="Job_category"
               ref={inputRef1}
               maxLength={18}
               placeholder="Job Category"
               name="JobCategory"
               onChange={(e) => getData(e)}
             />
+            <br />
             <span>
               <select
+                className="selsctOptions"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
               >
@@ -62,8 +68,10 @@ const CompanyJobPost = () => {
                 <option value="Senior">Senior</option>
               </select>
             </span>
+            <br />
             <span>
               <select
+                className="selsctOptions"
                 value={education}
                 onChange={(e) => setEducation(e.target.value)}
               >
@@ -76,8 +84,8 @@ const CompanyJobPost = () => {
                 <option value="Masters">Masters</option>
               </select>
             </span>
-            <span>
               <button
+              className="postJobBtn"
                 type="submit"
                 disabled={
                   !jobPostData?.JobCategory?.trim() || !education || !experience
@@ -85,7 +93,6 @@ const CompanyJobPost = () => {
               >
                 Post
               </button>
-            </span>
           </form>
         </div>
       </div>

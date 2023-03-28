@@ -32,7 +32,7 @@ const Menue = () => {
       />
       <Button
         style={{
-          color: "black",
+          color: "darkblue",
           textTransform: "inherit",
         }}
         id="basic-button"

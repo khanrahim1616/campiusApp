@@ -12,16 +12,17 @@ const Navbar = () => {
     <div className="navDiv">
       <div className="firstNavDiv">
         {accordingRole.map((item, index) => (
-          <h4 key={index}>
+          
             <Link
+            key={index}
               className="Links"
               style={{ padding: "16px 8px" }}
-              key={index}
+              
               to={item.route}
             >
               {item.name}
             </Link>
-          </h4>
+          
         ))}
       </div>
       <Menue />

@@ -82,11 +82,16 @@
 .menu {
   display: flex;
   align-items: center;
+  color: darkblue;
 }
 
 .Links {
-  color: black;
+  color: darkblue;
   text-decoration: none;
+}
+.Links:hover{
+  color: red;
+  text-decoration:underline
 }
 
 /* Login & SignUp */
@@ -115,19 +120,58 @@
   background-color: lightblue;
 }
 
-/* companyJobPostForm */
+/* Job POST PAGE */
 
-.companyJobPostForm {
+/* companyJobPostForm */
+.formHeading{
+ color: darkblue;
+  background-color: lightblue;
+  padding: 5px 0px;
+  border-radius: 5px;
+}
+
+.JobPostDiv {
   display: flex;
   align-items: center;
-  flex-direction: column;
-  margin-top: 50px;
+  justify-content: center;
+  height: 80vh;
+  text-align: center;
+  /* flex-direction: column; */
+  width: 500px;
+  margin: auto;
 }
+
+.selsctOptions{
+  width: 100%;
+text-align: center;
+padding: 3px 0px;
+margin-top: 10px;
+}
+
+.postJobBtn{
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+    border-radius: 5px;
+    margin-top: 12px;
+    text-align: center;
+    padding: 5px 10px;
+  }
+
+  .postJobBtn:hover {
+  background-color: #008CBA;
+  color: white;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+
+
 
 /* grid tale */
 
 .tableContainer {
-  width: 700px;
+  /* width: 700px; */
   margin: 0 auto;
   padding: 16px;
 }

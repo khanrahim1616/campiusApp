@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import { BiCommentDetail } from "react-icons/bi";
 
-
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);
   const [jobPostData, setJobPostData] = useState({});
@@ -36,47 +35,57 @@ const CompanyJobPost = () => {
     setJobPostData({});
   };
 
+  let disableCondition =
+    !jobPostData?.JobCategory?.trim() || !education || !experience;
+
   return (
     <>
       <div>
         <Navbar />
         <div className="JobPostDiv">
-          <form onSubmit={PostJobDetails}>
-            <h1 className="formHeading">  <BiCommentDetail/><i>:  Job-Details</i></h1>
-            <label htmlFor="Job_category"><b> Job-Category: </b></label>
+          <form onSubmit={PostJobDetails} className="JobPostForm">
+            <h1 className="formHeading">
+              {" "}
+              <BiCommentDetail />
+              <i>: Job-Details</i>
+            </h1>
+            <label htmlFor="Job_category">Category:</label>
             <input
+              className="selsctOptions"
               required
               id="Job_category"
               ref={inputRef1}
               maxLength={18}
-              placeholder="Job Category"
+              placeholder="Please enter category"
               name="JobCategory"
               onChange={(e) => getData(e)}
             />
-            <br />
+            <label htmlFor="experience">Experience:</label>
             <span>
               <select
+                id="experience"
                 className="selsctOptions"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
               >
                 <option value="" selected disabled hidden>
-                  Experience
+                  Please select experience
                 </option>
                 <option value="Fresher">Fresher</option>
                 <option value="Junior">Junior</option>
                 <option value="Senior">Senior</option>
               </select>
             </span>
-            <br />
+            <label htmlFor="education">Education:</label>
             <span>
               <select
+                id="education"
                 className="selsctOptions"
                 value={education}
                 onChange={(e) => setEducation(e.target.value)}
               >
                 <option value="" selected disabled hidden>
-                  Education
+                  Please select education
                 </option>
                 <option value="Matric">Matric</option>
                 <option value="Intermediate">Intermediate</option>
@@ -84,15 +93,15 @@ const CompanyJobPost = () => {
                 <option value="Masters">Masters</option>
               </select>
             </span>
-              <button
-              className="postJobBtn"
-                type="submit"
-                disabled={
-                  !jobPostData?.JobCategory?.trim() || !education || !experience
-                }
+            <span style={{textAlign:"end"}}>
+            <button
+              className={!disableCondition? "postJobBtn":"opacity1" }
+              type="submit"
+              disabled={disableCondition}
               >
-                Post
-              </button>
+              Post
+            </button>
+              </span>
           </form>
         </div>
       </div>

@@ -23,7 +23,7 @@ const Profile = () => {
           <p>Categoery: {role}</p>
           <p>Email: {email}</p>
           {role === "Student" && <p>Experience: {experience}</p>}
-          <button onClick={() => setOpen(true)}>Edit profile</button>
+          <button className="postJobBtn" onClick={() => setOpen(true)}>Edit profile</button>
         </div>
       </div>
       {open && (

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useMemo } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,10 +9,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
 import Avatar from "@mui/material/Avatar";
 import profilePic from "../../Assets/profile.png";
+import { navAccodingRole } from "./navAccodingRole";
 
 const Menue = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.userData);
+  const role = useSelector((state) => state?.userData?.role);
+  const accordingRole = useMemo(() => navAccodingRole(role), [role]);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -57,6 +61,16 @@ const Menue = () => {
           "aria-labelledby": "basic-button",
         }}
       >
+        <span className="smallScreenMenu">
+          {accordingRole?.map((item, index) => (
+            <MenuItem key={index} onClick={handleClose}>
+              <Link className="Links" to={item.route}>
+                {item.name}
+              </Link>
+            </MenuItem>
+          ))}
+        </span>
+
         <MenuItem onClick={handleClose}>
           <Link className="Links" to="/Profile">
             Profile

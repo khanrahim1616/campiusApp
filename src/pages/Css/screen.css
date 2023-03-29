@@ -4,7 +4,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
   background-color: lightblue;
 }
 
@@ -65,7 +64,7 @@
 .profilediv {
   display: flex;
   align-items: center;
-  height: 88vh;
+  height: 80vh;
   justify-content: center;
   text-align: center;
 }
@@ -84,14 +83,16 @@
   align-items: center;
   color: darkblue;
 }
-
+.smallScreenMenu{
+  display: none;
+}
 .Links {
   color: darkblue;
   text-decoration: none;
 }
-.Links:hover{
+.Links:hover {
   color: red;
-  text-decoration:underline
+  text-decoration: underline;
 }
 
 /* Login & SignUp */
@@ -121,52 +122,56 @@
 }
 
 /* Job POST PAGE */
-
-/* companyJobPostForm */
-.formHeading{
- color: darkblue;
+.formHeading {
+  color: darkblue;
   background-color: lightblue;
-  padding: 5px 0px;
+  padding: 5px 10px;
   border-radius: 5px;
 }
-
+.JobPostForm {
+  display: flex;
+  flex-direction: column;
+}
 .JobPostDiv {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 80vh;
-  text-align: center;
-  /* flex-direction: column; */
-  width: 500px;
+  /* width: 500px; */
   margin: auto;
 }
-
-.selsctOptions{
+.selsctOptions {
   width: 100%;
-text-align: center;
-padding: 3px 0px;
-margin-top: 10px;
+  text-align: center;
+  padding: 5px 0px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
-
-.postJobBtn{
-    background-color: white; 
-    color: black; 
-    border: 2px solid #008CBA;
-    border-radius: 5px;
-    margin-top: 12px;
-    text-align: center;
-    padding: 5px 10px;
-  }
-
-  .postJobBtn:hover {
-  background-color: #008CBA;
+.postJobBtn {
+  background-color: lightblue;
+  color: black;
+  border: 2px solid #008cba;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 5px;
+  padding: 5px 10px;
+}
+.opacity1{
+  opacity: 0.5;
+  margin-top: 5px;
+  background-color: lightblue;
+  color: black;
+  border: 2px solid #008cba;
+  border-radius: 5px;
+  text-align: center;
+  padding: 5px 10px;
+}
+.postJobBtn:hover {
+  background-color: #008cba;
   color: white;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-
-
-
-
 
 /* grid tale */
 
@@ -186,6 +191,13 @@ margin-top: 10px;
   .profilediv {
     flex-direction: column;
   }
+  .firstNavDiv{
+display: none;
+  }
+  .smallScreenMenu{
+    display: block;
+  }
+  .navDiv{justify-content: center;}
 }
 
 @media only screen and (max-width: 480px) {

@@ -25,7 +25,7 @@ const Navbar = () => {
           
         ))}
       </div>
-      <Menue />
+      <Menue accordingRole={accordingRole}/>
     </div>
   );
 };

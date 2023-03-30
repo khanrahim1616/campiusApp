@@ -1,5 +1,7 @@
 import { remove, ref } from "firebase/database";
 import { db } from "../Firebaseconfig";
+import { AiFillDelete, AiOutlineMan } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const appliedCheck = ({ row, state, setOpen, setStudentApplied }) => {
   const studentData = state?.appliedStudentData.filter((val) =>
@@ -9,40 +11,72 @@ const appliedCheck = ({ row, state, setOpen, setStudentApplied }) => {
   setStudentApplied(studentData);
 };
 
-const dlete = async ({ row, state }) => {
-  await remove(ref(db, `Jobs/${state?.userData?.uid}/${row.jobId}`))
-    .then(() => {})
-    .catch((error) => {
-      console.log(error.message);
-    });
+const dlete = ({ row, state }) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't to delete this job!",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Delete",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      await remove(ref(db, `Jobs/${state?.userData?.uid}/${row.jobId}`))
+        .then(() => {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your Job has been deleted.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
+  });
 };
 
 export const allJobsColumns = (state, setOpen, setStudentApplied) => {
   const column = [
     { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
     { field: "JobCategory", headerName: "Job-category", width: 150 },
-    { field: "Education", headerName: "Education", width: 170 },
+    { field: "Education", headerName: "Education", width: 100 },
     { field: "Experience", headerName: "Experience", width: 100 },
     {
       field: "Apply-check",
-      width: 100,
+      width: 95,
       renderCell: ({ row }) => {
         return (
-          <button
+          <AiOutlineMan
+            style={{
+              fontSize: "24px",
+              color: "green",
+              cursor: "pointer",
+            }}
             onClick={() =>
               appliedCheck({ row, state, setOpen, setStudentApplied })
             }
-          >
-            Apply-check
-          </button>
+          />
         );
       },
     },
     {
       field: "Delete-job",
-      width: 90,
+      width: 80,
       renderCell: ({ row }) => {
-        return <button onClick={() => dlete({ row, state })}>Delete</button>;
+        return (
+          <AiFillDelete
+            style={{
+              fontSize: "24px",
+              color: "red",
+              cursor: "pointer",
+            }}
+            onClick={() => dlete({ row, state })}
+          />
+        );
       },
     },
   ];

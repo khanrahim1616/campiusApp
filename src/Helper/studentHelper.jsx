@@ -1,5 +1,6 @@
 import { ref, update } from "firebase/database";
 import { db } from "../Firebaseconfig";
+import { AiOutlineMan } from "react-icons/ai";
 
 const apply = async ({ row, state }) => {
   console.log(row);
@@ -28,14 +29,23 @@ export const companyPostedJobsColumns = (state) => {
   const column = [
     { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
     { field: "companyName", headerName: "Company-Name", width: 150 },
-    { field: "jobCategory", headerName: "Job-Category", width: 170 },
+    { field: "jobCategory", headerName: "Job-Category", width: 190 },
     { field: "education", headerName: "Education", width: 100 },
     { field: "experience", headerName: "Experience", width: 90 },
     {
-      field: "Action",
-      width: 90,
+      field: "Apply",
+      width: 60,
       renderCell: ({ row }) => {
-        return <button onClick={() => apply({ row, state })}>Apply</button>;
+        return (
+          <AiOutlineMan
+            style={{
+              fontSize: "24px",
+              color: "green",
+              cursor: "pointer",
+            }}
+            onClick={() => apply({ row, state })}
+          />
+        );
       },
     },
   ];
@@ -46,7 +56,7 @@ export const companyPostedJobsColumns = (state) => {
 export const studentAppliedJobsColumns = [
   { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
   { field: "companyName", headerName: "Company-Name", width: 150 },
-  { field: "jobCategory", headerName: "Job-Category", width: 170 },
+  { field: "jobCategory", headerName: "Job-Category", width: 190 },
   { field: "education", headerName: "Education", width: 100 },
   { field: "experience", headerName: "Experience", width: 90 },
 ];

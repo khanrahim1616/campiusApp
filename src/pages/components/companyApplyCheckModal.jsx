@@ -3,6 +3,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import { HiBackspace } from "react-icons/hi2";
 
 //Material ui Table
 
@@ -31,7 +32,10 @@ export const Modall = ({ setOpen, open, data }) => {
     <div>
       <Modal open={open}>
         <Box sx={style}>
-          <button onClick={() => setOpen(false)}>X</button>
+          <HiBackspace
+            style={{ fontSize: "40px", color: "blue", cursor: "pointer" }}
+            onClick={() => setOpen(false)}
+          />
           {data?.length ? (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 400 }} aria-label="simple table">

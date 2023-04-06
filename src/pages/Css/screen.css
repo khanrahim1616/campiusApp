@@ -5,6 +5,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: lightblue;
+  padding: 0px 5px;
 }
 
 .firstNavDiv {
@@ -83,7 +84,7 @@
   align-items: center;
   color: darkblue;
 }
-.smallScreenMenu{
+.smallScreenMenu {
   display: none;
 }
 .Links {
@@ -119,7 +120,11 @@
 /*  Grid table*/
 .css-z8fhq1-MuiDataGrid-columnHeaders {
   background-color: lightblue;
+  color: darkblue;
 }
+/* .css-1e2bxag-MuiDataGrid-root .MuiDataGrid-columnHeader--sortable {
+    cursor: pointer;
+} */
 
 /* Job POST PAGE */
 .formHeading {
@@ -156,7 +161,7 @@
   margin-top: 5px;
   padding: 5px 10px;
 }
-.opacity1{
+.opacity1 {
   opacity: 0.5;
   margin-top: 5px;
   background-color: lightblue;
@@ -173,10 +178,10 @@
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-/* grid tale */
+/* grid tale { */
 
 .tableContainer {
-  /* width: 700px; */
+  max-width: 35%;
   margin: 0 auto;
   padding: 16px;
 }
@@ -187,17 +192,24 @@
   color: floralwhite;
 }
 
+/* } */
+
 @media only screen and (max-width: 400px) {
   .profilediv {
     flex-direction: column;
   }
-  .firstNavDiv{
-display: none;
+  .firstNavDiv {
+    display: none;
   }
-  .smallScreenMenu{
+  .smallScreenMenu {
     display: block;
   }
-  .navDiv{justify-content: center;}
+  .tableContainer {
+    max-width: 90%;
+  }
+  .navDiv {
+    justify-content: space-between;
+  }
 }
 
 @media only screen and (max-width: 480px) {

@@ -4,6 +4,7 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import { Link } from "react-router-dom";
 import { db } from "../../Firebaseconfig";
+import ReUseButton from "../components/ReUseButton";
 
 const SignUp = () => {
   const auth = getAuth();
@@ -122,19 +123,17 @@ const SignUp = () => {
             </select>
           </span>
         )}
-        <button
+        <ReUseButton
           className="Btn"
           disabled={
             role === "Student"
               ? signUpBtnDisableForStudent
               : signUpBtnDisableForCompany
           }
-          htmlType="submit"
-          type="primary"
+          type="submit"
           onClick={signinuser}
-        >
-          SignUp
-        </button>
+          btnText={"SignUp"}
+        />
         <p>
           Already have an account ?
           <span className="link">

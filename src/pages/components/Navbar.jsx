@@ -21,7 +21,7 @@ const Navbar = () => {
         {accordingRole.map((item, index) => (
           <Link
             key={index}
-            className="Links"
+            className="Links linksHidden"
             style={{ padding: "16px 8px" }}
             to={item.route}
           >

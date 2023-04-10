@@ -5,6 +5,7 @@ import { db } from "../../Firebaseconfig";
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import { BiCommentDetail } from "react-icons/bi";
+import ReUseButton from "../components/ReUseButton";
 
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);
@@ -45,13 +46,12 @@ const CompanyJobPost = () => {
         <div className="JobPostDiv">
           <form onSubmit={PostJobDetails} className="JobPostForm">
             <h1 className="formHeading">
-              {" "}
               <BiCommentDetail />
               <i>: Job-Details</i>
             </h1>
             <label htmlFor="Job_category">Category:</label>
             <input
-              className="selsctOptions"
+              className="selectOptions"
               required
               id="Job_category"
               ref={inputRef1}
@@ -64,7 +64,7 @@ const CompanyJobPost = () => {
             <span>
               <select
                 id="experience"
-                className="selsctOptions"
+                className="selectOptions"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
               >
@@ -80,7 +80,7 @@ const CompanyJobPost = () => {
             <span>
               <select
                 id="education"
-                className="selsctOptions"
+                className="selectOptions"
                 value={education}
                 onChange={(e) => setEducation(e.target.value)}
               >
@@ -93,15 +93,14 @@ const CompanyJobPost = () => {
                 <option value="Masters">Masters</option>
               </select>
             </span>
-            <span style={{textAlign:"end"}}>
-            <button
-              className={!disableCondition? "postJobBtn":"opacity1" }
-              type="submit"
-              disabled={disableCondition}
-              >
-              Post
-            </button>
-              </span>
+            <span style={{ textAlign: "end" }}>
+              <ReUseButton
+                className={!disableCondition ? "buttonReuse" : "opacity1"}
+                type="submit"
+                disabled={disableCondition}
+                btnText={"Post"}
+              />
+            </span>
           </form>
         </div>
       </div>

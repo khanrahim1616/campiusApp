@@ -1,5 +1,6 @@
 import { update, ref } from "firebase/database";
 import { db } from "../Firebaseconfig";
+import ReUseButton from "../pages/components/ReUseButton";
 
 // unVerified users row,column & verify function
 
@@ -18,7 +19,12 @@ export const unVerifiedUsersColumns = [
     field: "Action",
     width: 90,
     renderCell: (perams) => {
-      return <button onClick={() => verifyUser(perams.row)}>Verify</button>;
+      return (
+        <ReUseButton
+          onClick={() => verifyUser(perams.row)}
+          btnText={"Verify"}
+        />
+      );
     },
   },
 ];
@@ -58,9 +64,10 @@ export const verifiedUsersColumns = [
     width: 90,
     renderCell: (perams) => {
       return (
-        <button onClick={() => blockUser(perams.row)}>
-          {perams.row.isBlocked ? "unblock" : "block"}
-        </button>
+        <ReUseButton
+          onClick={() => blockUser(perams.row)}
+          btnText={perams.row.isBlocked ? "unblock" : "block"}
+        />
       );
     },
   },

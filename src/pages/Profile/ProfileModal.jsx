@@ -4,6 +4,8 @@ import Modal from "@mui/material/Modal";
 import { useSelector } from "react-redux";
 import { update, ref } from "firebase/database";
 import { db } from "../../Firebaseconfig";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
+import ReUseButton from "../components/ReUseButton";
 
 const Modalprofile = ({ close, open }) => {
   const state = useSelector((state) => state);
@@ -24,57 +26,76 @@ const Modalprofile = ({ close, open }) => {
   };
 
   const updates = async () => {
-    let data =
-      role === "Student"
-        ? { username: userName, experience: userExperience }
-        : { username: userName };
-    await update(ref(db, "Accounts/" + uid), data);
-    close();
+    try {
+      let data =
+        role === "Student"
+          ? { username: userName, experience: userExperience }
+          : { username: userName };
+      const updatedData = await update(ref(db, "Accounts/" + uid), data);
+      close();
+      console.log(updatedData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   let disablConditions =
-    (userExperience === experience && userName === username) || !userName;
+    (userExperience === experience && userName === username) ||
+    userName.length < 5 ||
+    userName.length > 20;
 
   return (
-    <Modal
-      open={open}
-      close={close}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
+    <Modal open={open}>
       <Box sx={style}>
-        <form onSubmit={updates}>
-          <button onClick={close}>X</button>
-          <br />
-          <br />
+        <h3
+          style={{
+            display: "flex",
+          }}
+        >
+          <MdOutlineKeyboardBackspace
+            className="modalCloseIcon"
+            onClick={close}
+          />
+          Edit Profile
+        </h3>
+        <form>
           <label htmlFor="userName">Username: </label>
           <input
             id="userName"
+            className="selectOptions"
             type="text"
-            maxLength={20}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => setInput(e.target.value.trimStart())}
             value={userName}
           />
           <br />
           {role === "Student" && (
-            <span>
-              <select
-                value={userExperience}
-                onChange={(e) => setExperience(e.target.value)}
-              >
-                <option value="" selected disabled hidden>
-                  Experience
-                </option>
-                <option value="Fresher">Fresher</option>
-                <option value="Junior">Junior</option>
-                <option value="Senior">Senior</option>
-              </select>
-            </span>
+            <>
+              <label htmlFor="experience">Experience:</label>
+              <span>
+                <select
+                  id="experience"
+                  className="selectOptions"
+                  value={userExperience}
+                  onChange={(e) => setExperience(e.target.value)}
+                >
+                  <option value="" selected disabled hidden>
+                    Experience
+                  </option>
+                  <option value="Fresher">Fresher</option>
+                  <option value="Junior">Junior</option>
+                  <option value="Senior">Senior</option>
+                </select>
+              </span>
+            </>
           )}
-          <br />
-          <button disabled={!!disablConditions} type="submit">
-            update
-          </button>
+          <span style={{ display: "flex", justifyContent: "end" }}>
+            <ReUseButton
+              disabled={!!disablConditions}
+              className={!!disablConditions ? "opacity1 " : "buttonReuse"}
+              onClick={updates}
+              btnText={"update"}
+            />
+          </span>
         </form>
       </Box>
     </Modal>

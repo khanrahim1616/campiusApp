@@ -145,14 +145,14 @@
   /* width: 500px; */
   margin: auto;
 }
-.selsctOptions {
+.selectOptions {
   width: 100%;
   text-align: center;
   padding: 5px 0px;
   margin-top: 5px;
   margin-bottom: 10px;
 }
-.postJobBtn {
+.buttonReuse {
   background-color: lightblue;
   color: black;
   border: 2px solid #008cba;
@@ -162,16 +162,16 @@
   padding: 5px 10px;
 }
 .opacity1 {
-  opacity: 0.5;
-  margin-top: 5px;
   background-color: lightblue;
   color: black;
   border: 2px solid #008cba;
   border-radius: 5px;
   text-align: center;
+  margin-top: 5px;
   padding: 5px 10px;
+  opacity: 0.5;
 }
-.postJobBtn:hover {
+.buttonReuse:hover {
   background-color: #008cba;
   color: white;
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
@@ -181,7 +181,7 @@
 /* grid tale { */
 
 .tableContainer {
-  max-width: 35%;
+  max-width: 50%;
   margin: 0 auto;
   padding: 16px;
 }
@@ -194,18 +194,29 @@
 
 /* } */
 
+/* editProfileModal {*/
+.modalCloseIcon {
+  font-size: 25px;
+  color: red;
+  cursor: pointer;
+}
+
+/* } */
+
+@media only screen and (max-width: 900px) {
+  .tableContainer {
+    max-width: 90%;
+  }
+}
 @media only screen and (max-width: 400px) {
   .profilediv {
     flex-direction: column;
   }
-  .firstNavDiv {
+  .linksHidden {
     display: none;
   }
   .smallScreenMenu {
     display: block;
-  }
-  .tableContainer {
-    max-width: 90%;
   }
   .navDiv {
     justify-content: space-between;

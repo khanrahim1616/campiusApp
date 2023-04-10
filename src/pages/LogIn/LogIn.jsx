@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
+import ReUseButton from "../components/ReUseButton";
 
 const LogIn = () => {
   const auth = getAuth();
@@ -34,14 +35,14 @@ const LogIn = () => {
           type="password"
           onChange={(e) => getData(e)}
         />
-        <button
+        <ReUseButton
           disabled={!(data?.email && data?.password)}
           className="Btn"
           type="submit"
           onClick={signinuser}
-        >
-          LogIn
-        </button>
+          btnText={"LogIn"}
+        />
+
         <p>
           Dont have an account ?
           <span className="link">

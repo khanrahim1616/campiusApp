@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
+import ReUseButton from "../components/ReUseButton";
 
 const BlockUser = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const BlockUser = () => {
       }}
     >
       <h3>You are blocked Kindly contact your admin (Via slack)</h3>
-      <button onClick={() => SignedOut(dispatch)}>SignOut</button>
+      <ReUseButton onClick={() => SignedOut(dispatch)} btnText={"SignOut"} />
     </div>
   );
 };

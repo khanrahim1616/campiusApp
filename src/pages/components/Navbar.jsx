@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { navAccodingRole } from "./navAccodingRole";
 import Menue from "./Menu";
 import Avatar from "@mui/material/Avatar";
-import logo from "../../Assets/logo.jpg";
+import logo from "../../Assets/logo.png";
 
 const Navbar = () => {
   const role = useSelector((state) => state?.userData?.role);

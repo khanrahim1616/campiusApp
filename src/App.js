@@ -92,7 +92,7 @@ const App = () => {
           );
 
           //  For showing company posted jobs and filtered according student experience
-          // in 2nd line of filter if we applied on that job taht job will not appear
+          // in 2nd line of filter if we applied on that job that job will not appear
 
           let accordingExperience = data1?.filter(
             (item) =>

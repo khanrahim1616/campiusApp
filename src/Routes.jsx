@@ -49,20 +49,20 @@ const RoutesFile = () => {
       <BrowserRouter>
         {student ? (
           <Routes>
-            <Route path="/Student" element={<Student />} />
+            <Route path="/Home" element={<Student />} />
             <Route path="*" element={<Student />} />
             <Route path="/Profile" element={<Profile />} />
           </Routes>
         ) : comapny ? (
           <Routes>
-            <Route path="/Company" element={<Company />} />
+            <Route path="/Home" element={<Company />} />
             <Route path="*" element={<Company />} />
             <Route path="/Job-Post" element={<CompanyJobPost />} />
             <Route path="/Profile" element={<Profile />} />
           </Routes>
         ) : admin ? (
           <Routes>
-            <Route path="/Admin" element={<Admin />} />
+            <Route path="/Home" element={<Admin />} />
             <Route path="*" element={<Admin />} />
             <Route path="/Profile" element={<Profile />} />
           </Routes>

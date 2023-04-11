@@ -31,9 +31,8 @@ const Modalprofile = ({ close, open }) => {
         role === "Student"
           ? { username: userName, experience: userExperience }
           : { username: userName };
-      const updatedData = await update(ref(db, "Accounts/" + uid), data);
+      await update(ref(db, "Accounts/" + uid), data);
       close();
-      console.log(updatedData);
     } catch (error) {
       console.log(error);
     }

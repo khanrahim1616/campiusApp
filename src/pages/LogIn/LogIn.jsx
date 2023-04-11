@@ -1,48 +1,63 @@
 import React from "react";
-import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import ReUseButton from "../components/ReUseButton";
+import { useFormik } from "formik";
+import { logInSchema } from "../../schemas";
 
 const LogIn = () => {
   const auth = getAuth();
-  const [data, SetData] = useState({});
 
-  const getData = (e) => {
-    let input = { [e.target.name]: e.target.value };
-    SetData({ ...data, ...input });
+  let initialValues = {
+    email: "",
+    password: "",
   };
-
-  let { email, password } = data;
-
-  const signinuser = (e) => {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {})
+  
+    const { values, errors,touched, handleBlur, handleChange, handleSubmit } = useFormik({
+      initialValues,
+      validationSchema: logInSchema,
+      onSubmit: (values,action) => {
+      signInWithEmailAndPassword(auth, values.email, values.password)
+      .then(() => {
+        action.resetForm();
+      })
       .catch((error) => {
         alert(error);
       });
-  };
+    },
+  });
+
+
+  const disabledConditions= !(values.email && values.password)
+
   return (
     <div className="loginContainer">
-      <form className="LoginForm">
+      <form className="LoginForm" onSubmit={handleSubmit}>
         <h1 className="logoHeading">Campus-App</h1>
-        <input placeholder="Email" name="email" onChange={(e) => getData(e)} />
+        <input
+          placeholder="Email"
+          name="email"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        {errors.email && touched.email ? <p> {errors.email}</p>:null}
         <input
           maxLength={10}
           placeholder="Password"
           name="password"
           type="password"
-          onChange={(e) => getData(e)}
+          value={values.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {errors.password && touched.password ? <p> {errors.password}</p>:null}
         <ReUseButton
-          disabled={!(data?.email && data?.password)}
-          className="Btn"
+        disabled={disabledConditions}
+          className={disabledConditions? "opacity1":"buttonReuse"}
           type="submit"
-          onClick={signinuser}
           btnText={"LogIn"}
         />
-
         <p>
           Dont have an account ?
           <span className="link">

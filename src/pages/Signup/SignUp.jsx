@@ -46,6 +46,10 @@ const SignUp = () => {
       });
   };
 
+const disabledConditions=  role === "Student"
+  ? signUpBtnDisableForStudent
+  : signUpBtnDisableForCompany
+
   return (
     <div className="loginContainer">
       <form className="LoginForm">
@@ -124,12 +128,10 @@ const SignUp = () => {
           </span>
         )}
         <ReUseButton
-          className="Btn"
           disabled={
-            role === "Student"
-              ? signUpBtnDisableForStudent
-              : signUpBtnDisableForCompany
+            disabledConditions
           }
+className={disabledConditions?"opacity1":"buttonReuse"}
           type="submit"
           onClick={signinuser}
           btnText={"SignUp"}

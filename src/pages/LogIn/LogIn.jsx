@@ -8,27 +8,25 @@ import { logInSchema } from "../../schemas";
 const LogIn = () => {
   const auth = getAuth();
 
-  let initialValues = {
-    email: "",
-    password: "",
-  };
-  
-    const { values, errors,touched, handleBlur, handleChange, handleSubmit } = useFormik({
-      initialValues,
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
       validationSchema: logInSchema,
-      onSubmit: (values,action) => {
-      signInWithEmailAndPassword(auth, values.email, values.password)
-      .then(() => {
-        action.resetForm();
-      })
-      .catch((error) => {
-        alert(error);
-      });
-    },
-  });
+      onSubmit: (values, action) => {
+        signInWithEmailAndPassword(auth, values.email, values.password)
+          .then(() => {
+            action.resetForm();
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      },
+    });
 
-
-  const disabledConditions= !(values.email && values.password)
+  const disabledConditions = !(values.email && values.password);
 
   return (
     <div className="loginContainer">
@@ -41,7 +39,7 @@ const LogIn = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {errors.email && touched.email ? <p> {errors.email}</p>:null}
+        {errors.email && touched.email ? <p> {errors.email}</p> : null}
         <input
           maxLength={10}
           placeholder="Password"
@@ -51,10 +49,10 @@ const LogIn = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        {errors.password && touched.password ? <p> {errors.password}</p>:null}
+        {errors.password && touched.password ? <p> {errors.password}</p> : null}
         <ReUseButton
-        disabled={disabledConditions}
-          className={disabledConditions? "opacity1":"buttonReuse"}
+          disabled={disabledConditions}
+          className={disabledConditions ? "opacity1" : "buttonReuse"}
           type="submit"
           btnText={"LogIn"}
         />

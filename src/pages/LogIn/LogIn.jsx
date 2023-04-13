@@ -3,28 +3,40 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import ReUseButton from "../components/ReUseButton";
 import { useFormik } from "formik";
-import { logInSchema } from "../../schemas";
+// import { logInSchema } from "../../schemas";
 
 const LogIn = () => {
   const auth = getAuth();
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: {
-        email: "",
-        password: "",
-      },
-      validationSchema: logInSchema,
-      onSubmit: (values, action) => {
-        signInWithEmailAndPassword(auth, values.email, values.password)
-          .then(() => {
-            action.resetForm();
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      },
-    });
+  const {
+    values,
+    errors,
+    touched,
+    setFieldValue,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    // validationSchema: logInSchema,
+    onSubmit: (values, action) => {
+      signInWithEmailAndPassword(auth, values.email, values.password)
+        .then(() => {
+          action.resetForm();
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    },
+  });
+
+  const handleCustomizedChange = (event) => {
+    const target = event.target;
+    setFieldValue(target.name, target.value.trim());
+  };
 
   const disabledConditions = !(values.email && values.password);
 
@@ -36,7 +48,7 @@ const LogIn = () => {
           placeholder="Email"
           name="email"
           value={values.email}
-          onChange={handleChange}
+          onChange={handleCustomizedChange}
           onBlur={handleBlur}
         />
         {errors.email && touched.email ? <p> {errors.email}</p> : null}

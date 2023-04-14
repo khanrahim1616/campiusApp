@@ -3,9 +3,10 @@ import { useState, useRef } from "react";
 import { ref, push } from "firebase/database";
 import { db } from "../../Firebaseconfig";
 import { useSelector } from "react-redux";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 import { BiCommentDetail } from "react-icons/bi";
-import ReUseButton from "../components/ReUseButton";
+import Button from "../../components/Button/Button";
+import "./company&JobPost.css";
 
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);
@@ -94,8 +95,8 @@ const CompanyJobPost = () => {
               </select>
             </span>
             <span style={{ textAlign: "end" }}>
-              <ReUseButton
-                className={!disableCondition ? "buttonReuse" : "opacity1"}
+              <Button
+                className={!disableCondition ? "ButtonReuse" : "opacity1"}
                 type="submit"
                 disabled={disableCondition}
                 btnText={"Post"}

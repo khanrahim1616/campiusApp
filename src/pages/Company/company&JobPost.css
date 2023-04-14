@@ -1,0 +1,19 @@
+/* Job POST PAGE */
+.formHeading {
+  color: darkblue;
+  background-color: lightblue;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.JobPostForm {
+  display: flex;
+  flex-direction: column;
+}
+.JobPostDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  /* width: 500px; */
+  margin: auto;
+}

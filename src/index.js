@@ -5,7 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./reducer/store";
 import { Provider } from "react-redux";
-import "./pages/Css/screen.css";
+import "./Css/screen.css";
 import "./Firebaseconfig";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -7,8 +7,7 @@ import {
   unVerifiedUsersColumns,
   unVerifiedUsersRow,
 } from "../../Helper/adminHelper";
-import GridTable from "../components/GridTable";
-import { lightGreen } from "@mui/material/colors";
+import GridTable from "../../components/GridTable/GridTable";
 
 const Tabss = () => {
   const [tabs, setTabs] = useState(0);

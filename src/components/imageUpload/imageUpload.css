@@ -1,0 +1,36 @@
+.imageUploadPreview {
+  width: 12rem;
+  height: 12rem;
+  border: 1px solid grey;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.addBtnDiv {
+  position: absolute;
+  bottom: 5px;
+  right: 25px;
+  border-radius: 8px;
+  padding: 1px;
+  font-size: 30px !important;
+  cursor: pointer;
+  color: black;
+  background-color: darkgray;
+}
+
+.save-cancel-BtnDiv {
+  position: absolute;
+  bottom: 15px;
+  right: 65px;
+  cursor: pointer;
+}
+
+.saveBtn {
+  margin-right: 15px;
+}
+
+.opacity {
+  background-color: darkgray;
+  border-radius: 8px;
+}

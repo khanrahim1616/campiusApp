@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Modall } from "../components/companyApplyCheckModal";
+import { Modall } from "../../components/ApplyCheckModal/companyApplyCheckModal";
 import { allJobsColumns, allJobsRow } from "../../Helper/companyHelper";
-import Navbar from "../components/Navbar";
-import GridTable from "../components/GridTable";
+import Navbar from "../../components/Navbar/Navbar";
+import GridTable from "../../components/GridTable/GridTable";
+import "./company&JobPost.css";
 
 const Company = () => {
   const state = useSelector((state) => state);

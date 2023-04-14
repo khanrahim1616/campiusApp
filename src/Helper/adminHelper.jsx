@@ -1,6 +1,6 @@
 import { update, ref } from "firebase/database";
 import { db } from "../Firebaseconfig";
-import ReUseButton from "../pages/components/ReUseButton";
+import Button from "../components/Button/Button";
 
 // unVerified users row,column & verify function
 
@@ -20,8 +20,9 @@ export const unVerifiedUsersColumns = [
     width: 90,
     renderCell: (perams) => {
       return (
-        <ReUseButton
+        <Button
           onClick={() => verifyUser(perams.row)}
+          className={"ButtonReuse"}
           btnText={"Verify"}
         />
       );
@@ -64,8 +65,9 @@ export const verifiedUsersColumns = [
     width: 90,
     renderCell: (perams) => {
       return (
-        <ReUseButton
+        <Button
           onClick={() => blockUser(perams.row)}
+          className={"ButtonReuse"}
           btnText={perams.row.isBlocked ? "unblock" : "block"}
         />
       );

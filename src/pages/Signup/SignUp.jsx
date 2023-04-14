@@ -4,7 +4,7 @@ import { ref, set } from "firebase/database";
 import { Link } from "react-router-dom";
 import { db } from "../../Firebaseconfig";
 import { signUpSchema } from "../../schemas";
-import ReUseButton from "../components/ReUseButton";
+import Button from "../../components/Button/Button";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 
@@ -55,18 +55,17 @@ const SignUp = () => {
     setFieldValue(target.name, target.value.trim());
   };
 
-  console.log(values);
-
   return (
-    <div className="loginContainer">
-      <form className="LoginForm" onSubmit={handleSubmit}>
-        <h1 className="logoHeading">Campus-App</h1>
-        <span>
-          <label htmlFor="username">username : </label>
+    <div className="LoginSignUpForm">
+      <form onSubmit={handleSubmit} className="formDiv">
+        <h1>Campus-App</h1>
+        <label htmlFor="username">Username</label>
+        <span className="formSteps">
           <input
             id="username"
             name="username"
-            placeholder="username"
+            placeholder="Raheem khan"
+            className="input"
             value={values.username}
             onChange={handleCustomizedChange}
             onBlur={handleBlur}
@@ -75,24 +74,26 @@ const SignUp = () => {
             <p> {errors.username}</p>
           ) : null}
         </span>
-        <span>
-          <label htmlFor="Email">Email : </label>
+        <label htmlFor="Email">Email</label>
+        <span className="formSteps">
           <input
             id="Email"
             name="email"
+            className="input"
             value={values.email}
-            placeholder="email"
+            placeholder="Raheem@gmail.com"
             onChange={handleCustomizedChange}
             onBlur={handleBlur}
           />
           {errors.email && touched.email ? <p> {errors.email}</p> : null}
         </span>
-        <span>
-          <label htmlFor="Password">Password : </label>
+        <label htmlFor="Password">Password</label>
+        <span className="formSteps">
           <input
             id="Password"
             name="password"
             type="password"
+            className="input"
             placeholder="Password"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -101,13 +102,12 @@ const SignUp = () => {
             <p> {errors.password}</p>
           ) : null}
         </span>
-        <span>
+        <span className="formSteps">
           Sign up as :
           <span>
             <input
               onChange={handleChange}
               onBlur={handleBlur}
-              // checked={values.role === "Student"}
               value="Student"
               name="role"
               type="radio"
@@ -119,7 +119,6 @@ const SignUp = () => {
             <input
               onChange={handleChange}
               onBlur={handleBlur}
-              // checked={values.role === "Hello"}
               value="Company"
               name="role"
               type="radio"
@@ -130,8 +129,9 @@ const SignUp = () => {
           {errors.role && touched.role ? <p> {errors.role}</p> : null}
         </span>
         {values.role === "Student" && (
-          <span>
+          <span className="formSteps">
             <select
+              className="selectOptions signUpSelectOption"
               name="experience"
               onChange={handleChange}
               onBlur={handleBlur}
@@ -149,11 +149,7 @@ const SignUp = () => {
             ) : null}
           </span>
         )}
-        <ReUseButton
-          className={"buttonReuse"}
-          type="submit"
-          btnText={"SignUp"}
-        />
+        <Button className={"ButtonReuse"} type="submit" btnText={"SignUp"} />
         <p>
           Already have an account ?
           <span className="link">

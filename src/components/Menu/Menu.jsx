@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
 import Avatar from "@mui/material/Avatar";
 import profilePic from "../../Assets/profile.png";
-import { navAccodingRole } from "./navAccodingRole";
+import { navAccodingRole } from "../../GlobalData/navAccodingRole";
+import "./menu.css";
 
 const Menue = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Menue = () => {
           color: "darkblue",
           textTransform: "inherit",
         }}
-        id="basic-button"
+        id="basic-Button"
         aria-controls={open ? "basic-menu" : undefined}
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
@@ -58,7 +59,7 @@ const Menue = () => {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          "aria-labelledby": "basic-Button",
         }}
       >
         <span className="smallScreenMenu">

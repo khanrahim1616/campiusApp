@@ -1,0 +1,34 @@
+.css-z8fhq1-MuiDataGrid-columnHeaders {
+  background-color: lightblue;
+  color: darkblue;
+}
+
+.tableContainer {
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* to remove selected row text showing bottom on grid table */
+
+.MuiDataGrid-selectedRowCount {
+  color: floralwhite;
+}
+
+@media only screen and (max-width: 480px) {
+  .css-1wnsr1i {
+    width: 300px !important;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .css-1wnsr1i {
+    width: 250px !important;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .tableContainer {
+    max-width: 90%;
+  }
+}

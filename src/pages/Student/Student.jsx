@@ -1,6 +1,6 @@
 import React from "react";
 import Jobs from "./Jobs";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/Navbar/Navbar";
 
 const Student = () => {
   return (

@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 import { update, ref } from "firebase/database";
 import { db } from "../../Firebaseconfig";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
-import ReUseButton from "../components/ReUseButton";
+import Button from "../Button/Button";
+import "../../pages/Profile/profile.css";
 
 const Modalprofile = ({ close, open }) => {
   const state = useSelector((state) => state);
@@ -88,9 +89,9 @@ const Modalprofile = ({ close, open }) => {
             </>
           )}
           <span style={{ display: "flex", justifyContent: "end" }}>
-            <ReUseButton
+            <Button
               disabled={!!disablConditions}
-              className={!!disablConditions ? "opacity1 " : "buttonReuse"}
+              className={!!disablConditions ? "opacity1 " : "ButtonReuse"}
               onClick={updates}
               btnText={"update"}
             />

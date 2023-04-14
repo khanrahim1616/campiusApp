@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import ImageUpload from "../components/imageUpload";
-import Navbar from "../components/Navbar";
-import Modalprofile from "./ProfileModal";
-import ReUseButton from "../components/ReUseButton";
+import ImageUpload from "../../components/imageUpload/imageUpload";
+import Navbar from "../../components/Navbar/Navbar";
+import Modalprofile from "../../components/EditProfileModal/EditProfileModal";
+import Button from "../../components/Button/Button";
+import "./profile.css";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
@@ -24,8 +25,8 @@ const Profile = () => {
           <p>Categoery: {role}</p>
           <p>Email: {email}</p>
           {role === "Student" && <p>Experience: {experience}</p>}
-          <ReUseButton
-            className="buttonReuse"
+          <Button
+            className="ButtonReuse"
             onClick={() => setOpen(true)}
             btnText={"Edit profile"}
           />

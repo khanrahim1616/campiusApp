@@ -14,7 +14,7 @@ import Student from "./pages/Student/Student";
 // Admin Routes
 import { Admin } from "./pages/Admin/Admin";
 // Loader
-import Loader from "./pages/components/Loader";
+import Loader from "./components/Loader/Loader";
 // BlockUser
 import BlockUser from "./pages/BlockUser.jsx/BlockUser";
 // unVerifiedUsers
@@ -26,7 +26,6 @@ const RoutesFile = () => {
   // Routes Conditions .
 
   const isVerified = state?.userData?.isVerified;
-
   const unVerifiedUsers = !!state?.userData?.uid && !isVerified;
   const userBLock = state?.userData?.isBlocked;
   const admin = state?.userData?.role === "admin";
@@ -38,7 +37,7 @@ const RoutesFile = () => {
   if (state?.loader) {
     return (
       <>
-        <div className="content">
+        <div className="loader">
           <Loader />
         </div>
       </>

@@ -7,7 +7,7 @@ import {
   studentAppliedJobsColumns,
   studentAppliedJobsRow,
 } from "../../Helper/studentHelper";
-import GridTable from "../components/GridTable";
+import GridTable from "../../components/GridTable/GridTable";
 
 const Jobs = () => {
   const [tabs, setTabs] = useState(0);

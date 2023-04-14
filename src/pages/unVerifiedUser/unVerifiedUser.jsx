@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { SignedOut } from "../../Helper/Helper";
-import ReUseButton from "../components/ReUseButton";
+import Button from "../../components/Button/Button";
 
 const UnVerifiedUser = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const UnVerifiedUser = () => {
       }}
     >
       <h3>Kindly contact your admin (Via slack) to approve your Account</h3>
-      <ReUseButton onClick={() => SignedOut(dispatch)} btnText={"SignOut"} />
+      <Button onClick={() => SignedOut(dispatch)} btnText={"SignOut"} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ReUseButton = ({ disabled, className, onClick, btnText, type }) => {
+const Button = ({ disabled, className, onClick, btnText, type }) => {
   return (
     <button
       disabled={disabled}
@@ -13,4 +13,4 @@ const ReUseButton = ({ disabled, className, onClick, btnText, type }) => {
   );
 };
 
-export default ReUseButton;
+export default Button;

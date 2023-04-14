@@ -1,10 +1,11 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { navAccodingRole } from "./navAccodingRole";
-import Menue from "./Menu";
+import { navAccodingRole } from "../../GlobalData/navAccodingRole";
+import Menue from "../Menu/Menu";
 import Avatar from "@mui/material/Avatar";
 import logo from "../../Assets/logo.png";
+import "./navbar.css";
 
 const Navbar = () => {
   const role = useSelector((state) => state?.userData?.role);

@@ -1,0 +1,16 @@
+.menu {
+  display: flex;
+  align-items: center;
+  color: darkblue;
+}
+.smallScreenMenu {
+  display: none;
+}
+.Links {
+  color: darkblue;
+  text-decoration: none;
+}
+.Links:hover {
+  color: red;
+  text-decoration: underline;
+}

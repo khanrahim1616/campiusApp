@@ -7,6 +7,10 @@ import { signUpSchema } from "../../schemas";
 import Button from "../../components/Button/Button";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { passwordVisible } from "../../Helper/Helper";
+import { Avatar } from "@mui/material";
+import logo from "../../Assets/logo.png";
+import { AiFillEye } from "react-icons/ai";
 
 const SignUp = () => {
   const auth = getAuth();
@@ -20,6 +24,8 @@ const SignUp = () => {
     handleChange,
     handleSubmit,
     setFieldValue,
+    isValid,
+    dirty,
   } = useFormik({
     initialValues: {
       username: "",
@@ -55,10 +61,21 @@ const SignUp = () => {
     setFieldValue(target.name, target.value.trim());
   };
 
+  let disable = !(isValid && dirty);
   return (
     <div className="LoginSignUpForm">
       <form onSubmit={handleSubmit} className="formDiv">
-        <h1>Campus-App</h1>
+        <div className="logo">
+          <Avatar
+            style={{
+              border: "1px solid grey",
+              width: "100px",
+              height: "100px",
+              borderRadius: "20px",
+            }}
+            src={logo}
+          />
+        </div>
         <label htmlFor="username">Username</label>
         <span className="formSteps">
           <input
@@ -94,16 +111,20 @@ const SignUp = () => {
             name="password"
             type="password"
             className="input"
-            placeholder="Password"
+            placeholder="Hello123!"
             onChange={handleChange}
             onBlur={handleBlur}
           />
+          <div>
+            <input type="checkbox" onClick={() => passwordVisible()} />
+            Show Password
+          </div>
           {errors.password && touched.password ? (
             <p> {errors.password}</p>
           ) : null}
         </span>
         <span className="formSteps">
-          Sign up as :
+          <b>Sign up as : </b>
           <span>
             <input
               onChange={handleChange}
@@ -149,11 +170,19 @@ const SignUp = () => {
             ) : null}
           </span>
         )}
-        <Button className={"ButtonReuse"} type="submit" btnText={"SignUp"} />
+        <Button
+          className={"ButtonReuse"}
+          type="submit"
+          btnText={"SignUp"}
+          // className={disable ? "opacity1" : "ButtonReuse"}
+          // disabled={disable}
+        />
         <p>
           Already have an account ?
-          <span className="link">
-            <Link to="/LogIn">LogIn</Link>
+          <span>
+            <Link className="link" to="/LogIn">
+              LogIn
+            </Link>
           </span>
         </p>
       </form>

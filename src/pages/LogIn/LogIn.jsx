@@ -3,7 +3,10 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { useFormik } from "formik";
-// import { logInSchema } from "../../schemas";
+import { passwordVisible } from "../../Helper/Helper";
+import { Avatar } from "@mui/material";
+import logo from "../../Assets/logo.png";
+import { logInSchema } from "../../schemas";
 
 const LogIn = () => {
   const auth = getAuth();
@@ -16,12 +19,14 @@ const LogIn = () => {
     handleBlur,
     handleChange,
     handleSubmit,
+    isValid,
+    dirty,
   } = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    // validationSchema: logInSchema,
+    validationSchema: logInSchema,
     onSubmit: (values, action) => {
       signInWithEmailAndPassword(auth, values.email, values.password)
         .then(() => {
@@ -38,12 +43,22 @@ const LogIn = () => {
     setFieldValue(target.name, target.value.trim());
   };
 
-  const disabledConditions = !(values.email && values.password);
+  let disable = !(isValid && dirty);
 
   return (
     <div className="LoginSignUpForm">
       <form onSubmit={handleSubmit} className="formDiv">
-        <h1>Campus-App</h1>
+        <div className="logo">
+          <Avatar
+            style={{
+              border: "1px solid grey",
+              width: "100px",
+              height: "100px",
+              borderRadius: "20px",
+            }}
+            src={logo}
+          />
+        </div>
         <label htmlFor="email">Email</label>
         <span className="formSteps">
           <input
@@ -57,10 +72,10 @@ const LogIn = () => {
           />
           {errors.email && touched.email ? <p> {errors.email}</p> : null}
         </span>
-        <label htmlFor="password">Password</label>
+        <label htmlFor="Password">Password</label>
         <span className="formSteps">
           <input
-            id="password"
+            id="Password"
             maxLength={10}
             className="input"
             placeholder="Password"
@@ -70,20 +85,27 @@ const LogIn = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
+          <div>
+            <input type="checkbox" onClick={() => passwordVisible()} />
+            Show Password
+          </div>
           {errors.password && touched.password ? (
             <p> {errors.password}</p>
           ) : null}
         </span>
         <Button
-          disabled={disabledConditions}
-          className={disabledConditions ? "opacity1" : "ButtonReuse"}
+          className="ButtonReuse"
+          // disabled={disable}
+          // className={disable ? "opacity1" : "ButtonReuse"}
           type="submit"
-          btnText={"LogIn"}
+          btnText="LogIn"
         />
         <p>
           Dont have an account ?
-          <span className="link">
-            <Link to="/signUp">SignUp</Link>
+          <span>
+            <Link className="link" to="/signUp">
+              SignUp
+            </Link>
           </span>
         </p>
       </form>

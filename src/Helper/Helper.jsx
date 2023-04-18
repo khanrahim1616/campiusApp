@@ -24,3 +24,12 @@ export const SignedOut = (dispatch) => {
     }
   });
 };
+
+export const passwordVisible = () => {
+  var x = document.getElementById("Password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+};

@@ -1,5 +1,12 @@
 /* Login & SignUp */
 
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  gap: 35px;
+}
 .LoginSignUpForm {
   display: flex;
   flex-direction: column;
@@ -20,19 +27,33 @@ span > p {
 .input {
   border: none;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 15px;
   padding: 10px;
-  width: 92%;
+  width: 96%;
 }
 
 .formDiv {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
-  padding: 14px;
+  width: 500px;
+  padding: 16px 32px;
+  background-color: #62aec6;
+  border: 1px solid#008cba;
+  border-radius: 20px;
+  margin: 10px;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+label {
+  margin-bottom: 5px;
 }
 .link {
   margin-left: 8px;
+}
+.link:hover {
+  color: red;
+  text-decoration: underline;
 }
 
 /* selectOptions  */
@@ -45,7 +66,7 @@ span > p {
 }
 .signUpSelectOption {
   text-align: start;
-  font-size: 18px;
+  font-size: 15px;
   margin: 0;
   padding: 10px;
   border-radius: 10px;
@@ -77,6 +98,7 @@ span > p {
   margin-top: 5px;
   padding: 5px 10px;
   cursor: pointer;
+  width: fit-content;
 }
 .opacity1 {
   background-color: lightblue;
@@ -96,6 +118,15 @@ span > p {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
+@media only screen and (max-width: 600px) {
+  .formDiv {
+    width: 300px;
+  }
+  .input {
+    width: 93%;
+  }
+}
+
 @media only screen and (max-width: 400px) {
   .profilediv {
     flex-direction: column;
@@ -110,7 +141,11 @@ span > p {
     justify-content: space-between;
   }
   .formDiv {
-    max-width: 250px;
+    padding: 16px 12px;
+    width: 240px;
+  }
+  .input {
+    width: 92%;
   }
 }
 

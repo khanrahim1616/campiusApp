@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
@@ -7,9 +7,12 @@ import { passwordVisible } from "../../Helper/Helper";
 import { Avatar } from "@mui/material";
 import logo from "../../Assets/logo.png";
 import { logInSchema } from "../../schemas";
+import Loader from "../../components/Loader/Loader";
+import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
 
 const LogIn = () => {
   const auth = getAuth();
+  const [loader, setLoader] = useState(false);
 
   const {
     values,
@@ -28,12 +31,16 @@ const LogIn = () => {
     },
     validationSchema: logInSchema,
     onSubmit: (values, action) => {
+      setLoader(true);
       signInWithEmailAndPassword(auth, values.email, values.password)
         .then(() => {
+          setLoader(false);
           action.resetForm();
         })
         .catch((error) => {
-          alert(error);
+          console.log(error);
+          <ErrorAlert message={error} />;
+          setLoader(false);
         });
     },
   });
@@ -93,13 +100,19 @@ const LogIn = () => {
             <p> {errors.password}</p>
           ) : null}
         </span>
-        <Button
-          className="ButtonReuse"
-          // disabled={disable}
-          // className={disable ? "opacity1" : "ButtonReuse"}
-          type="submit"
-          btnText="LogIn"
-        />
+        <span style={{ textAlign: "center" }}>
+          {loader ? (
+            <Loader />
+          ) : (
+            <Button
+              className="ButtonReuse"
+              // disabled={disable}
+              // className={disable ? "opacity1" : "ButtonReuse"}
+              type="submit"
+              btnText="LogIn"
+            />
+          )}
+        </span>
         <p>
           Dont have an account ?
           <span>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import { Link } from "react-router-dom";
@@ -11,10 +11,12 @@ import { passwordVisible } from "../../Helper/Helper";
 import { Avatar } from "@mui/material";
 import logo from "../../Assets/logo.png";
 import { AiFillEye } from "react-icons/ai";
+import Loader from "../../components/Loader/Loader";
 
 const SignUp = () => {
   const auth = getAuth();
   const navigate = useNavigate();
+  const [loader, setLoader] = useState(false);
 
   const {
     values,
@@ -36,6 +38,7 @@ const SignUp = () => {
     },
     validationSchema: signUpSchema,
     onSubmit: (values, action) => {
+      setLoader(true);
       createUserWithEmailAndPassword(auth, values.email, values.password)
         .then(async (user) => {
           const uid = user?.user?.uid;
@@ -50,9 +53,11 @@ const SignUp = () => {
           });
           navigate();
           action.resetForm();
+          setLoader(false);
         })
         .catch((error) => {
-          alert(error);
+          console.log(error);
+          setLoader(false);
         });
     },
   });
@@ -62,6 +67,7 @@ const SignUp = () => {
   };
 
   let disable = !(isValid && dirty);
+
   return (
     <div className="LoginSignUpForm">
       <form onSubmit={handleSubmit} className="formDiv">
@@ -170,13 +176,19 @@ const SignUp = () => {
             ) : null}
           </span>
         )}
-        <Button
-          className={"ButtonReuse"}
-          type="submit"
-          btnText={"SignUp"}
-          // className={disable ? "opacity1" : "ButtonReuse"}
-          // disabled={disable}
-        />
+        <span style={{ textAlign: "center" }}>
+          {loader ? (
+            <Loader />
+          ) : (
+            <Button
+              className={"ButtonReuse"}
+              type="submit"
+              btnText={"SignUp"}
+              // className={disable ? "opacity1" : "ButtonReuse"}
+              // disabled={disable}
+            />
+          )}
+        </span>
         <p>
           Already have an account ?
           <span>

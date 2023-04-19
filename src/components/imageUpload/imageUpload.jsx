@@ -43,7 +43,7 @@ const ImageUpload = () => {
   };
 
   const cancel = () => {
-    setPreviewUrl(state?.profilePicture);
+    setPreviewUrl(state?.profilePicture || profilePic);
     setTemp(false);
   };
 

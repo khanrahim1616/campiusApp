@@ -2,7 +2,7 @@ import React from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 
-const ErrorAlert = ({ message, open, onClose }) => {
+const SuccessAlert = ({ message, open, onClose }) => {
   return (
     <Snackbar
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
@@ -10,11 +10,11 @@ const ErrorAlert = ({ message, open, onClose }) => {
       autoHideDuration={3000}
       onClose={onClose}
     >
-      <Alert onClose={onClose} severity="error" variant="filled">
+      <Alert onClose={onClose} severity="success" variant="filled">
         {message}
       </Alert>
     </Snackbar>
   );
 };
 
-export default ErrorAlert;
+export default SuccessAlert;

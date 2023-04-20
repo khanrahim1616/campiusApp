@@ -118,6 +118,10 @@ label {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
+.showPasswordDiv {
+  margin: 5px 0px;
+}
+
 @media only screen and (max-width: 600px) {
   .formDiv {
     width: 300px;

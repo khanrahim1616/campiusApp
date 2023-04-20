@@ -13,6 +13,7 @@ import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
 const LogIn = () => {
   const auth = getAuth();
   const [loader, setLoader] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const {
     values,
@@ -38,9 +39,8 @@ const LogIn = () => {
           action.resetForm();
         })
         .catch((error) => {
-          console.log(error);
-          <ErrorAlert message={error} />;
           setLoader(false);
+          setOpen(error?.message);
         });
     },
   });
@@ -92,7 +92,7 @@ const LogIn = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          <div>
+          <div className="showPasswordDiv">
             <input type="checkbox" onClick={() => passwordVisible()} />
             Show Password
           </div>
@@ -122,6 +122,15 @@ const LogIn = () => {
           </span>
         </p>
       </form>
+      {!!open && (
+        <ErrorAlert
+          message={open}
+          open={!!open}
+          onClose={() => {
+            setOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 };

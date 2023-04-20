@@ -10,13 +10,14 @@ import { useNavigate } from "react-router-dom";
 import { passwordVisible } from "../../Helper/Helper";
 import { Avatar } from "@mui/material";
 import logo from "../../Assets/logo.png";
-import { AiFillEye } from "react-icons/ai";
 import Loader from "../../components/Loader/Loader";
+import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
 
 const SignUp = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const {
     values,
@@ -56,8 +57,8 @@ const SignUp = () => {
           setLoader(false);
         })
         .catch((error) => {
-          console.log(error);
           setLoader(false);
+          setOpen(error?.message);
         });
     },
   });
@@ -121,7 +122,7 @@ const SignUp = () => {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-          <div>
+          <div className="showPasswordDiv">
             <input type="checkbox" onClick={() => passwordVisible()} />
             Show Password
           </div>
@@ -198,6 +199,15 @@ const SignUp = () => {
           </span>
         </p>
       </form>
+      {!!open && (
+        <ErrorAlert
+          message={open}
+          open={!!open}
+          onClose={() => {
+            setOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 };

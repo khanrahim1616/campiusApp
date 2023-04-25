@@ -8,10 +8,12 @@ import {
   studentAppliedJobsRow,
 } from "../../Helper/studentHelper";
 import GridTable from "../../components/GridTable/GridTable";
+import SuccessAlert from "../../components/SuccessAlert/SuccessAlert";
+import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
 
 const Jobs = () => {
   const [tabs, setTabs] = useState(0);
-
+  const [alert, setAlert] = useState(false);
   const state = useSelector((state) => state);
 
   function a11yProps(i) {
@@ -24,7 +26,7 @@ const Jobs = () => {
   var data = [
     {
       row: companyPostedJobsRow(state),
-      column: companyPostedJobsColumns(state),
+      column: companyPostedJobsColumns(state, setAlert),
     },
     {
       row: studentAppliedJobsRow(state),
@@ -51,6 +53,24 @@ const Jobs = () => {
         />
       </Tabs>
       <CurrentComponent index={tabs} data={data} />
+      {!!alert?.isSuccess && (
+        <SuccessAlert
+          message={"Applied successfully"}
+          open={!!alert?.isSuccess}
+          onClose={() => {
+            setAlert(false);
+          }}
+        />
+      )}
+      {!!alert?.isNotSuccess && (
+        <ErrorAlert
+          message={"Something went wrong"}
+          open={!!alert?.isNotSuccess}
+          onClose={() => {
+            setAlert(false);
+          }}
+        />
+      )}
     </div>
   );
 };

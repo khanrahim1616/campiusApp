@@ -23,14 +23,18 @@ span > p {
   color: red;
 }
 
-/* input */
-.input {
+/* Input */
+.Input {
   border: none;
   border-radius: 10px;
   font-size: 15px;
   padding: 10px;
   width: 96%;
 }
+
+/* .snackBar {
+  margin-top: 60px;
+} */
 
 .formDiv {
   display: flex;
@@ -126,7 +130,7 @@ label {
   .formDiv {
     width: 300px;
   }
-  .input {
+  .Input {
     width: 93%;
   }
 }
@@ -148,8 +152,15 @@ label {
     padding: 16px 12px;
     width: 240px;
   }
-  .input {
+  .Input {
     width: 92%;
+  }
+  .role {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #Student {
+    margin-top: 10px;
   }
 }
 

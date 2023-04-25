@@ -17,7 +17,7 @@ const SignUp = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
 
   const {
     values,
@@ -58,7 +58,7 @@ const SignUp = () => {
         })
         .catch((error) => {
           setLoader(false);
-          setOpen(error?.message);
+          setError(error?.message.split("/")[1].replace(")", ""));
         });
     },
   });
@@ -66,8 +66,6 @@ const SignUp = () => {
     const target = event.target;
     setFieldValue(target.name, target.value.trim());
   };
-
-  let disable = !(isValid && dirty);
 
   return (
     <div className="LoginSignUpForm">
@@ -118,7 +116,7 @@ const SignUp = () => {
             name="password"
             type="password"
             className="input"
-            placeholder="Hello123!"
+            placeholder="********"
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -185,8 +183,6 @@ const SignUp = () => {
               className={"ButtonReuse"}
               type="submit"
               btnText={"SignUp"}
-              // className={disable ? "opacity1" : "ButtonReuse"}
-              // disabled={disable}
             />
           )}
         </span>
@@ -199,12 +195,12 @@ const SignUp = () => {
           </span>
         </p>
       </form>
-      {!!open && (
+      {!!error && (
         <ErrorAlert
-          message={open}
-          open={!!open}
+          message={error}
+          open={!!error}
           onClose={() => {
-            setOpen(false);
+            setError(false);
           }}
         />
       )}

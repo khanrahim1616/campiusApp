@@ -2,11 +2,17 @@ import { ref, update } from "firebase/database";
 import { db } from "../Firebaseconfig";
 import { AiOutlineMan } from "react-icons/ai";
 
-const apply = async ({ row, state }) => {
-  console.log(row);
+const apply = async ({ row, state, setAlert }) => {
+  console.log(setAlert);
   await update(ref(db, "Jobs/" + row?.companyId + "/" + row?.jobId), {
     appliedJobs: [...(row?.appliedJobs || []), state?.userData?.uid],
-  });
+  })
+    .then(() => {
+      setAlert({ isSuccess: true });
+    })
+    .catch(() => {
+      setAlert({ isNotSuccess: true });
+    });
 };
 
 export const companyPostedJobsRow = (state) => {
@@ -25,7 +31,7 @@ export const companyPostedJobsRow = (state) => {
   return row;
 };
 
-export const companyPostedJobsColumns = (state) => {
+export const companyPostedJobsColumns = (state, setAlert) => {
   const column = [
     { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
     { field: "companyName", headerName: "Company-Name", width: 150 },
@@ -43,7 +49,7 @@ export const companyPostedJobsColumns = (state) => {
               color: "green",
               cursor: "pointer",
             }}
-            onClick={() => apply({ row, state })}
+            onClick={() => apply({ row, state, setAlert })}
           />
         );
       },

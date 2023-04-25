@@ -177,7 +177,7 @@ export default App;
 //       .filter((v, i, a) => {
 //         return a.findIndex((v2) => v2.id === v.id) === i;
 //       });
-//     console.log("first", temp1);
+//     ("first", temp1);
 //     dispatch(triger.getAappliedJobs(data1));
 //   });
 // });

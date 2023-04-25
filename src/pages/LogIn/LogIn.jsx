@@ -9,11 +9,12 @@ import logo from "../../Assets/logo.png";
 import { logInSchema } from "../../schemas";
 import Loader from "../../components/Loader/Loader";
 import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
+import Input from "../../components/Input/Input";
 
 const LogIn = () => {
   const auth = getAuth();
   const [loader, setLoader] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
 
   const {
     values,
@@ -40,7 +41,7 @@ const LogIn = () => {
         })
         .catch((error) => {
           setLoader(false);
-          setOpen(error?.message);
+          setError(error?.message.split("/")[1].replace(")", ""));
         });
     },
   });
@@ -68,11 +69,11 @@ const LogIn = () => {
         </div>
         <label htmlFor="email">Email</label>
         <span className="formSteps">
-          <input
+          <Input
             id="email"
             placeholder="Email"
             name="email"
-            className="input"
+            className="Input"
             value={values.email}
             onChange={handleCustomizedChange}
             onBlur={handleBlur}
@@ -81,10 +82,10 @@ const LogIn = () => {
         </span>
         <label htmlFor="Password">Password</label>
         <span className="formSteps">
-          <input
+          <Input
             id="Password"
             maxLength={10}
-            className="input"
+            className="Input"
             placeholder="Password"
             name="password"
             type="password"
@@ -93,7 +94,7 @@ const LogIn = () => {
             onBlur={handleBlur}
           />
           <div className="showPasswordDiv">
-            <input type="checkbox" onClick={() => passwordVisible()} />
+            <Input type="checkbox" onClick={() => passwordVisible()} />
             Show Password
           </div>
           {errors.password && touched.password ? (
@@ -122,12 +123,12 @@ const LogIn = () => {
           </span>
         </p>
       </form>
-      {!!open && (
+      {!!error && (
         <ErrorAlert
-          message={open}
-          open={!!open}
+          message={error}
+          open={!!error}
           onClose={() => {
-            setOpen(false);
+            setError(false);
           }}
         />
       )}

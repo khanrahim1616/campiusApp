@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import { BiCommentDetail } from "react-icons/bi";
 import Button from "../../components/Button/Button";
 import "./company&JobPost.css";
+import Input from "../../components/Input/Input";
 
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);
@@ -27,7 +28,7 @@ const CompanyJobPost = () => {
     e.preventDefault();
 
     await push(ref(db, "Jobs/" + state?.userData?.uid), {
-      jobCategory: jobPostData?.JobCategory.trim(),
+      jobCategory: jobPostData?.JobCategory?.trim(),
       experience: experience,
       education: education,
     });
@@ -53,7 +54,6 @@ const CompanyJobPost = () => {
             <label htmlFor="Job_category">Category:</label>
             <input
               className="selectOptions"
-              required
               id="Job_category"
               ref={inputRef1}
               maxLength={18}

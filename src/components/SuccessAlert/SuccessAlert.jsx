@@ -5,6 +5,7 @@ import Alert from "@material-ui/lab/Alert";
 const SuccessAlert = ({ message, open, onClose }) => {
   return (
     <Snackbar
+      className="snackBar"
       anchorOrigin={{ vertical: "top", horizontal: "right" }}
       open={open}
       autoHideDuration={3000}

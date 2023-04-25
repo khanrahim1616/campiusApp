@@ -13,6 +13,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import profilePic from "../../Assets/profile.png";
 import "./imageUpload.css";
+import Input from "../Input/Input";
 
 const ImageUpload = () => {
   const state = useSelector((state) => state?.userData);
@@ -66,7 +67,7 @@ const ImageUpload = () => {
 
   return (
     <div>
-      <input
+      <Input
         style={{ display: "none" }}
         type="file"
         accept=".jpg,.png,.jpeg"

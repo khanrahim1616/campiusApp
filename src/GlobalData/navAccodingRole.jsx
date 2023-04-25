@@ -8,25 +8,25 @@ export const navAccodingRole = (role) => {
 
 const companyNav = [
   {
-    route: "/Home",
+    route: "/home",
     name: "Home",
   },
   {
-    route: "/Job-Post",
+    route: "/Job-post",
     name: "JobPost",
   },
 ];
 
 const studentNav = [
   {
-    route: "/Home",
+    route: "/home",
     name: "Home",
   },
 ];
 
 const AdminNav = [
   {
-    route: "/Home",
+    route: "/home",
     name: "Home",
   },
 ];

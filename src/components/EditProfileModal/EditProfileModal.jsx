@@ -7,6 +7,7 @@ import { db } from "../../Firebaseconfig";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import Button from "../Button/Button";
 import "../../pages/Profile/profile.css";
+import Input from "../Input/Input";
 
 const Modalprofile = ({ close, open }) => {
   const state = useSelector((state) => state);
@@ -60,7 +61,7 @@ const Modalprofile = ({ close, open }) => {
         </h3>
         <form>
           <label htmlFor="userName">Username: </label>
-          <input
+          <Input
             id="userName"
             className="selectOptions"
             type="text"
@@ -93,7 +94,7 @@ const Modalprofile = ({ close, open }) => {
               disabled={!!disablConditions}
               className={!!disablConditions ? "opacity1 " : "ButtonReuse"}
               onClick={updates}
-              btnText={"update"}
+              btnText={"Update"}
             />
           </span>
         </form>

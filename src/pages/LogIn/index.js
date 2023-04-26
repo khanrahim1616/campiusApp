@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button/Button";
 import { useFormik } from "formik";
-import { passwordVisible } from "../../Helper/Helper";
+import { passwordVisible } from "../../Helper/globalHelper";
 import { Avatar } from "@mui/material";
 import logo from "../../Assets/logo.png";
 import { logInSchema } from "../../schemas";
-import Loader from "../../components/Loader/Loader";
-import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
-import Input from "../../components/Input/Input";
+import Loader from "../../components/Loader";
+import ErrorAlert from "../../components/ErrorAlert";
+import Input from "../../components/Input";
+import Button from "../../components/Button";
 
 const LogIn = () => {
   const auth = getAuth();

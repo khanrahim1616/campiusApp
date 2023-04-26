@@ -4,14 +4,14 @@ import { ref, set } from "firebase/database";
 import { Link } from "react-router-dom";
 import { db } from "../../Firebaseconfig";
 import { signUpSchema } from "../../schemas";
-import Button from "../../components/Button/Button";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { passwordVisible } from "../../Helper/Helper";
+import { passwordVisible } from "../../Helper/globalHelper";
 import { Avatar } from "@mui/material";
 import logo from "../../Assets/logo.png";
-import Loader from "../../components/Loader/Loader";
-import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
+import Button from "../../components/Button";
+import Loader from "../../components/Loader";
+import ErrorAlert from "../../components/ErrorAlert";
 
 const SignUp = () => {
   const auth = getAuth();

@@ -1,3 +1,10 @@
+// .then(() => {
+//   setAlert({ isSuccess: true });
+// })
+// .catch(() => {
+//   setAlert({ isNotSuccess: true });
+// });
+
 import { remove, ref } from "firebase/database";
 import { db } from "../Firebaseconfig";
 import { AiFillDelete, AiOutlineMan } from "react-icons/ai";

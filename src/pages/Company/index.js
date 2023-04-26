@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Modall } from "../../components/ApplyCheckModal/companyApplyCheckModal";
+import { Modall } from "../../components/ApplyCheckModal";
 import { allJobsColumns, allJobsRow } from "../../Helper/companyHelper";
-import Navbar from "../../components/Navbar/Navbar";
-import GridTable from "../../components/GridTable/GridTable";
+import Navbar from "../../components/Navbar";
+import GridTable from "../../components/GridTable";
 import "./company&JobPost.css";
 
 const Company = () => {

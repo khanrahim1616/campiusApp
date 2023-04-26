@@ -6,7 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useDispatch, useSelector } from "react-redux";
-import { SignedOut } from "../../Helper/Helper";
+import { SignedOut } from "../../Helper/globalHelper";
 import Avatar from "@mui/material/Avatar";
 import profilePic from "../../Assets/profile.png";
 import { navAccodingRole } from "../../GlobalData/navAccodingRole";
@@ -27,6 +27,10 @@ const Menue = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const logOut = () => {
+    SignedOut(dispatch);
+    handleClose();
+  };
 
   return (
     <div className="menu">
@@ -36,7 +40,7 @@ const Menue = () => {
         sx={{ width: 56, height: 56 }}
       />
       <Button
-        style={{
+        sx={{
           color: "darkblue",
           textTransform: "inherit",
         }}
@@ -63,24 +67,25 @@ const Menue = () => {
         }}
       >
         <span className="smallScreenMenu">
-          {accordingRole?.map((item, index) => (
-            <MenuItem key={index} onClick={handleClose}>
-              <Link className="Links" to={item.route}>
-                {item.name}
+          {accordingRole?.map((val, index) => (
+            <MenuItem
+              key={index}
+              sx={{ width: "100px", justifyContent: "center" }}
+            >
+              <Link className="menuLinks" to={val.route}>
+                {val.name}
               </Link>
             </MenuItem>
           ))}
         </span>
-
-        <MenuItem onClick={handleClose}>
-          <Link className="Links" to="/Profile">
-            Profile
-          </Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link onClick={() => SignedOut(dispatch)} className="Links">
-            Logout
-          </Link>
+        <MenuItem
+          onClick={logOut}
+          sx={{
+            width: "100px",
+            justifyContent: "center",
+          }}
+        >
+          <Link className="menuLinks">Logout</Link>
         </MenuItem>
       </Menu>
     </div>

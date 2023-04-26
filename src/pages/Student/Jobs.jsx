@@ -7,9 +7,9 @@ import {
   studentAppliedJobsColumns,
   studentAppliedJobsRow,
 } from "../../Helper/studentHelper";
-import GridTable from "../../components/GridTable/GridTable";
-import SuccessAlert from "../../components/SuccessAlert/SuccessAlert";
-import ErrorAlert from "../../components/ErrorAlert/ErrorAlert";
+import GridTable from "../../components/GridTable";
+import SuccessAlert from "../../components/SuccessAlert";
+import ErrorAlert from "../../components/ErrorAlert";
 
 const Jobs = () => {
   const [tabs, setTabs] = useState(0);

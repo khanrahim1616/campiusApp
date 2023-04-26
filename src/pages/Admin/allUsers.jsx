@@ -7,7 +7,7 @@ import {
   unVerifiedUsersColumns,
   unVerifiedUsersRow,
 } from "../../Helper/adminHelper";
-import GridTable from "../../components/GridTable/GridTable";
+import GridTable from "../../components/GridTable";
 
 const Tabss = () => {
   const [tabs, setTabs] = useState(0);

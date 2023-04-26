@@ -1,6 +1,6 @@
 import { update, ref } from "firebase/database";
 import { db } from "../Firebaseconfig";
-import Button from "../components/Button/Button";
+import Button from "../components/Button";
 
 // unVerified users row,column & verify function
 

@@ -1,19 +1,21 @@
+// * all routes *
+
 // LogIn SignUp screens
-import SignUp from "../pages/Signup/SignUp";
-import LogIn from "../pages/LogIn/LogIn";
-// profile for all users
-import Profile from "../pages/Profile/Profile";
-// Company Routes
-import Company from "../pages/Company/Company";
+import SignUp from "../pages/Signup";
+import LogIn from "../pages/LogIn";
+// profile
+import Profile from "../pages/Profile";
+// Company
+import Company from "../pages/Company";
 import CompanyJobPost from "../pages/Company/jobPost";
-// Student Routes
-import Student from "../pages/Student/Student";
-// Admin Routes
-import { Admin } from "../pages/Admin/Admin";
+// Student
+import Student from "../pages/Student";
+// Admin
+import { Admin } from "../pages/Admin";
 // BlockUser
-import BlockUser from "../pages/BlockUser.jsx/BlockUser";
+import BlockUser from "../pages/BlockUser";
 // unVerifiedUsers
-import UnVerifiedUser from "../pages/unVerifiedUser/unVerifiedUser";
+import UnVerifiedUser from "../pages/unVerifiedUser";
 
 export const routes = (state) => {
   const isVerified = state?.userData?.isVerified;

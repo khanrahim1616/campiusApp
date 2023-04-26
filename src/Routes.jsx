@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Loader from "./components/Loader/Loader";
+import Loader from "./components/Loader";
 import { routes } from "./Helper/routesHelper";
 
 const RoutesFile = () => {

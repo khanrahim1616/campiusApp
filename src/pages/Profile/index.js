@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import ImageUpload from "../../components/imageUpload/imageUpload";
-import Navbar from "../../components/Navbar/Navbar";
-import Modalprofile from "../../components/EditProfileModal/EditProfileModal";
-import Button from "../../components/Button/Button";
+import ImageUpload from "../../components/imageUpload";
+import Navbar from "../../components/Navbar";
+import Modalprofile from "../../components/EditProfileModal";
+import Button from "../../components/Button";
 import "./profile.css";
 
 const Profile = () => {

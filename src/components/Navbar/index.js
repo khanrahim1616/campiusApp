@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { navAccodingRole } from "../../GlobalData/navAccodingRole";
-import Menue from "../Menu/Menu";
+import Menue from "../Menu";
 import Avatar from "@mui/material/Avatar";
 import logo from "../../Assets/logo.png";
 import "./navbar.css";
@@ -15,9 +15,8 @@ const Navbar = () => {
     <div className="navDiv">
       <div className="firstNavDiv">
         <Avatar
-          style={{ border: "1px solid grey" }}
           src={logo}
-          sx={{ width: 56, height: 56 }}
+          sx={{ border: "1px solid grey", width: 56, height: 56 }}
         />
         {accordingRole.map((item, index) => (
           <Link

@@ -7,7 +7,23 @@
   background-color: lightblue;
   padding: 5px 5px;
 }
-
 .firstNavDiv {
   display: flex;
+}
+.Links {
+  color: darkblue;
+  text-decoration: none;
+}
+.Links:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 400px) {
+  .linksHidden {
+    display: none;
+  }
+  .navDiv {
+    justify-content: space-between;
+  }
 }

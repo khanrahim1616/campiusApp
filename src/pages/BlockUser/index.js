@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { SignedOut } from "../../Helper/Helper";
-import Button from "../../components/Button/Button";
+import { SignedOut } from "../../Helper/globalHelper";
+import Button from "../../components/Button";
 
-const UnVerifiedUser = () => {
+const BlockUser = () => {
   const dispatch = useDispatch();
   return (
     <div
@@ -14,10 +14,10 @@ const UnVerifiedUser = () => {
         height: "100vh",
       }}
     >
-      <h3>Kindly contact your admin (Via slack) to approve your Account</h3>
+      <h3>You are blocked Kindly contact your admin (Via slack)</h3>
       <Button onClick={() => SignedOut(dispatch)} btnText={"SignOut"} />
     </div>
   );
 };
 
-export default UnVerifiedUser;
+export default BlockUser;

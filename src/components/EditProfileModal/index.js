@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import { update, ref } from "firebase/database";
 import { db } from "../../Firebaseconfig";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
-import Button from "../Button/Button";
+import Button from "../Button";
 import "../../pages/Profile/profile.css";
-import Input from "../Input/Input";
+import Input from "../Input";
 
 const Modalprofile = ({ close, open }) => {
   const state = useSelector((state) => state);

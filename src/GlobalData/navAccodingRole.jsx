@@ -15,6 +15,10 @@ const companyNav = [
     route: "/Job-post",
     name: "JobPost",
   },
+  {
+    route: "/profile",
+    name: "Profile",
+  },
 ];
 
 const studentNav = [
@@ -22,11 +26,19 @@ const studentNav = [
     route: "/home",
     name: "Home",
   },
+  {
+    route: "/profile",
+    name: "Profile",
+  },
 ];
 
 const AdminNav = [
   {
     route: "/home",
     name: "Home",
+  },
+  {
+    route: "/profile",
+    name: "Profile",
   },
 ];

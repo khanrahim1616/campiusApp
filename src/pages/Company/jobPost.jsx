@@ -3,11 +3,11 @@ import { useState, useRef } from "react";
 import { ref, push } from "firebase/database";
 import { db } from "../../Firebaseconfig";
 import { useSelector } from "react-redux";
-import Navbar from "../../components/Navbar/Navbar";
 import { BiCommentDetail } from "react-icons/bi";
-import Button from "../../components/Button/Button";
+import Button from "../../components/Button";
+import Navbar from "../../components/Navbar";
+import Input from "../../components/Input";
 import "./company&JobPost.css";
-import Input from "../../components/Input/Input";
 
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);

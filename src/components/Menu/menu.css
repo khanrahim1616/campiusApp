@@ -6,11 +6,13 @@
 .smallScreenMenu {
   display: none;
 }
-.Links {
+.menuLinks {
   color: darkblue;
   text-decoration: none;
 }
-.Links:hover {
-  color: red;
-  text-decoration: underline;
+
+@media only screen and (max-width: 400px) {
+  .smallScreenMenu {
+    display: block;
+  }
 }

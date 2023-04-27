@@ -39,7 +39,7 @@ const Tabss = () => {
           style={{
             textTransform: "none",
           }}
-          label="Verified-Users"
+          label="All-Users"
           {...a11yProps(0)}
         />
         <Tab

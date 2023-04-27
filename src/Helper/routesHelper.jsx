@@ -1,5 +1,4 @@
 // * all routes *
-
 // LogIn SignUp screens
 import SignUp from "../pages/Signup";
 import LogIn from "../pages/LogIn";
@@ -85,16 +84,26 @@ export const routes = (state) => {
   if (unVerifiedUsers) {
     return [
       {
-        path: "*",
+        path: "/unVerifiedUser",
         element: UnVerifiedUser,
+      },
+      {
+        path: "*",
+        isNavigate: true,
+        navigatePath: "/unVerifiedUser",
       },
     ];
   }
   if (userBLock) {
     return [
       {
-        path: "*",
+        path: "/blockUser",
         element: BlockUser,
+      },
+      {
+        path: "*",
+        isNavigate: true,
+        navigatePath: "/blockUser",
       },
     ];
   } else {

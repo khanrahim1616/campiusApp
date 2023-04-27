@@ -1,18 +1,30 @@
 import { ref, update } from "firebase/database";
 import { db } from "../Firebaseconfig";
 import { AiOutlineMan } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const apply = async ({ row, state, setAlert }) => {
-  console.log(setAlert);
-  await update(ref(db, "Jobs/" + row?.companyId + "/" + row?.jobId), {
-    appliedJobs: [...(row?.appliedJobs || []), state?.userData?.uid],
-  })
-    .then(() => {
-      setAlert({ isSuccess: true });
-    })
-    .catch(() => {
-      setAlert({ isNotSuccess: true });
-    });
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't to apply this job!",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Apply",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      await update(ref(db, "Jobs/" + row?.companyId + "/" + row?.jobId), {
+        appliedJobs: [...(row?.appliedJobs || []), state?.userData?.uid],
+      })
+        .then(() => {
+          setAlert({ isSuccess: true });
+        })
+        .catch(() => {
+          setAlert({ isNotSuccess: true });
+        });
+    }
+  });
 };
 
 export const companyPostedJobsRow = (state) => {

@@ -1,10 +1,3 @@
-// .then(() => {
-//   setAlert({ isSuccess: true });
-// })
-// .catch(() => {
-//   setAlert({ isNotSuccess: true });
-// });
-
 import { remove, ref } from "firebase/database";
 import { db } from "../Firebaseconfig";
 import { AiFillDelete, AiOutlineMan } from "react-icons/ai";
@@ -18,7 +11,7 @@ const appliedCheck = ({ row, state, setOpen, setStudentApplied }) => {
   setStudentApplied(studentData);
 };
 
-const dlete = ({ row, state }) => {
+const dlete = ({ row, state, setAlert }) => {
   Swal.fire({
     title: "Are you sure?",
     text: "You won't to delete this job!",
@@ -31,22 +24,16 @@ const dlete = ({ row, state }) => {
     if (result.isConfirmed) {
       await remove(ref(db, `Jobs/${state?.userData?.uid}/${row.jobId}`))
         .then(() => {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your Job has been deleted.",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          setAlert({ isSuccess: true });
         })
         .catch((error) => {
-          console.log(error.message);
+          setAlert({ isNotSuccess: true });
         });
     }
   });
 };
 
-export const allJobsColumns = (state, setOpen, setStudentApplied) => {
+export const allJobsColumns = (state, setOpen, setStudentApplied, setAlert) => {
   const column = [
     { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
     { field: "JobCategory", headerName: "Job-category", width: 150 },
@@ -81,7 +68,7 @@ export const allJobsColumns = (state, setOpen, setStudentApplied) => {
               color: "red",
               cursor: "pointer",
             }}
-            onClick={() => dlete({ row, state })}
+            onClick={() => dlete({ row, state, setAlert })}
           />
         );
       },

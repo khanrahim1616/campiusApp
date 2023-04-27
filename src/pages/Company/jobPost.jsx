@@ -8,15 +8,17 @@ import Button from "../../components/Button";
 import Navbar from "../../components/Navbar";
 import Input from "../../components/Input";
 import "./company&JobPost.css";
+import SuccessAlert from "../../components/SuccessAlert";
+import ErrorAlert from "../../components/ErrorAlert";
 
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);
+  const [alert, setAlert] = useState(false);
   const [jobPostData, setJobPostData] = useState({});
   const [education, setEducation] = useState("");
   const [experience, setExperience] = useState("");
 
-  //  INPUT REFRENCES
-
+  //  INPUT REFRENCE
   const inputRef1 = useRef();
 
   const getData = (e) => {
@@ -26,12 +28,17 @@ const CompanyJobPost = () => {
 
   const PostJobDetails = async (e) => {
     e.preventDefault();
-
     await push(ref(db, "Jobs/" + state?.userData?.uid), {
       jobCategory: jobPostData?.JobCategory?.trim(),
       experience: experience,
       education: education,
-    });
+    })
+      .then(() => {
+        setAlert({ isSuccess: true });
+      })
+      .catch((error) => {
+        setAlert({ isNotSuccess: true });
+      });
     inputRef1.current.value = "";
     setEducation("");
     setExperience("");
@@ -46,7 +53,7 @@ const CompanyJobPost = () => {
       <div>
         <Navbar />
         <div className="JobPostDiv">
-          <form onSubmit={PostJobDetails} className="JobPostForm">
+          <form className="JobPostForm">
             <h1 className="formHeading">
               <BiCommentDetail />
               <i>: Job-Details</i>
@@ -97,13 +104,31 @@ const CompanyJobPost = () => {
             <span style={{ textAlign: "end" }}>
               <Button
                 className={!disableCondition ? "ButtonReuse" : "opacity1"}
-                type="submit"
                 disabled={disableCondition}
+                onClick={PostJobDetails}
                 btnText={"Post"}
               />
             </span>
           </form>
         </div>
+        {!!alert?.isSuccess && (
+          <SuccessAlert
+            message={"Job posted successfully"}
+            open={!!alert?.isSuccess}
+            onClose={() => {
+              setAlert(false);
+            }}
+          />
+        )}
+        {!!alert?.isNotSuccess && (
+          <ErrorAlert
+            message={"Something went wrong"}
+            open={!!alert?.isNotSuccess}
+            onClose={() => {
+              setAlert(false);
+            }}
+          />
+        )}
       </div>
     </>
   );

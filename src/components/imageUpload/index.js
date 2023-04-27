@@ -14,8 +14,11 @@ import ClearIcon from "@mui/icons-material/Clear";
 import profilePic from "../../Assets/profile.png";
 import "./imageUpload.css";
 import Input from "../Input";
+import SuccessAlert from "../SuccessAlert";
+import ErrorAlert from "../ErrorAlert";
 
 const ImageUpload = () => {
+  const [alert, setAlert] = useState(false);
   const state = useSelector((state) => state?.userData);
   const [previewUrl, setPreviewUrl] = useState(
     state?.profilePicture || profilePic
@@ -34,7 +37,13 @@ const ImageUpload = () => {
           const getURL = await getDownloadURL(storageRefrence(storage, path));
           await update(databaseRefrence(db, `Accounts/${state?.uid}`), {
             profilePicture: getURL,
-          });
+          })
+            .then(() => {
+              setAlert({ isSuccess: true });
+            })
+            .catch(() => {
+              setAlert({ isNotSuccess: true });
+            });
         }
       }
       setTemp(false);
@@ -101,6 +110,24 @@ const ImageUpload = () => {
             <CheckIcon className="saveBtn opacity" onClick={savePic} />
             <ClearIcon className="opacity" onClick={cancel} />
           </div>
+        )}
+        {!!alert?.isSuccess && (
+          <SuccessAlert
+            message={"image uploaded successfully"}
+            open={!!alert?.isSuccess}
+            onClose={() => {
+              setAlert(false);
+            }}
+          />
+        )}
+        {!!alert?.isNotSuccess && (
+          <ErrorAlert
+            message={"Something went wrong"}
+            open={!!alert?.isNotSuccess}
+            onClose={() => {
+              setAlert(false);
+            }}
+          />
         )}
       </div>
     </div>

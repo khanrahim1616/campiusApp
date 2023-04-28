@@ -15,26 +15,31 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
 export const Modall = ({ setOpen, open, data }) => {
   return (
     <div>
       <Modal open={open}>
-        <Box sx={style}>
-          <h3
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: {
+              xs: 200,
+              sm: 400,
+              md: 400,
+              lg: 600,
+            },
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <h2
             style={{
               display: "flex",
+              alignItems: "center",
             }}
           >
             <MdOutlineKeyboardBackspace
@@ -42,7 +47,7 @@ export const Modall = ({ setOpen, open, data }) => {
               onClick={() => setOpen(false)}
             />
             Student's list
-          </h3>
+          </h2>
           {data?.length ? (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 400 }} aria-label="simple table">
@@ -72,7 +77,7 @@ export const Modall = ({ setOpen, open, data }) => {
               </Table>
             </TableContainer>
           ) : (
-            <h2>No student Applied on this job</h2>
+            <h2 className="noStudent">No student Applied on this job</h2>
           )}
         </Box>
       </Modal>

@@ -6,9 +6,12 @@
   align-items: center;
   background-color: lightblue;
   padding: 5px 5px;
+  height: 65px;
 }
 .firstNavDiv {
   display: flex;
+  align-items: center;
+  height: 100%;
 }
 .Links {
   color: darkblue;

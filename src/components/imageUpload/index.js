@@ -66,7 +66,7 @@ const ImageUpload = () => {
         setPreviewUrl(pickedfile);
         setTemp(pickedfile);
       } else {
-        alert("File type not supported");
+        setAlert({ isTypeNotSupported: true });
       }
     }
     if (filePickerRef?.current?.value) {
@@ -124,6 +124,15 @@ const ImageUpload = () => {
           <ErrorAlert
             message={"Something went wrong"}
             open={!!alert?.isNotSuccess}
+            onClose={() => {
+              setAlert(false);
+            }}
+          />
+        )}
+        {!!alert?.isTypeNotSupported && (
+          <ErrorAlert
+            message={"File type not supported"}
+            open={!!alert?.isTypeNotSupported}
             onClose={() => {
               setAlert(false);
             }}

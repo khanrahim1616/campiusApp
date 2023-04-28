@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   color: darkblue;
+  height: 100%;
+  width: 175px;
 }
 .smallScreenMenu {
   display: none;

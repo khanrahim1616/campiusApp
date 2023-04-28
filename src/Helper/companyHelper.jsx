@@ -17,7 +17,7 @@ const dlete = ({ row, state, setAlert }) => {
     text: "You won't to delete this job!",
     icon: "question",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
+    confirmButtonColor: "green",
     cancelButtonColor: "#d33",
     confirmButtonText: "Delete",
   }).then(async (result) => {

@@ -9,7 +9,7 @@ export const SignedOut = (dispatch) => {
     text: "You won't to logout!",
     icon: "question",
     showCancelButton: true,
-    confirmButtonColor: "#3085d6",
+    confirmButtonColor: "green",
     cancelButtonColor: "#d33",
     confirmButtonText: "Logout",
   }).then((result) => {

@@ -6,16 +6,13 @@ import Button from "../../components/Button";
 const BlockUser = () => {
   const dispatch = useDispatch();
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <h3>You are blocked Kindly contact your admin (Via slack)</h3>
-      <Button onClick={() => SignedOut(dispatch)} btnText={"SignOut"} />
+    <div className="LoginSignUpForm">
+      <h1>You are block, Kindly contact your admin (via slack)</h1>
+      <Button
+        onClick={() => SignedOut(dispatch)}
+        className={"ButtonReuse"}
+        btnText={"Sign out"}
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { passwordVisible } from "../../Helper/globalHelper";
 import { Avatar } from "@mui/material";
@@ -15,7 +15,7 @@ const Form = () => {
   const auth = getAuth();
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(false);
-
+  const Navigate = useNavigate();
   const {
     values,
     errors,
@@ -24,8 +24,6 @@ const Form = () => {
     handleBlur,
     handleChange,
     handleSubmit,
-    isValid,
-    dirty,
   } = useFormik({
     initialValues: {
       email: "",
@@ -36,6 +34,7 @@ const Form = () => {
       setLoader(true);
       signInWithEmailAndPassword(auth, values.email, values.password)
         .then(() => {
+          Navigate("/home");
           setLoader(false);
           action.resetForm();
         })

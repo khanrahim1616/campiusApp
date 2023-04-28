@@ -41,8 +41,10 @@ const Menue = () => {
       />
       <Button
         sx={{
+          lineHeight: "1.2",
           color: "darkblue",
           textTransform: "inherit",
+          width: "100%",
         }}
         id="basic-Button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -51,7 +53,9 @@ const Menue = () => {
         onClick={handleClick}
       >
         <span>
-          <span style={{ fontSize: "18px" }}>{user?.username}</span>
+          <span style={{ fontSize: "15px", wordBreak: "break-all" }}>
+            {user?.username}
+          </span>
           <br />
           {user?.role}
         </span>

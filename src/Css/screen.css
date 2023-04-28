@@ -14,6 +14,7 @@
   justify-content: center;
   background-color: lightblue;
   height: 100vh;
+  padding: 0px 10px;
 }
 .formSteps {
   margin-bottom: 15px;
@@ -122,6 +123,10 @@ label {
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
+.buttonWidth {
+  width: 70px;
+}
+
 .showPasswordDiv {
   margin: 5px 0px;
 }
@@ -138,6 +143,9 @@ label {
 @media only screen and (max-width: 400px) {
   .profilediv {
     flex-direction: column;
+  }
+  .noStudent {
+    font-size: 16px;
   }
   .formDiv {
     padding: 16px 12px;

@@ -12,7 +12,7 @@
 /* to remove selected row text showing bottom on grid table */
 
 .MuiDataGrid-selectedRowCount {
-  color: floralwhite;
+  color: white;
 }
 
 @media only screen and (max-width: 480px) {

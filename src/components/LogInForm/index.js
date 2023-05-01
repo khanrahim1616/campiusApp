@@ -99,13 +99,17 @@ const Form = () => {
               <p> {errors.password}</p>
             ) : null}
           </span>
-          <span style={{ textAlign: "center" }}>
+          <div className="buttonDiv">
             {loader ? (
               <Loader />
             ) : (
-              <Button className="ButtonReuse" type="submit" btnText="LogIn" />
+              <Button
+                className="ButtonReuse button"
+                type="submit"
+                btnText="LogIn"
+              />
             )}
-          </span>
+          </div>
           <p>
             Dont have an account ?
             <span>

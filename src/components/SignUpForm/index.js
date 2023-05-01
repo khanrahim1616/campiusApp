@@ -176,17 +176,17 @@ const Form = () => {
             ) : null}
           </span>
         )}
-        <span style={{ textAlign: "center" }}>
+        <div className="buttonDiv">
           {loader ? (
             <Loader />
           ) : (
             <Button
-              className={"ButtonReuse"}
+              className={"ButtonReuse button"}
               type="submit"
               btnText={"SignUp"}
             />
           )}
-        </span>
+        </div>
         <p>
           Already have an account ?
           <span>

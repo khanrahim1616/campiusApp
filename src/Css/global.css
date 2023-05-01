@@ -1,4 +1,4 @@
-/* Login & SignUp */
+/* Login & SignUp                                               */
 
 .logo {
   display: flex;
@@ -24,7 +24,7 @@ span > p {
   color: red;
 }
 
-/* Input */
+/* Input                                                      */
 .Input {
   border: none;
   border-radius: 10px;
@@ -32,10 +32,6 @@ span > p {
   padding: 10px;
   width: 96%;
 }
-
-/* .snackBar {
-  margin-top: 60px;
-} */
 
 .formDiv {
   display: flex;
@@ -61,7 +57,7 @@ label {
   text-decoration: underline;
 }
 
-/* selectOptions  */
+/* selectOptions                                             */
 .selectOptions {
   width: 100%;
   text-align: center;
@@ -77,7 +73,7 @@ label {
   border-radius: 10px;
 }
 
-/* modalCloseIcon  */
+/* modalCloseIcon                                            */
 .modalCloseIcon {
   margin-right: 10px;
   font-size: 25px;
@@ -85,7 +81,7 @@ label {
   cursor: pointer;
 }
 
-/* loader */
+/* loader                                                    */
 .loader {
   display: flex;
   justify-content: center;
@@ -93,7 +89,7 @@ label {
   height: 100vh;
 }
 
-/* Reuse button */
+/* Reuse button                                              */
 .ButtonReuse {
   background-color: lightblue;
   color: black;
@@ -129,6 +125,29 @@ label {
 
 .showPasswordDiv {
   margin: 5px 0px;
+}
+
+/* unauthorisedUersPage                                                      */
+
+.disableInput {
+  background-color: aliceblue;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  cursor: not-allowed;
+}
+
+.unauthorisedUersHaeding {
+  text-align: center;
+  color: white;
+  margin-top: 0;
+}
+.buttonDiv {
+  text-align: center;
+}
+.button {
+  width: 100% !important;
+  padding: 10px 0px;
 }
 
 @media only screen and (max-width: 600px) {

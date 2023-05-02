@@ -26,7 +26,7 @@ const dlete = ({ row, state, setAlert }) => {
         .then(() => {
           setAlert({ isSuccess: true });
         })
-        .catch((error) => {
+        .catch(() => {
           setAlert({ isNotSuccess: true });
         });
     }

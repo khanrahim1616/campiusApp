@@ -9,7 +9,7 @@ import Button from "../Button";
 import "../../pages/Profile/profile.css";
 import Input from "../Input";
 
-const Modalprofile = ({ close, open }) => {
+const Modalprofile = ({ close, open, setAlert }) => {
   const state = useSelector((state) => state);
   const { username, uid, role, experience } = state?.userData;
   const [userName, setInput] = useState(username);
@@ -28,16 +28,18 @@ const Modalprofile = ({ close, open }) => {
   };
 
   const updates = async () => {
-    try {
-      let data =
-        role === "Student"
-          ? { username: userName, experience: userExperience }
-          : { username: userName };
-      await update(ref(db, "Accounts/" + uid), data);
-      close();
-    } catch (error) {
-      console.log(error);
-    }
+    let data =
+      role === "Student"
+        ? { username: userName, experience: userExperience }
+        : { username: userName };
+    await update(ref(db, "Accounts/" + uid), data)
+      .then(() => {
+        close();
+        setAlert({ isSuccess: true });
+      })
+      .catch(() => {
+        setAlert({ isNotSuccess: true });
+      });
   };
 
   let disablConditions =
@@ -46,60 +48,62 @@ const Modalprofile = ({ close, open }) => {
     userName.length > 20;
 
   return (
-    <Modal open={open}>
-      <Box sx={style}>
-        <h3
-          style={{
-            display: "flex",
-          }}
-        >
-          <MdOutlineKeyboardBackspace
-            className="modalCloseIcon"
-            onClick={close}
-          />
-          Edit Profile
-        </h3>
-        <form>
-          <label htmlFor="userName">Username: </label>
-          <Input
-            id="userName"
-            className="selectOptions"
-            type="text"
-            onChange={(e) => setInput(e.target.value.trimStart())}
-            value={userName}
-          />
-          <br />
-          {role === "Student" && (
-            <>
-              <label htmlFor="experience">Experience:</label>
-              <span>
-                <select
-                  id="experience"
-                  className="selectOptions"
-                  value={userExperience}
-                  onChange={(e) => setExperience(e.target.value)}
-                >
-                  <option value="" selected disabled hidden>
-                    Experience
-                  </option>
-                  <option value="Fresher">Fresher</option>
-                  <option value="Junior">Junior</option>
-                  <option value="Senior">Senior</option>
-                </select>
-              </span>
-            </>
-          )}
-          <span style={{ display: "flex", justifyContent: "end" }}>
-            <Button
-              disabled={!!disablConditions}
-              className={!!disablConditions ? "opacity1 " : "ButtonReuse"}
-              onClick={updates}
-              btnText={"Update"}
+    <>
+      <Modal open={open}>
+        <Box sx={style}>
+          <h3
+            style={{
+              display: "flex",
+            }}
+          >
+            <MdOutlineKeyboardBackspace
+              className="modalCloseIcon"
+              onClick={close}
             />
-          </span>
-        </form>
-      </Box>
-    </Modal>
+            Edit Profile
+          </h3>
+          <form>
+            <label htmlFor="userName">Username: </label>
+            <Input
+              id="userName"
+              className="selectOptions"
+              type="text"
+              onChange={(e) => setInput(e.target.value.trimStart())}
+              value={userName}
+            />
+            <br />
+            {role === "Student" && (
+              <>
+                <label htmlFor="experience">Experience:</label>
+                <span>
+                  <select
+                    id="experience"
+                    className="selectOptions"
+                    value={userExperience}
+                    onChange={(e) => setExperience(e.target.value)}
+                  >
+                    <option value="" selected disabled hidden>
+                      Experience
+                    </option>
+                    <option value="Fresher">Fresher</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Senior">Senior</option>
+                  </select>
+                </span>
+              </>
+            )}
+            <span style={{ display: "flex", justifyContent: "end" }}>
+              <Button
+                disabled={!!disablConditions}
+                className={!!disablConditions ? "opacity1 " : "ButtonReuse"}
+                onClick={updates}
+                btnText={"Update"}
+              />
+            </span>
+          </form>
+        </Box>
+      </Modal>
+    </>
   );
 };
 

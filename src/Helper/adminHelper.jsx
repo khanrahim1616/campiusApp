@@ -4,13 +4,19 @@ import Button from "../components/Button";
 
 // unVerified users row,column & verify function
 
-const verifyUser = async (user) => {
+const verifyUser = async (user, setAlert) => {
   await update(ref(db, "Accounts/" + user.uid), {
     isVerified: true,
-  });
+  })
+    .then(() => {
+      setAlert({ isSuccess: true, message: "User verified" });
+    })
+    .catch(() => {
+      setAlert({ isNotSuccess: true });
+    });
 };
 
-export const unVerifiedUsersColumns = [
+export const unVerifiedUsersColumns = (setAlert) => [
   { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
   { field: "username", headerName: "User-name", width: 100 },
   { field: "Email", headerName: "Email", width: 170 },
@@ -18,10 +24,10 @@ export const unVerifiedUsersColumns = [
   {
     field: "Action",
     width: 90,
-    renderCell: (perams) => {
+    renderCell: ({ row }) => {
       return (
         <Button
-          onClick={() => verifyUser(perams.row)}
+          onClick={() => verifyUser(row, setAlert)}
           className={"ButtonReuse"}
           btnText={"Verify"}
         />
@@ -49,13 +55,22 @@ export const unVerifiedUsersRow = (state) => {
 
 // verified users row,column & Block function
 
-const blockUser = async (user) => {
+const blockUser = async (user, setAlert) => {
   await update(ref(db, "Accounts/" + user.uid), {
     isBlocked: !user?.isBlocked,
-  });
+  })
+    .then(() => {
+      setAlert({
+        isSuccess: true,
+        message: `User ${user?.isBlocked ? "unblocked" : "blocked"}`,
+      });
+    })
+    .catch(() => {
+      setAlert({ isNotSuccess: true });
+    });
 };
 
-export const verifiedUsersColumns = [
+export const verifiedUsersColumns = (setAlert) => [
   { field: "id", headerName: "S.no", width: 50, padding: "0 0 0 5px" },
   { field: "username", headerName: "User-name", width: 100 },
   { field: "Email", headerName: "Email", width: 170 },
@@ -63,12 +78,12 @@ export const verifiedUsersColumns = [
   {
     field: "Action",
     width: 90,
-    renderCell: (perams) => {
+    renderCell: ({ row }) => {
       return (
         <Button
-          onClick={() => blockUser(perams.row)}
+          onClick={() => blockUser(row, setAlert)}
           className={"ButtonReuse"}
-          btnText={perams.row.isBlocked ? "unblock" : "block"}
+          btnText={row?.isBlocked ? "unblock" : "block"}
         />
       );
     },

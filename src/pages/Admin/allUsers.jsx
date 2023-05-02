@@ -8,8 +8,12 @@ import {
   unVerifiedUsersRow,
 } from "../../Helper/adminHelper";
 import GridTable from "../../components/GridTable";
+import SuccessAlert from "../../components/SuccessAlert";
+import ErrorAlert from "../../components/ErrorAlert";
 
 const Tabss = () => {
+  const [alert, setAlert] = useState(false);
+
   const [tabs, setTabs] = useState(0);
 
   const state = useSelector((state) => state);
@@ -23,35 +27,55 @@ const Tabss = () => {
 
   var data = [
     {
-      column: verifiedUsersColumns,
+      column: verifiedUsersColumns(setAlert),
       row: verifiedUsersRow(state),
     },
     {
-      column: unVerifiedUsersColumns,
+      column: unVerifiedUsersColumns(setAlert),
       row: unVerifiedUsersRow(state),
     },
   ];
 
   return (
-    <div>
-      <Tabs value={tabs} onChange={(_, val) => setTabs(val)}>
-        <Tab
-          style={{
-            textTransform: "none",
+    <>
+      <div>
+        <Tabs value={tabs} onChange={(_, val) => setTabs(val)}>
+          <Tab
+            style={{
+              textTransform: "none",
+            }}
+            label="All-Users"
+            {...a11yProps(0)}
+          />
+          <Tab
+            style={{
+              textTransform: "none",
+            }}
+            label="UnVerified-Users"
+            {...a11yProps(1)}
+          />
+        </Tabs>
+        <CurrentComponent index={tabs} data={data} />
+      </div>
+      {!!alert?.isSuccess && (
+        <SuccessAlert
+          message={alert?.message}
+          open={!!alert?.isSuccess}
+          onClose={() => {
+            setAlert(false);
           }}
-          label="All-Users"
-          {...a11yProps(0)}
         />
-        <Tab
-          style={{
-            textTransform: "none",
+      )}
+      {!!alert?.isNotSuccess && (
+        <ErrorAlert
+          message={"Something went wrong"}
+          open={!!alert?.isNotSuccess}
+          onClose={() => {
+            setAlert(false);
           }}
-          label="UnVerified-Users"
-          {...a11yProps(1)}
         />
-      </Tabs>
-      <CurrentComponent index={tabs} data={data} />
-    </div>
+      )}
+    </>
   );
 };
 export default Tabss;

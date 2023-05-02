@@ -160,9 +160,6 @@ label {
 }
 
 @media only screen and (max-width: 400px) {
-  .profilediv {
-    flex-direction: column;
-  }
   .noStudent {
     font-size: 16px;
   }

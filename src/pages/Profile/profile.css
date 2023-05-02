@@ -1,9 +1,9 @@
 .profilediv {
   display: flex;
   align-items: center;
-  height: 80vh;
+  background-color: aliceblue;
+  height: 95vh;
   justify-content: center;
-  text-align: center;
 }
 
 .profielSecondDiv {

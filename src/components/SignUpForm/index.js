@@ -117,7 +117,7 @@ const Form = () => {
             name="password"
             type="password"
             className="Input"
-            placeholder="********"
+            placeholder="Password"
             onChange={handleChange}
             onBlur={handleBlur}
           />

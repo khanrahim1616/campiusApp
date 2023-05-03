@@ -68,7 +68,7 @@ const Modalprofile = ({ close, open, setAlert }) => {
               id="userName"
               className="selectOptions"
               type="text"
-              onChange={(e) => setInput(e.target.value.trimStart())}
+              onChange={(e) => setInput(e?.target?.value.trimStart())}
               value={userName}
             />
             <br />

@@ -30,6 +30,7 @@ const ImageUpload = () => {
     try {
       const storage = getStorage();
       if (previewUrl && state?.uid) {
+        setTemp(false);
         const path = `profilePictures/${state?.uid}`;
         const storageRef = storageRefrence(storage, path);
         const uploadPic = await uploadBytes(storageRef, previewUrl);
@@ -39,16 +40,16 @@ const ImageUpload = () => {
             profilePicture: getURL,
           })
             .then(() => {
-              setAlert({ isSuccess: true });
+              setAlert({ isSuccess: true, msg: "Profile saved successfully" });
             })
             .catch(() => {
-              setAlert({ isNotSuccess: true });
+              setAlert({ isNotSuccess: true, msg: "something went wrong" });
             });
         }
       }
       setTemp(false);
     } catch (error) {
-      console.error(error, "pic not saved");
+      setAlert({ isNotSuccess: true, msg: "pic not saved" });
     }
   };
 
@@ -66,7 +67,7 @@ const ImageUpload = () => {
         setPreviewUrl(pickedfile);
         setTemp(pickedfile);
       } else {
-        setAlert({ isTypeNotSupported: true });
+        setAlert({ isNotSuccess: true, msg: "File type not supported" });
       }
     }
     if (filePickerRef?.current?.value) {
@@ -103,7 +104,7 @@ const ImageUpload = () => {
         {!temp ? (
           <LocalSeeIcon
             className="addBtnDiv"
-            onClick={() => filePickerRef.current.click()}
+            onClick={() => filePickerRef?.current?.click()}
           />
         ) : (
           <div className="save-cancel-BtnDiv">
@@ -113,7 +114,7 @@ const ImageUpload = () => {
         )}
         {!!alert?.isSuccess && (
           <SuccessAlert
-            message={"image uploaded successfully"}
+            message={alert?.msg}
             open={!!alert?.isSuccess}
             onClose={() => {
               setAlert(false);
@@ -122,17 +123,8 @@ const ImageUpload = () => {
         )}
         {!!alert?.isNotSuccess && (
           <ErrorAlert
-            message={"Something went wrong"}
+            message={alert?.msg}
             open={!!alert?.isNotSuccess}
-            onClose={() => {
-              setAlert(false);
-            }}
-          />
-        )}
-        {!!alert?.isTypeNotSupported && (
-          <ErrorAlert
-            message={"File type not supported"}
-            open={!!alert?.isTypeNotSupported}
             onClose={() => {
               setAlert(false);
             }}

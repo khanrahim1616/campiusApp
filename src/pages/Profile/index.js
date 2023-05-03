@@ -8,6 +8,7 @@ import "./profile.css";
 import { Box } from "@mui/material";
 import SuccessAlert from "../../components/SuccessAlert";
 import ErrorAlert from "../../components/ErrorAlert";
+import { GrEdit } from "react-icons/gr";
 
 const Profile = () => {
   const [open, setOpen] = useState(false);
@@ -49,9 +50,14 @@ const Profile = () => {
               </p>
             )}
             <Button
+              style={{ with: "110px !important", padding: "8px !important" }}
               className="ButtonReuse"
               onClick={() => setOpen(true)}
-              btnText={"Edit profile"}
+              btnText={
+                <span>
+                  <GrEdit /> Edit profile
+                </span>
+              }
             />
           </div>
         </Box>

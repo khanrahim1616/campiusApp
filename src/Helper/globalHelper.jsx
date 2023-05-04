@@ -6,7 +6,7 @@ export const SignedOut = (dispatch) => {
   const auth = getAuth();
   Swal.fire({
     title: "Are you sure?",
-    text: "You won't to logout!",
+    text: "You want to logout!",
     icon: "question",
     showCancelButton: true,
     confirmButtonColor: "green",

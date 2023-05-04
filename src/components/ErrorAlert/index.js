@@ -11,7 +11,12 @@ const ErrorAlert = ({ message, open, onClose }) => {
       autoHideDuration={2000}
       onClose={onClose}
     >
-      <Alert onClose={onClose} severity="error" variant="filled">
+      <Alert
+        style={{ marginTop: 70 }}
+        onClose={onClose}
+        severity="error"
+        variant="filled"
+      >
         {message}
       </Alert>
     </Snackbar>

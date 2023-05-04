@@ -14,6 +14,7 @@ const Modalprofile = ({ close, open, setAlert }) => {
   const { username, uid, role, experience } = state?.userData;
   const [userName, setInput] = useState(username);
   const [userExperience, setExperience] = useState(experience);
+  const [error, setError] = useState(false);
 
   const style = {
     position: "absolute",
@@ -42,10 +43,18 @@ const Modalprofile = ({ close, open, setAlert }) => {
       });
   };
 
-  let disablConditions =
-    (userExperience === experience && userName === username) ||
-    userName.length < 5 ||
-    userName.length > 20;
+  const isError = (e) => {
+    if (e?.target?.value?.length < 4 && e?.target?.value?.length > 0) {
+      setError("Username must contain 4 characters");
+    } else if (e?.target?.value === "") {
+      setError("!Required");
+    } else {
+      setError(false);
+    }
+  };
+
+  let disable =
+    (userExperience === experience && userName === username) || !!error;
 
   return (
     <>
@@ -65,13 +74,18 @@ const Modalprofile = ({ close, open, setAlert }) => {
           <form>
             <label htmlFor="userName">Username: </label>
             <Input
+              style={{ marginBottom: "8px" }}
               id="userName"
+              maxlength={14}
               className="selectOptions"
               type="text"
-              onChange={(e) => setInput(e?.target?.value.trimStart())}
+              onChange={(e) => {
+                setInput(e?.target?.value?.trim() || "");
+                isError(e);
+              }}
               value={userName}
             />
-            <br />
+            {error && <span className="errors">{error}</span>}
             {role === "Student" && (
               <>
                 <label htmlFor="experience">Experience:</label>
@@ -80,7 +94,7 @@ const Modalprofile = ({ close, open, setAlert }) => {
                     id="experience"
                     className="selectOptions"
                     value={userExperience}
-                    onChange={(e) => setExperience(e.target.value)}
+                    onChange={(e) => setExperience(e?.target?.value)}
                   >
                     <option value="" selected disabled hidden>
                       Experience
@@ -94,8 +108,8 @@ const Modalprofile = ({ close, open, setAlert }) => {
             )}
             <span style={{ display: "flex", justifyContent: "end" }}>
               <Button
-                disabled={!!disablConditions}
-                className={!!disablConditions ? "opacity1 " : "ButtonReuse"}
+                disabled={!!disable}
+                className={!!disable ? "opacity1 " : "ButtonReuse"}
                 onClick={updates}
                 btnText={"Update"}
               />

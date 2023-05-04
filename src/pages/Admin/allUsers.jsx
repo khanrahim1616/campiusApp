@@ -27,39 +27,37 @@ const Tabss = () => {
 
   var data = [
     {
-      column: verifiedUsersColumns(setAlert),
-      row: verifiedUsersRow(state),
+      column: verifiedUsersColumns(),
+      row: verifiedUsersRow(state, setAlert),
     },
     {
-      column: unVerifiedUsersColumns(setAlert),
-      row: unVerifiedUsersRow(state),
+      column: unVerifiedUsersColumns(),
+      row: unVerifiedUsersRow(state, setAlert),
     },
   ];
 
   return (
-    <>
-      <div>
-        <Tabs value={tabs} onChange={(_, val) => setTabs(val)}>
-          <Tab
-            style={{
-              textTransform: "none",
-            }}
-            label="All-Users"
-            {...a11yProps(0)}
-          />
-          <Tab
-            style={{
-              textTransform: "none",
-            }}
-            label="UnVerified-Users"
-            {...a11yProps(1)}
-          />
-        </Tabs>
-        <CurrentComponent index={tabs} data={data} />
-      </div>
+    <div>
+      <Tabs value={tabs} onChange={(_, val) => setTabs(val)}>
+        <Tab
+          style={{
+            textTransform: "none",
+          }}
+          label="All-Users"
+          {...a11yProps(0)}
+        />
+        <Tab
+          style={{
+            textTransform: "none",
+          }}
+          label="UnVerified-Users"
+          {...a11yProps(1)}
+        />
+      </Tabs>
+      <CurrentComponent index={tabs} data={data} />
       {!!alert?.isSuccess && (
         <SuccessAlert
-          message={alert?.message}
+          message={alert.message}
           open={!!alert?.isSuccess}
           onClose={() => {
             setAlert(false);
@@ -75,7 +73,7 @@ const Tabss = () => {
           }}
         />
       )}
-    </>
+    </div>
   );
 };
 export default Tabss;

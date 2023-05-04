@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 const apply = async ({ row, state, setAlert }) => {
   Swal.fire({
     title: "Are you sure?",
-    text: "You won't to apply this job!",
+    text: "You want to apply this job!",
     icon: "question",
     showCancelButton: true,
     confirmButtonColor: "green",
@@ -45,14 +45,14 @@ export const companyPostedJobsRow = (state) => {
 
 export const companyPostedJobsColumns = (state, setAlert) => {
   const column = [
-    { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
-    { field: "companyName", headerName: "Company-Name", width: 150 },
-    { field: "jobCategory", headerName: "Job-Category", width: 190 },
-    { field: "education", headerName: "Education", width: 100 },
-    { field: "experience", headerName: "Experience", width: 90 },
+    { field: "id", headerName: "S.no", width: 70, padding: "0 0 0 5px" },
+    { field: "companyName", headerName: "Company-Name", width: 240 },
+    { field: "jobCategory", headerName: "Job-Category", width: 200 },
+    { field: "education", headerName: "Education", width: 200 },
+    { field: "experience", headerName: "Experience", width: 150 },
     {
       field: "Apply",
-      width: 60,
+      width: 80,
       renderCell: ({ row }) => {
         return (
           <AiOutlineMan
@@ -72,11 +72,11 @@ export const companyPostedJobsColumns = (state, setAlert) => {
 };
 
 export const studentAppliedJobsColumns = [
-  { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
-  { field: "companyName", headerName: "Company-Name", width: 150 },
-  { field: "jobCategory", headerName: "Job-Category", width: 190 },
-  { field: "education", headerName: "Education", width: 100 },
-  { field: "experience", headerName: "Experience", width: 90 },
+  { field: "id", headerName: "S.no", width: 70, padding: "0 0 0 5px" },
+  { field: "companyName", headerName: "Company-Name", width: 240 },
+  { field: "jobCategory", headerName: "Job-Category", width: 200 },
+  { field: "education", headerName: "Education", width: 200 },
+  { field: "experience", headerName: "Experience", width: 240 },
 ];
 
 export const studentAppliedJobsRow = (state) => {

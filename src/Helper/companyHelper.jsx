@@ -14,7 +14,7 @@ const appliedCheck = ({ row, state, setOpen, setStudentApplied }) => {
 const dlete = ({ row, state, setAlert }) => {
   Swal.fire({
     title: "Are you sure?",
-    text: "You won't to delete this job!",
+    text: "You want to delete this job!",
     icon: "question",
     showCancelButton: true,
     confirmButtonColor: "green",
@@ -35,13 +35,13 @@ const dlete = ({ row, state, setAlert }) => {
 
 export const allJobsColumns = (state, setOpen, setStudentApplied, setAlert) => {
   const column = [
-    { field: "id", headerName: "S.no", width: 25, padding: "0 0 0 5px" },
-    { field: "JobCategory", headerName: "Job-category", width: 150 },
-    { field: "Education", headerName: "Education", width: 100 },
-    { field: "Experience", headerName: "Experience", width: 100 },
+    { field: "id", headerName: "S.no", width: 70, padding: "0 0 0 5px" },
+    { field: "JobCategory", headerName: "Job-category", width: 240 },
+    { field: "Education", headerName: "Education", width: 200 },
+    { field: "Experience", headerName: "Experience", width: 200 },
     {
       field: "Apply-check",
-      width: 95,
+      width: 150,
       renderCell: ({ row }) => {
         return (
           <AiOutlineMan

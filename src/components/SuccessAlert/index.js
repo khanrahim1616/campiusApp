@@ -6,12 +6,17 @@ const SuccessAlert = ({ message, open, onClose }) => {
   return (
     <Snackbar
       className="snackBar"
-      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       open={open}
       autoHideDuration={2000}
       onClose={onClose}
     >
-      <Alert onClose={onClose} severity="success" variant="filled">
+      <Alert
+        style={{ marginTop: 70 }}
+        onClose={onClose}
+        severity="success"
+        variant="filled"
+      >
         {message}
       </Alert>
     </Snackbar>

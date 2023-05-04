@@ -36,7 +36,7 @@ export const Modall = ({ setOpen, open, data }) => {
             p: 4,
           }}
         >
-          <h2
+          <h1
             style={{
               display: "flex",
               alignItems: "center",
@@ -47,7 +47,7 @@ export const Modall = ({ setOpen, open, data }) => {
               onClick={() => setOpen(false)}
             />
             Student's list
-          </h2>
+          </h1>
           {data?.length ? (
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 400 }} aria-label="simple table">

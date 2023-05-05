@@ -1,9 +1,12 @@
 /* Job POST PAGE */
 .formHeading {
+  display: flex;
+  align-items: center;
   color: darkblue;
   background-color: lightblue;
   padding: 5px 10px;
   border-radius: 5px;
+  justify-content: center;
 }
 .JobPostForm {
   display: flex;
@@ -16,4 +19,14 @@
   height: 80vh;
   /* width: 500px; */
   margin: auto;
+}
+
+::-webkit-input-placeholder {
+  color: black;
+}
+
+@media only screen and (max-width: 600px) {
+  .inputWidth {
+    width: 100% !important;
+  }
 }

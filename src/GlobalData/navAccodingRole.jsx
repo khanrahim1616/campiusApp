@@ -13,7 +13,7 @@ const companyNav = [
   },
   {
     route: "/Job-post",
-    name: "JobPost",
+    name: "Job-Post",
   },
   {
     route: "/profile",

@@ -1,21 +1,36 @@
 //Material ui Modal
 
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 //Material ui Table
 
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  TablePagination,
+} from "@mui/material";
 
 export const Modall = ({ setOpen, open, data }) => {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   return (
     <div>
       <Modal open={open}>
@@ -49,33 +64,49 @@ export const Modall = ({ setOpen, open, data }) => {
             Student's list
           </h1>
           {data?.length ? (
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 400 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center">S.no</TableCell>
-                    <TableCell align="center">Username</TableCell>
-                    <TableCell align="center">Email</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {data?.map((item, i) => {
-                    return (
-                      <TableRow key={i}>
-                        <TableCell align="center">{i + 1}</TableCell>
-                        <TableCell align="center">
-                          {item?.username}
-                          <span style={{ color: "red" }}>
-                            {item?.isBlocked && " (blocked)"}
-                          </span>
-                        </TableCell>
-                        <TableCell align="center">{item?.email}</TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            <>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 400 }} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell align="center">S.no</TableCell>
+                      <TableCell align="center">Username</TableCell>
+                      <TableCell align="center">Email</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {data
+                      ?.slice(
+                        page * rowsPerPage,
+                        page * rowsPerPage + rowsPerPage
+                      )
+                      .map((item, i) => {
+                        return (
+                          <TableRow key={i}>
+                            <TableCell align="center">{i + 1}</TableCell>
+                            <TableCell align="center">
+                              {item?.username}
+                              <span style={{ color: "red" }}>
+                                {item?.isBlocked && " (blocked)"}
+                              </span>
+                            </TableCell>
+                            <TableCell align="center">{item?.email}</TableCell>
+                          </TableRow>
+                        );
+                      })}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+              <TablePagination
+                rowsPerPageOptions={[5, 10]}
+                component="div"
+                count={data?.length || 0}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </>
           ) : (
             <h2 className="noStudent">No student Applied on this job</h2>
           )}

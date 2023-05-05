@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import profilePic from "../../Assets/profile.png";
 import { navAccodingRole } from "../../GlobalData/navAccodingRole";
 import "./menu.css";
-
 const Menue = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.userData);
@@ -53,11 +52,7 @@ const Menue = () => {
         onClick={handleClick}
       >
         <span>
-          <span style={{ fontSize: "15px", wordBreak: "break-all" }}>
-            {user?.username}
-          </span>
-          <br />
-          {user?.role}
+          <h4 className="role">{user?.role}</h4>
         </span>
         <KeyboardArrowDownIcon style={{ marginLeft: "5px" }} />
       </Button>

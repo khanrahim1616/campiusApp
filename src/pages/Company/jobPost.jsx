@@ -10,6 +10,7 @@ import Input from "../../components/Input";
 import "./company&JobPost.css";
 import SuccessAlert from "../../components/SuccessAlert";
 import ErrorAlert from "../../components/ErrorAlert";
+import { Link } from "react-router-dom";
 
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);
@@ -53,14 +54,14 @@ const CompanyJobPost = () => {
       <div>
         <Navbar />
         <div className="JobPostDiv">
-          <form className="JobPostForm">
-            <h1 className="formHeading">
+          <form className="formDiv">
+            <h2 className="formHeading">
               <BiCommentDetail />
-              <i>: Job-Details</i>
-            </h1>
+              <i>&nbsp;&nbsp;Job-Details</i>
+            </h2>
             <label htmlFor="Job_category">Category:</label>
             <input
-              className="selectOptions"
+              className="selectOptions Input inputWidth "
               id="Job_category"
               ref={inputRef1}
               maxLength={18}
@@ -72,7 +73,7 @@ const CompanyJobPost = () => {
             <span>
               <select
                 id="experience"
-                className="selectOptions"
+                className="selectOptions Input inputWidth"
                 value={experience}
                 onChange={(e) => setExperience(e.target.value)}
               >
@@ -88,7 +89,7 @@ const CompanyJobPost = () => {
             <span>
               <select
                 id="education"
-                className="selectOptions"
+                className="selectOptions Input inputWidth"
                 value={education}
                 onChange={(e) => setEducation(e.target.value)}
               >
@@ -103,12 +104,22 @@ const CompanyJobPost = () => {
             </span>
             <span style={{ textAlign: "end" }}>
               <Button
-                className={!disableCondition ? "ButtonReuse" : "opacity1"}
+                className={
+                  !disableCondition ? "ButtonReuse button" : "opacity1 button"
+                }
                 disabled={disableCondition}
                 onClick={PostJobDetails}
                 btnText={"Post"}
               />
             </span>
+            <p>
+              If you want to preview posted jobs :
+              <span>
+                <Link className="link" to="/">
+                  Click here
+                </Link>
+              </span>
+            </p>
           </form>
         </div>
         {!!alert?.isSuccess && (

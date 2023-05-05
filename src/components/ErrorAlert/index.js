@@ -6,7 +6,7 @@ const ErrorAlert = ({ message, open, onClose }) => {
   return (
     <Snackbar
       className="snackBar"
-      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
       open={open}
       autoHideDuration={2000}
       onClose={onClose}

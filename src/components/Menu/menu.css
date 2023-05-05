@@ -12,6 +12,9 @@
   color: darkblue;
   text-decoration: none;
 }
+.role {
+  text-transform: capitalize;
+}
 
 @media only screen and (max-width: 400px) {
   .smallScreenMenu {

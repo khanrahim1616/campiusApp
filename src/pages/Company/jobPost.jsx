@@ -15,22 +15,17 @@ import { Link } from "react-router-dom";
 const CompanyJobPost = () => {
   const state = useSelector((state) => state);
   const [alert, setAlert] = useState(false);
-  const [jobPostData, setJobPostData] = useState({});
+  const [JobCategory, setJobCategory] = useState("");
   const [education, setEducation] = useState("");
   const [experience, setExperience] = useState("");
 
   //  INPUT REFRENCE
   const inputRef1 = useRef();
 
-  const getData = (e) => {
-    let input = { [e.target.name]: e.target.value };
-    setJobPostData({ ...jobPostData, ...input });
-  };
-
   const PostJobDetails = async (e) => {
     e.preventDefault();
     await push(ref(db, "Jobs/" + state?.userData?.uid), {
-      jobCategory: jobPostData?.JobCategory?.trim(),
+      jobCategory: JobCategory?.trim(),
       experience: experience,
       education: education,
     })
@@ -43,11 +38,10 @@ const CompanyJobPost = () => {
     inputRef1.current.value = "";
     setEducation("");
     setExperience("");
-    setJobPostData({});
+    setJobCategory("");
   };
 
-  let disableCondition =
-    !jobPostData?.JobCategory?.trim() || !education || !experience;
+  let disableCondition = !JobCategory || !education || !experience;
 
   return (
     <>
@@ -65,9 +59,12 @@ const CompanyJobPost = () => {
               id="Job_category"
               ref={inputRef1}
               maxLength={18}
+              value={JobCategory}
               placeholder="Please enter category"
               name="JobCategory"
-              onChange={(e) => getData(e)}
+              onChange={(e) => {
+                setJobCategory(e?.target?.value?.trimStart());
+              }}
             />
             <label htmlFor="experience">Experience:</label>
             <span>
@@ -109,7 +106,7 @@ const CompanyJobPost = () => {
                 }
                 disabled={disableCondition}
                 onClick={PostJobDetails}
-                btnText={"Post"}
+                btnText={"Submit"}
               />
             </span>
             <p>

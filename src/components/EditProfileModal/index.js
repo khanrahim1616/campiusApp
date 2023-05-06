@@ -76,7 +76,7 @@ const Modalprofile = ({ close, open, setAlert }) => {
             <Input
               style={{ marginBottom: "8px" }}
               id="userName"
-              maxlength={14}
+              maxLength={14}
               className="selectOptions"
               type="text"
               onChange={(e) => {

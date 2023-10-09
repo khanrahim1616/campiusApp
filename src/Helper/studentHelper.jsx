@@ -1,6 +1,6 @@
 import { ref, update } from "firebase/database";
 import { db } from "../Firebaseconfig";
-import { AiOutlineMan } from "react-icons/ai";
+import { RiContactsBookUploadLine } from "react-icons/ri";
 import Swal from "sweetalert2";
 
 const apply = async ({ row, state, setAlert }) => {
@@ -55,7 +55,7 @@ export const companyPostedJobsColumns = (state, setAlert) => {
       width: 80,
       renderCell: ({ row }) => {
         return (
-          <AiOutlineMan
+          <RiContactsBookUploadLine
             style={{
               fontSize: "24px",
               color: "green",

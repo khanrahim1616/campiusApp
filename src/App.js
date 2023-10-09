@@ -59,18 +59,22 @@ const App = () => {
             .filter((item) => item?.appliedJobs)
             .map((item1) => item1.appliedJobs)
             .flat(2)
-            .filter((currelem, ind, arr) => arr.indexOf(currelem) == ind);
-
+            .filter((currelem, ind, arr) => arr.indexOf(currelem) === ind);
+          let initial = true;
           Promise.all(
             forGetingStudentData.map((studentId) => {
               return new Promise((resolve) => {
                 onValue(ref(db, "Accounts/" + studentId), (snapshot) => {
                   const data1 = snapshot.val();
+                  console.log(data1, "data1");
+                  if (!initial)
+                    dispatch(triger.getParticularAppliedStudent(data1));
                   return resolve(data1);
                 });
               });
             })
           ).then((res) => {
+            initial = false;
             dispatch(triger.getAppliedStudentData(res));
           });
         } else {
@@ -101,7 +105,7 @@ const App = () => {
           );
 
           // getting name of each company
-
+          let initial = true;
           Promise.all(
             accordingExperience.map((item) => {
               return new Promise((resolve) => {
@@ -112,11 +116,15 @@ const App = () => {
                     username: data?.username,
                     isBlocked: data?.isBlocked,
                   };
+                  if (!initial) {
+                    dispatch(triger.getCompanyDataRealTime(data1));
+                  }
                   return resolve(data1);
                 });
               });
             })
           ).then((res) => {
+            initial = false;
             res = res.filter((val) => !val.isBlocked);
             dispatch(triger.getJobData(res));
           });

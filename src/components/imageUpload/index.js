@@ -12,10 +12,10 @@ import LocalSeeIcon from "@mui/icons-material/LocalSee";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
 import profilePic from "../../Assets/profile.png";
-import "./imageUpload.css";
 import Input from "../Input";
 import SuccessAlert from "../SuccessAlert";
 import ErrorAlert from "../ErrorAlert";
+import "./imageUpload.css";
 
 const ImageUpload = () => {
   const [alert, setAlert] = useState(false);
@@ -85,7 +85,7 @@ const ImageUpload = () => {
         onChange={(e) => pickedHandler(e)}
       />
       <div className="imageUploadPreview">
-        {previewUrl && (
+        {!!previewUrl && (
           <img
             src={
               typeof previewUrl == "object"
@@ -112,25 +112,25 @@ const ImageUpload = () => {
             <ClearIcon className="opacity" onClick={cancel} />
           </div>
         )}
-        {!!alert?.isSuccess && (
-          <SuccessAlert
-            message={alert?.msg}
-            open={!!alert?.isSuccess}
-            onClose={() => {
-              setAlert(false);
-            }}
-          />
-        )}
-        {!!alert?.isNotSuccess && (
-          <ErrorAlert
-            message={alert?.msg}
-            open={!!alert?.isNotSuccess}
-            onClose={() => {
-              setAlert(false);
-            }}
-          />
-        )}
       </div>
+      {!!alert?.isSuccess && (
+        <SuccessAlert
+          message={alert?.msg}
+          open={!!alert?.isSuccess}
+          onClose={() => {
+            setAlert(false);
+          }}
+        />
+      )}
+      {!!alert?.isNotSuccess && (
+        <ErrorAlert
+          message={alert?.msg}
+          open={!!alert?.isNotSuccess}
+          onClose={() => {
+            setAlert(false);
+          }}
+        />
+      )}
     </div>
   );
 };

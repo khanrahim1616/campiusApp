@@ -74,7 +74,6 @@ const Form = () => {
               className="Input"
               value={values.email}
               onChange={handleCustomizedChange}
-              onBlur={handleBlur}
             />
             {errors.email && touched.email ? <p> {errors.email}</p> : null}
           </span>

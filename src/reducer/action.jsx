@@ -14,6 +14,14 @@ export const getJobData = (payload) => {
   };
 };
 
+// company data realtime
+export const getCompanyDataRealTime = (payload) => {
+  return {
+    type: types.GET_COMPANY_DATA_REALTIME,
+    payload,
+  };
+};
+
 export const getAappliedJobs = (payload) => {
   return {
     type: types.GET_APPLIED_JOBS,
@@ -29,8 +37,16 @@ export const getAppliedStudentData = (payload) => {
     payload,
   };
 };
+// for real time data update for applied users
 
-// All Student Data for admin
+export const getParticularAppliedStudent = (payload) => {
+  return {
+    type: types.GET_PARTICULAR_APPLIED_STUDENT,
+    payload,
+  };
+};
+
+// All Users Data for admin
 
 export const getAllStudentData = (payload) => {
   return {

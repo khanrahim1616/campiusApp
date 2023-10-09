@@ -1,13 +1,14 @@
 import { remove, ref } from "firebase/database";
 import { db } from "../Firebaseconfig";
-import { AiFillDelete, AiOutlineMan } from "react-icons/ai";
+import { TbUserCheck } from "react-icons/tb";
+import { AiFillDelete } from "react-icons/ai";
 import Swal from "sweetalert2";
 
 const appliedCheck = ({ row, state, setOpen, setStudentApplied }) => {
   const studentData = state?.appliedStudentData.filter((val) =>
     row?.studenIds?.some((item) => item === val.uid)
   );
-  setOpen(true);
+  setOpen(row);
   setStudentApplied(studentData);
 };
 
@@ -44,7 +45,7 @@ export const allJobsColumns = (state, setOpen, setStudentApplied, setAlert) => {
       width: 150,
       renderCell: ({ row }) => {
         return (
-          <AiOutlineMan
+          <TbUserCheck
             style={{
               fontSize: "24px",
               color: "green",

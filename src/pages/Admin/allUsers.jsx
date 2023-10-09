@@ -27,12 +27,12 @@ const Tabss = () => {
 
   var data = [
     {
-      column: verifiedUsersColumns(),
-      row: verifiedUsersRow(state, setAlert),
+      column: verifiedUsersColumns(setAlert),
+      row: verifiedUsersRow(state),
     },
     {
-      column: unVerifiedUsersColumns(),
-      row: unVerifiedUsersRow(state, setAlert),
+      column: unVerifiedUsersColumns(setAlert),
+      row: unVerifiedUsersRow(state),
     },
   ];
 
@@ -57,7 +57,7 @@ const Tabss = () => {
       <CurrentComponent index={tabs} data={data} />
       {!!alert?.isSuccess && (
         <SuccessAlert
-          message={alert.message}
+          message={alert?.message}
           open={!!alert?.isSuccess}
           onClose={() => {
             setAlert(false);

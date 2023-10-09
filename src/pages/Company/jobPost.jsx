@@ -54,7 +54,7 @@ const CompanyJobPost = () => {
               <i>&nbsp;&nbsp;Job-Details</i>
             </h2>
             <label htmlFor="Job_category">Category:</label>
-            <input
+            <Input
               className="selectOptions Input inputWidth "
               id="Job_category"
               ref={inputRef1}

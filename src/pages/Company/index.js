@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Modall } from "../../components/ApplyCheckModal";
 import { allJobsColumns, allJobsRow } from "../../Helper/companyHelper";
@@ -18,6 +18,14 @@ const Company = () => {
     row: allJobsRow(state),
     column: allJobsColumns(state, setOpen, setStudentApplied, setAlert),
   };
+
+  useEffect(() => {
+    setStudentApplied(
+      state?.appliedStudentData.filter((val) =>
+        open.studenIds?.some((item) => item === val.uid)
+      )
+    );
+  }, [state?.appliedStudentData, state?.jobData]);
 
   return (
     <div>

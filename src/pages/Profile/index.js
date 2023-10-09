@@ -17,7 +17,9 @@ const Profile = () => {
   const [alert, setAlert] = useState(false);
   const { email, role, username, experience } = state?.userData;
   const close = () => setOpen(false);
-
+console.log('====================================');
+console.log(alert);
+console.log('====================================');
   return (
     <div>
       <Navbar />
